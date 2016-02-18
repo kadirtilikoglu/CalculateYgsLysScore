@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Ygs - Lys Puan Hesaplama</string>
+    <string name="dogru">Doğru</string>
+    <string name="yanlis">Yanlış</string>
+    <string name="net">Net</string>
+    <string name="turkce">Türkçe</string>
+    <string name="sosyal">Sosyal</string>
+    <string name="mat">Matematik</string>
+    <string name="fen">Fen</string>
+    <string name="hesapla">Hesapla</string>
+    <string name="lys">Lys</string>
+    <string name="temizle">Temizle</string>
+    
+    <string name="geo">Geometri</string>
+    <string name="fizik">Fizik</string>
+    <string name="kimya">Kimya</string>
+    <string name="biyo">Biyoloji</string>
+    <string name="ede">Edebiyat</string>
+    <string name="cog1">Coğrafya-1</string>
+    <string name="tarih">Tarih</string>
+    <string name="cog2">Coğrafya-2</string>
+    <string name="fel">Felsefe/Din</string>
+    <string name="ydil">Yabancı Dil</string>
+</resources>

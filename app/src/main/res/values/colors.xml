@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="lys1">#0288D1</color>
+    <color name="lys2">#cece04</color>
+    <color name="lys3">#F44336</color>
+    <color name="lys4">#804000</color>
+    <color name="yabancı_dil">#45606c</color>
+    <color name="siyah">#000000</color>
+    <color name="mf">#488e0b</color>
+    <color name="tm">#be03be</color>
+    <color name="ts">#9e6251</color>
+</resources>

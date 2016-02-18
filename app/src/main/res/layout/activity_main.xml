@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="demirciy.ygslyspuanhesaplama.MainActivity">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:id="@+id/text_lys_net"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="5dp"
+        android:textAlignment="center"
+        android:text="@string/net" />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/yanlis"
+        android:id="@+id/text_ygs_yanlis"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/text_lys_net"
+        android:layout_marginRight="5dp"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/dogru"
+        android:id="@+id/text_ygs_dogru"
+        android:layout_alignParentTop="true"
+        android:layout_toStartOf="@+id/text_ygs_yanlis"
+        android:layout_marginRight="5dp"
+        android:textAlignment="center" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_tr_net"
+        android:layout_below="@+id/text_lys_net"
+        android:layout_alignEnd="@+id/text_lys_net"
+        android:layout_toEndOf="@+id/text_ygs_yanlis"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_tr_yanlis"
+        android:layout_alignBottom="@+id/et_ygs_tr_net"
+        android:layout_alignEnd="@+id/text_ygs_yanlis"
+        android:layout_toEndOf="@+id/text_ygs_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_tr_dogru"
+        android:layout_below="@+id/text_ygs_dogru"
+        android:layout_alignEnd="@+id/text_ygs_dogru"
+        android:layout_alignStart="@+id/text_ygs_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="15dp"
+        android:selectAllOnFocus="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/turkce"
+        android:layout_below="@+id/text_ygs_dogru"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_sosyal_net"
+        android:layout_below="@+id/et_ygs_tr_net"
+        android:layout_alignEnd="@+id/et_ygs_tr_net"
+        android:layout_toEndOf="@+id/text_ygs_yanlis"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_sosyal_yanlis"
+        android:layout_below="@+id/et_ygs_tr_yanlis"
+        android:layout_alignEnd="@+id/et_ygs_tr_yanlis"
+        android:layout_toEndOf="@+id/text_ygs_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_sosyal_dogru"
+        android:layout_below="@+id/et_ygs_tr_dogru"
+        android:layout_alignEnd="@+id/et_ygs_tr_dogru"
+        android:layout_alignStart="@+id/et_ygs_tr_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/sosyal"
+        android:layout_below="@+id/et_ygs_tr_dogru"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_mat_net"
+        android:layout_below="@+id/et_ygs_sosyal_net"
+        android:layout_alignEnd="@+id/et_ygs_sosyal_net"
+        android:layout_toEndOf="@+id/text_ygs_yanlis"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_mat_yanlis"
+        android:layout_below="@+id/et_ygs_sosyal_yanlis"
+        android:layout_alignEnd="@+id/et_ygs_sosyal_yanlis"
+        android:layout_toEndOf="@+id/text_ygs_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_mat_dogru"
+        android:layout_below="@+id/et_ygs_sosyal_dogru"
+        android:layout_alignEnd="@+id/et_ygs_sosyal_dogru"
+        android:layout_alignStart="@+id/et_ygs_sosyal_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/mat"
+        android:layout_below="@+id/et_ygs_sosyal_dogru"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_fen_net"
+        android:layout_below="@+id/et_ygs_mat_net"
+        android:layout_alignEnd="@+id/et_ygs_mat_net"
+        android:layout_toEndOf="@+id/text_ygs_yanlis"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_fen_yanlis"
+        android:layout_alignBottom="@+id/et_ygs_fen_net"
+        android:layout_alignEnd="@+id/et_ygs_mat_yanlis"
+        android:layout_toEndOf="@+id/text_ygs_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="numberDecimal"
+        android:ems="10"
+        android:id="@+id/et_ygs_fen_dogru"
+        android:layout_alignBottom="@+id/et_ygs_fen_yanlis"
+        android:layout_alignEnd="@+id/et_ygs_mat_dogru"
+        android:layout_alignStart="@+id/et_ygs_mat_dogru"
+        android:text="0"
+        android:textAlignment="center"
+        android:layout_marginTop="10dp"
+        android:selectAllOnFocus="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/fen"
+        android:layout_below="@+id/et_ygs_mat_dogru"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/temizle"
+        android:id="@+id/btn_temizle"
+        android:onClick="YgsTemizle"
+        android:layout_alignTop="@+id/btn_lys"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/lys"
+        android:id="@+id/btn_lys"
+        android:onClick="GitLys"
+        android:layout_below="@+id/text_ygs_toplam_yanlis"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/hesapla"
+        android:id="@+id/btn_hesapla"
+        android:onClick="YgsHesapla"
+        android:layout_alignTop="@+id/btn_temizle"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/text_ygs_toplam_net"
+        android:layout_below="@+id/et_ygs_fen_net"
+        android:layout_alignEnd="@+id/et_ygs_fen_net"
+        android:layout_toEndOf="@+id/text_ygs_yanlis"
+        android:textAlignment="center"
+        android:layout_marginTop="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/text_ygs_toplam_yanlis"
+        android:layout_alignTop="@+id/text_ygs_toplam_net"
+        android:layout_alignEnd="@+id/et_ygs_fen_yanlis"
+        android:layout_toEndOf="@+id/text_ygs_dogru"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/text_ygs_toplam_dogru"
+        android:layout_alignBottom="@+id/text_ygs_toplam_yanlis"
+        android:layout_alignStart="@+id/et_ygs_fen_dogru"
+        android:layout_alignEnd="@+id/et_ygs_fen_dogru"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ygs-1 : 100.16"
+        android:id="@+id/text_ygs1"
+        android:layout_below="@+id/btn_hesapla"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="30dp"
+        android:layout_alignEnd="@+id/text_ygs_toplam_dogru"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/mf" />
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ygs-3 : 100.16"
+        android:id="@+id/text_ygs3"
+        android:layout_below="@+id/text_ygs1"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:textColor="@color/ts" />
+
+    <TextView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ygs-5 : 100.12"
+        android:id="@+id/text_ygs5"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_below="@+id/text_ygs3"
+        android:layout_alignStart="@+id/text_ygs3"
+        android:layout_alignEnd="@+id/text_ygs3"
+        android:textColor="@color/tm" />
+
+    <TextView
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ygs-2 : 100.16"
+        android:id="@+id/text_ygs2"
+        android:layout_alignTop="@+id/text_ygs1"
+        android:layout_alignParentBottom="false"
+        android:layout_alignEnd="@+id/text_ygs_toplam_net"
+        android:textColor="@color/mf" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ygs-4 : 100.16"
+        android:id="@+id/text_ygs4"
+        android:layout_alignStart="@+id/text_ygs2"
+        android:layout_alignEnd="@+id/text_ygs2"
+        android:layout_below="@+id/text_ygs2"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/ts" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ygs-6 : 100.12"
+        android:id="@+id/text_ygs6"
+        android:layout_alignStart="@+id/text_ygs4"
+        android:layout_below="@+id/text_ygs4"
+        android:layout_alignEnd="@+id/text_ygs4"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/tm" />
+    </RelativeLayout>
+
+</ScrollView>
