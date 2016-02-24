@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,388 +8,206 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="demirciy.ygslyspuanhesaplama.MainActivity">
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:id="@+id/text_lys_net"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="5dp"
-        android:textAlignment="center"
-        android:text="@string/net" />
+      <RelativeLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:id="@+id/rlButonUst">
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/yanlis"
-        android:id="@+id/text_ygs_yanlis"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/text_lys_net"
-        android:layout_marginRight="5dp"
-        android:textAlignment="center" />
+          <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:id="@+id/llTr"
+                  android:layout_alignParentTop="true"
+                  android:layout_alignParentEnd="true"
+                  android:layout_alignParentStart="true">
 
-    <TextView
-        android:layout_width="50dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/dogru"
-        android:id="@+id/text_ygs_dogru"
-        android:layout_alignParentTop="true"
-        android:layout_toStartOf="@+id/text_ygs_yanlis"
-        android:layout_marginRight="5dp"
-        android:textAlignment="center" />
+                  <TextView
+                      android:text="@string/tr"
+                      android:id="@+id/tTurkce"
+                      style="@style/ygsDersler" />
+                  <EditText
+                      android:id="@+id/etYgsTrD"
+                      style="@style/etYgsDogru" />
+                  <EditText
+                      android:id="@+id/etYgsTrY"
+                      style="@style/etYgsYanlis"/>
+                  <EditText
+                      android:id="@+id/etYgsTrN"
+                      style="@style/etYgsNet"/>
+              </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_tr_net"
-        android:layout_below="@+id/text_lys_net"
-        android:layout_alignEnd="@+id/text_lys_net"
-        android:layout_toEndOf="@+id/text_ygs_yanlis"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:selectAllOnFocus="true" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llSos"
+              android:layout_alignParentEnd="true"
+              android:layout_alignParentStart="true"
+              android:layout_below="@+id/llTr">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_tr_yanlis"
-        android:layout_alignBottom="@+id/et_ygs_tr_net"
-        android:layout_alignEnd="@+id/text_ygs_yanlis"
-        android:layout_toEndOf="@+id/text_ygs_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:selectAllOnFocus="true" />
+              <TextView
+                  android:text="@string/sos"
+                  android:id="@+id/tSos"
+                  style="@style/ygsDersler" />
+              <EditText
+                  android:id="@+id/etYgsSosD"
+                  style="@style/etYgsDogru"/>
+              <EditText
+                  android:id="@+id/etYgsSosY"
+                  style="@style/etYgsYanlis"/>
+              <EditText
+                  android:id="@+id/etYgsSosN"
+                  style="@style/etYgsNet"/>
+          </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_tr_dogru"
-        android:layout_below="@+id/text_ygs_dogru"
-        android:layout_alignEnd="@+id/text_ygs_dogru"
-        android:layout_alignStart="@+id/text_ygs_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="15dp"
-        android:selectAllOnFocus="true" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llMat"
+              android:layout_alignParentEnd="true"
+              android:layout_alignParentStart="true"
+              android:layout_below="@+id/llSos">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/turkce"
-        android:layout_below="@+id/text_ygs_dogru"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="15dp" />
+              <TextView
+                  android:text="@string/mat"
+                  android:id="@+id/tMat"
+                  style="@style/ygsDersler" />
+              <EditText
+                  android:id="@+id/etYgsMatD"
+                  style="@style/etYgsDogru"/>
+              <EditText
+                  android:id="@+id/etYgsMatY"
+                  style="@style/etYgsYanlis"/>
+              <EditText
+                  android:id="@+id/etYgsMatN"
+                  style="@style/etYgsNet"/>
+          </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_sosyal_net"
-        android:layout_below="@+id/et_ygs_tr_net"
-        android:layout_alignEnd="@+id/et_ygs_tr_net"
-        android:layout_toEndOf="@+id/text_ygs_yanlis"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llFen"
+              android:layout_alignParentEnd="true"
+              android:layout_alignParentStart="true"
+              android:layout_below="@+id/llMat">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_sosyal_yanlis"
-        android:layout_below="@+id/et_ygs_tr_yanlis"
-        android:layout_alignEnd="@+id/et_ygs_tr_yanlis"
-        android:layout_toEndOf="@+id/text_ygs_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+              <TextView
+                  android:text="@string/fen"
+                  android:id="@+id/tFen"
+                  style="@style/ygsDersler" />
+              <EditText
+                  android:id="@+id/etYgsFenD"
+                  style="@style/etYgsDogru"/>
+              <EditText
+                  android:id="@+id/etYgsFenY"
+                  style="@style/etYgsYanlis"/>
+              <EditText
+                  android:id="@+id/etYgsFenN"
+                  style="@style/etYgsNet"/>
+          </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_sosyal_dogru"
-        android:layout_below="@+id/et_ygs_tr_dogru"
-        android:layout_alignEnd="@+id/et_ygs_tr_dogru"
-        android:layout_alignStart="@+id/et_ygs_tr_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llToplam"
+              android:layout_below="@+id/llFen">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/sosyal"
-        android:layout_below="@+id/et_ygs_tr_dogru"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="15dp" />
+              <TextView
+                  android:text="@string/toplam"
+                  android:id="@+id/tToplam"
+                  style="@style/ygsToplam"/>
+              <TextView
+                  android:id="@+id/tToplamD"
+                  style="@style/etYgsDogru"/>
+              <TextView
+                  android:id="@+id/tToplamY"
+                  style="@style/etYgsYanlis"/>
+              <TextView
+                  android:id="@+id/tToplamN"
+                  style="@style/etYgsNet"/>
+          </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_mat_net"
-        android:layout_below="@+id/et_ygs_sosyal_net"
-        android:layout_alignEnd="@+id/et_ygs_sosyal_net"
-        android:layout_toEndOf="@+id/text_ygs_yanlis"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+      </RelativeLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_mat_yanlis"
-        android:layout_below="@+id/et_ygs_sosyal_yanlis"
-        android:layout_alignEnd="@+id/et_ygs_sosyal_yanlis"
-        android:layout_toEndOf="@+id/text_ygs_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/llButon"
+          android:layout_below="@+id/rlButonUst">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_mat_dogru"
-        android:layout_below="@+id/et_ygs_sosyal_dogru"
-        android:layout_alignEnd="@+id/et_ygs_sosyal_dogru"
-        android:layout_alignStart="@+id/et_ygs_sosyal_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+          <Button
+              android:id="@+id/btnHesapla"
+              android:text="@string/hesapla"
+              style="@style/ygsButon"/>
+          <Button
+              android:id="@+id/btnLys"
+              android:text="@string/lys"
+              style="@style/ygsButon"/>
+          <Button
+              android:id="@+id/btnTemizle"
+              android:text="@string/temizle"
+              style="@style/ygsButon"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/mat"
-        android:layout_below="@+id/et_ygs_sosyal_dogru"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="15dp" />
+      </LinearLayout>
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_fen_net"
-        android:layout_below="@+id/et_ygs_mat_net"
-        android:layout_alignEnd="@+id/et_ygs_mat_net"
-        android:layout_toEndOf="@+id/text_ygs_yanlis"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/rlButonAlt"
+          android:layout_below="@+id/llButon">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_fen_yanlis"
-        android:layout_alignBottom="@+id/et_ygs_fen_net"
-        android:layout_alignEnd="@+id/et_ygs_mat_yanlis"
-        android:layout_toEndOf="@+id/text_ygs_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llygs12">
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"
-        android:ems="10"
-        android:id="@+id/et_ygs_fen_dogru"
-        android:layout_alignBottom="@+id/et_ygs_fen_yanlis"
-        android:layout_alignEnd="@+id/et_ygs_mat_dogru"
-        android:layout_alignStart="@+id/et_ygs_mat_dogru"
-        android:text="0"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        android:selectAllOnFocus="true" />
+              <TextView
+                  style="@style/ygsPuan"
+                  android:id="@+id/tYgs1"
+                  android:text="@string/ygs1"
+                  android:textColor="@color/mf" />
+              <TextView
+                  style="@style/ygsPuan"
+                  android:id="@+id/tYgs2"
+                  android:text="@string/ygs2"
+                  android:textColor="@color/mf" />
+          </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/fen"
-        android:layout_below="@+id/et_ygs_mat_dogru"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginLeft="15dp" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llygs34"
+              android:layout_below="@id/llygs12">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/temizle"
-        android:id="@+id/btn_temizle"
-        android:onClick="YgsTemizle"
-        android:layout_alignTop="@+id/btn_lys"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="15dp" />
+              <TextView
+                  style="@style/ygsPuan"
+                  android:id="@+id/tYgs3"
+                  android:text="@string/ygs3"
+                  android:textColor="@color/ts" />
+              <TextView
+                  style="@style/ygsPuan"
+                  android:id="@+id/tYgs4"
+                  android:text="@string/ygs4"
+                  android:textColor="@color/ts" />
+          </LinearLayout>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/lys"
-        android:id="@+id/btn_lys"
-        android:onClick="GitLys"
-        android:layout_below="@+id/text_ygs_toplam_yanlis"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp" />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:id="@+id/llygs56"
+              android:layout_below="@id/llygs34">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hesapla"
-        android:id="@+id/btn_hesapla"
-        android:onClick="YgsHesapla"
-        android:layout_alignTop="@+id/btn_temizle"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="15dp" />
+              <TextView
+                  style="@style/ygsPuan"
+                  android:id="@+id/tYgs5"
+                  android:text="@string/ygs5"
+                  android:textColor="@color/tm" />
+              <TextView
+                  style="@style/ygsPuan"
+                  android:id="@+id/tYgs6"
+                  android:text="@string/ygs6"
+                  android:textColor="@color/tm" />
+          </LinearLayout>
+      </RelativeLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="0"
-        android:id="@+id/text_ygs_toplam_net"
-        android:layout_below="@+id/et_ygs_fen_net"
-        android:layout_alignEnd="@+id/et_ygs_fen_net"
-        android:layout_toEndOf="@+id/text_ygs_yanlis"
-        android:textAlignment="center"
-        android:layout_marginTop="25dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="0"
-        android:id="@+id/text_ygs_toplam_yanlis"
-        android:layout_alignTop="@+id/text_ygs_toplam_net"
-        android:layout_alignEnd="@+id/et_ygs_fen_yanlis"
-        android:layout_toEndOf="@+id/text_ygs_dogru"
-        android:textAlignment="center" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="0"
-        android:id="@+id/text_ygs_toplam_dogru"
-        android:layout_alignBottom="@+id/text_ygs_toplam_yanlis"
-        android:layout_alignStart="@+id/et_ygs_fen_dogru"
-        android:layout_alignEnd="@+id/et_ygs_fen_dogru"
-        android:textAlignment="center" />
-
-    <TextView
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ygs-1 : 100.16"
-        android:id="@+id/text_ygs1"
-        android:layout_below="@+id/btn_hesapla"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="30dp"
-        android:layout_alignEnd="@+id/text_ygs_toplam_dogru"
-        android:layout_marginLeft="15dp"
-        android:textColor="@color/mf" />
-
-    <TextView
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ygs-3 : 100.16"
-        android:id="@+id/text_ygs3"
-        android:layout_below="@+id/text_ygs1"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:textColor="@color/ts" />
-
-    <TextView
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ygs-5 : 100.12"
-        android:id="@+id/text_ygs5"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_below="@+id/text_ygs3"
-        android:layout_alignStart="@+id/text_ygs3"
-        android:layout_alignEnd="@+id/text_ygs3"
-        android:textColor="@color/tm" />
-
-    <TextView
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ygs-2 : 100.16"
-        android:id="@+id/text_ygs2"
-        android:layout_alignTop="@+id/text_ygs1"
-        android:layout_alignParentBottom="false"
-        android:layout_alignEnd="@+id/text_ygs_toplam_net"
-        android:textColor="@color/mf" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ygs-4 : 100.16"
-        android:id="@+id/text_ygs4"
-        android:layout_alignStart="@+id/text_ygs2"
-        android:layout_alignEnd="@+id/text_ygs2"
-        android:layout_below="@+id/text_ygs2"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/ts" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Ygs-6 : 100.12"
-        android:id="@+id/text_ygs6"
-        android:layout_alignStart="@+id/text_ygs4"
-        android:layout_below="@+id/text_ygs4"
-        android:layout_alignEnd="@+id/text_ygs4"
-        android:layout_marginTop="15dp"
-        android:textColor="@color/tm" />
-    </RelativeLayout>
-
-</ScrollView>
+  </RelativeLayout>

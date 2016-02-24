@@ -15,8 +15,8 @@ import java.text.DecimalFormat;
 
 public class Lys extends AppCompatActivity {
 
-    private EditText et_lys_mat_dogru, et_lys_mat_yanlis, et_lys_mat_net, et_lys_geo_dogru, et_lys_geo_yanlis,
-    et_lys_geo_net, et_lys_fizik_dogru, et_lys_fizik_yanlis, et_lys_fizik_net, et_lys_kimya_dogru,
+    private EditText etLysMatD, etLysMatY, etLysMatN, etLysGeoD, etLysGeoY,
+    etLysGeoN, etLysFizikD, etLysFizikY, etLysFizikN, et_lys_kimya_dogru,
     et_lys_kimya_yanlis, et_lys_kimya_net, et_lys_biyo_dogru, et_lys_biyo_yanlis, et_lys_biyo_net,
     et_lys_ede_dogru, et_lys_ede_yanlis, et_lys_ede_net, et_lys_cog1_dogru, et_lys_cog1_yanlis, et_lys_cog1_net,
     et_lys_tarih_dogru, et_lys_tarih_yanlis, et_lys_tarih_net, et_lys_cog2_dogru, et_lys_cog2_yanlis, et_lys_cog2_net,
@@ -41,15 +41,15 @@ public class Lys extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lys);
 
-        et_lys_mat_dogru = (EditText) findViewById(R.id.et_lys_mat_dogru);
-        et_lys_mat_yanlis = (EditText) findViewById(R.id.et_lys_mat_yanlis);
-        et_lys_mat_net = (EditText) findViewById(R.id.et_lys_mat_net);
-        et_lys_geo_dogru = (EditText) findViewById(R.id.et_lys_geo_dogru);
-        et_lys_geo_yanlis = (EditText) findViewById(R.id.et_lys_geo_yanlis);
-        et_lys_geo_net = (EditText) findViewById(R.id.et_lys_geo_net);
-        et_lys_fizik_dogru = (EditText) findViewById(R.id.et_lys_fizik_dogru);
-        et_lys_fizik_yanlis = (EditText) findViewById(R.id.et_lys_fizik_yanlis);
-        et_lys_fizik_net = (EditText) findViewById(R.id.et_lys_fizik_net);
+        etLysMatD = (EditText) findViewById(R.id.etLysMatD);
+        etLysMatY = (EditText) findViewById(R.id.etLysMatY);
+        etLysMatN = (EditText) findViewById(R.id.etLysMatN);
+        etLysGeoD = (EditText) findViewById(R.id.etLysGeoD);
+        etLysGeoY = (EditText) findViewById(R.id.etLysGeoY);
+        etLysGeoN = (EditText) findViewById(R.id.etLysGeoN);
+        etLysFizikD = (EditText) findViewById(R.id.etLysFizikD);
+        etLysFizikY = (EditText) findViewById(R.id.etLysFizikY);
+        etLysFizikN = (EditText) findViewById(R.id.etLysFizikN);
         et_lys_kimya_dogru = (EditText) findViewById(R.id.et_lys_kimya_dogru);
         et_lys_kimya_yanlis = (EditText) findViewById(R.id.et_lys_kimya_yanlis);
         et_lys_kimya_net = (EditText) findViewById(R.id.et_lys_kimya_net);
@@ -74,7 +74,7 @@ public class Lys extends AppCompatActivity {
         et_lys_ydil_dogru = (EditText) findViewById(R.id.et_lys_ydil_dogru);
         et_lys_ydil_yanlis = (EditText) findViewById(R.id.et_lys_ydil_yanlis);
         et_lys_ydil_net = (EditText) findViewById(R.id.et_lys_ydil_net);
-        btnHesapla = (Button) findViewById(R.id.btn_hesapla);
+        btnHesapla = (Button) findViewById(R.id.btnHesapla);
         text_lys_mf1 = (TextView) findViewById(R.id.text_lys_mf1);
         text_lys_mf2 = (TextView) findViewById(R.id.text_lys_mf2);
         text_lys_mf3 = (TextView) findViewById(R.id.text_lys_mf3);
@@ -88,6 +88,8 @@ public class Lys extends AppCompatActivity {
         text_lys_dil2 = (TextView) findViewById(R.id.text_lys_dil2);
         text_lys_dil3 = (TextView) findViewById(R.id.text_lys_dil3);
 
+
+
         myDb = new DatabaseHelper(this);
 
     }
@@ -96,54 +98,54 @@ public class Lys extends AppCompatActivity {
     {
         Log.d(LOG_TAG, "Lys notları alınıyor.");
         try {
-            lysMatD = Double.parseDouble(et_lys_mat_dogru.getText().toString());
-            lysMatY = Double.parseDouble(et_lys_mat_yanlis.getText().toString());
-            lysMatN = Double.parseDouble(et_lys_mat_net.getText().toString());
+            lysMatD = Double.parseDouble(etLysMatD.getText().toString());
+            lysMatY = Double.parseDouble(etLysMatY.getText().toString());
+            lysMatN = Double.parseDouble(etLysMatN.getText().toString());
             if (lysMatN == 0) {
                 NetHesapla lysMat = new NetHesapla(lysMatD, lysMatY);
                 lysMatN = lysMat.getNet();
-                et_lys_mat_net.setText(String.valueOf(format.format(lysMatN)));
+                etLysMatN.setText(String.valueOf(format.format(lysMatN)));
             } else {
                 if (lysMatD == 0 && lysMatY == 0) {
-                    et_lys_mat_net.setText(String.valueOf(format.format(lysMatN)));
+                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
                 } else {
                     NetHesapla lysMat = new NetHesapla(lysMatD, lysMatY);
                     lysMatN = lysMat.getNet();
-                    et_lys_mat_net.setText(String.valueOf(format.format(lysMatN)));
+                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
                 }
             }
 
-            lysGeoD = Double.parseDouble(et_lys_geo_dogru.getText().toString());
-            lysGeoY = Double.parseDouble(et_lys_geo_yanlis.getText().toString());
-            lysGeoN = Double.parseDouble(et_lys_geo_net.getText().toString());
+            lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
+            lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
+            lysGeoN = Double.parseDouble(etLysGeoN.getText().toString());
             if (lysGeoN == 0) {
                 NetHesapla lysGeo = new NetHesapla(lysGeoD, lysGeoY);
                 lysGeoN = lysGeo.getNet();
-                et_lys_geo_net.setText(String.valueOf(format.format(lysGeoN)));
+                etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
             } else {
                 if (lysGeoD == 0 && lysGeoY == 0) {
-                    et_lys_geo_net.setText(String.valueOf(format.format(lysGeoN)));
+                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
                 } else {
                     NetHesapla lysGeo = new NetHesapla(lysGeoD, lysGeoY);
                     lysGeoN = lysGeo.getNet();
-                    et_lys_geo_net.setText(String.valueOf(format.format(lysGeoN)));
+                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
                 }
             }
 
-            lysFizikD = Double.parseDouble(et_lys_fizik_dogru.getText().toString());
-            lysFizikY = Double.parseDouble(et_lys_fizik_yanlis.getText().toString());
-            lysFizikN = Double.parseDouble(et_lys_fizik_net.getText().toString());
+            lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
+            lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
+            lysFizikN = Double.parseDouble(etLysFizikN.getText().toString());
             if (lysFizikN == 0) {
                 NetHesapla lysFizik = new NetHesapla(lysFizikD, lysFizikY);
                 lysFizikN = lysFizik.getNet();
-                et_lys_fizik_net.setText(String.valueOf(format.format(lysFizikN)));
+                etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
             } else {
                 if (lysFizikD == 0 && lysFizikY == 0) {
-                    et_lys_fizik_net.setText(String.valueOf(format.format(lysFizikN)));
+                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
                 } else {
                     NetHesapla lysFizik = new NetHesapla(lysFizikD, lysFizikY);
                     lysFizikN = lysFizik.getNet();
-                    et_lys_fizik_net.setText(String.valueOf(format.format(lysFizikN)));
+                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
                 }
             }
 
@@ -328,15 +330,15 @@ public class Lys extends AppCompatActivity {
 
     public void LysTemizle(View view)
     {
-        et_lys_mat_dogru.setText("0");
-        et_lys_mat_yanlis.setText("0");
-        et_lys_mat_net.setText("0");
-        et_lys_geo_dogru.setText("0");
-        et_lys_geo_yanlis.setText("0");
-        et_lys_geo_net.setText("0");
-        et_lys_fizik_dogru.setText("0");
-        et_lys_fizik_yanlis.setText("0");
-        et_lys_fizik_net.setText("0");
+        etLysMatD.setText("0");
+        etLysMatY.setText("0");
+        etLysMatN.setText("0");
+        etLysGeoD.setText("0");
+        etLysGeoY.setText("0");
+        etLysGeoN.setText("0");
+        etLysFizikD.setText("0");
+        etLysFizikY.setText("0");
+        etLysFizikN.setText("0");
         et_lys_kimya_dogru.setText("0");
         et_lys_kimya_yanlis.setText("0");
         et_lys_kimya_net.setText("0");

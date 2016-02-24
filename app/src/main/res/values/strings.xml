@@ -1,10 +1,25 @@
 <resources>
     <string name="app_name">Ygs - Lys Puan Hesaplama</string>
+
+    <string name="ygs1">Ygs-1 : 100.16</string>
+    <string name="ygs2">Ygs-2 : 100.16</string>
+    <string name="ygs3">Ygs-3 : 100.16</string>
+    <string name="ygs4">Ygs-4 : 100.16</string>
+    <string name="ygs5">Ygs-5 : 100.12</string>
+    <string name="ygs6">Ygs-6 : 100.12</string>
+
+    <string name="lys1">Lys1</string>
+    <string name="lys2">Lys2</string>
+    <string name="lys3">Lys3</string>
+    <string name="lys4">Lys4</string>
+    <string name="lys5">Lys5</string>
+
     <string name="dogru">Doğru</string>
     <string name="yanlis">Yanlış</string>
-    <string name="net">Net</string>
-    <string name="turkce">Türkçe</string>
-    <string name="sosyal">Sosyal</string>
+    <string name="net">"   Net   "</string>
+    <string name="toplam">Toplam</string>
+    <string name="tr">Türkçe</string>
+    <string name="sos">Sosyal</string>
     <string name="mat">Matematik</string>
     <string name="fen">Fen</string>
     <string name="hesapla">Hesapla</string>
@@ -21,4 +36,6 @@
     <string name="cog2">Coğrafya-2</string>
     <string name="fel">Felsefe/Din</string>
     <string name="ydil">Yabancı Dil</string>
+
+    <string name="sifir">0</string>
 </resources>

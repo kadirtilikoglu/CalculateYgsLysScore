@@ -1,10 +1,9 @@
 package demirciy.ygslyspuanhesaplama;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,21 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.text.DecimalFormat;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private EditText et_ygs_tr_dogru, et_ygs_tr_yanlis, et_ygs_tr_net, et_ygs_sosyal_dogru, et_ygs_sosyal_yanlis,
-    et_ygs_sosyal_net, et_ygs_mat_dogru, et_ygs_mat_yanlis, et_ygs_mat_net, et_ygs_fen_dogru,
-    et_ygs_fen_yanlis, et_ygs_fen_net;
-    private TextView text_ygs_toplam_dogru, text_ygs_toplam_yanlis, text_ygs_toplam_net, text_ygs1, text_ygs2,
-    text_ygs3, text_ygs4, text_ygs5, text_ygs6;
+    private EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
+            etYgsSosN, etYgsMatD, etYgsMatY, etYgsMatN, etYgsFenD,
+            etYgsFenY, etYgsFenN;
+    private TextView tToplamD, tToplamY, tToplamN, tYgs1, tYgs2,
+            tYgs3, tYgs4, tYgs5, tYgs6;
+    private Button btnHesapla, btnLys, btnTemizle;
 
-    private double ygs_tr_dogru, ygs_tr_yanlis, ygs_sosyal_dogru, ygs_sosyal_yanlis, ygs_mat_dogru,
-    ygs_mat_yanlis, ygs_fen_dogru, ygs_fen_yanlis;
-    public double ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net;
+    private double ygsTrD, ygsTrY, ygsSosD, ygsSosY, ygsMatD,
+            ygsMatY, ygsFenD, ygsFenY;
+    public double ygsTrN, ygsSosN, ygsMatN, ygsFenN;
 
     DecimalFormat format = new DecimalFormat("#.##");
 
@@ -34,213 +32,358 @@ public class MainActivity extends AppCompatActivity {
 
     DatabaseHelper myDb;
 
+    //edittextte 3 haneli sayı olunca edittext büyüyor
     //başlagıçta ekrana bir bildiri gönder ve sayısal yeşil, eşit ağırlık mor, sözel açık sarı yazdır
     //multi screen support
+    //ctrl+alt+l
+    //ctrl+alt+o
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Log.i(LOG_TAG, "Uygulama çalışmaya başladı.");
 
-        et_ygs_tr_dogru        = (EditText) findViewById(R.id.et_ygs_tr_dogru);
-        et_ygs_tr_yanlis       = (EditText) findViewById(R.id.et_ygs_tr_yanlis);
-        et_ygs_tr_net          = (EditText) findViewById(R.id.et_ygs_tr_net);
-        et_ygs_sosyal_dogru    = (EditText) findViewById(R.id.et_ygs_sosyal_dogru);
-        et_ygs_sosyal_yanlis   = (EditText) findViewById(R.id.et_ygs_sosyal_yanlis);
-        et_ygs_sosyal_net      = (EditText) findViewById(R.id.et_ygs_sosyal_net);
-        et_ygs_mat_dogru       = (EditText) findViewById(R.id.et_ygs_mat_dogru);
-        et_ygs_mat_yanlis      = (EditText) findViewById(R.id.et_ygs_mat_yanlis);
-        et_ygs_mat_net         = (EditText) findViewById(R.id.et_ygs_mat_net);
-        et_ygs_fen_dogru       = (EditText) findViewById(R.id.et_ygs_fen_dogru);
-        et_ygs_fen_yanlis      = (EditText) findViewById(R.id.et_ygs_fen_yanlis);
-        et_ygs_fen_net         = (EditText) findViewById(R.id.et_ygs_fen_net);
-        text_ygs_toplam_dogru  = (TextView) findViewById(R.id.text_ygs_toplam_dogru);
-        text_ygs_toplam_yanlis = (TextView) findViewById(R.id.text_ygs_toplam_yanlis);
-        text_ygs_toplam_net    = (TextView) findViewById(R.id.text_ygs_toplam_net);
-        text_ygs1              = (TextView) findViewById(R.id.text_ygs1);
-        text_ygs2              = (TextView) findViewById(R.id.text_ygs2);
-        text_ygs3              = (TextView) findViewById(R.id.text_ygs3);
-        text_ygs4              = (TextView) findViewById(R.id.text_ygs4);
-        text_ygs5              = (TextView) findViewById(R.id.text_ygs5);
-        text_ygs6              = (TextView) findViewById(R.id.text_ygs6);
+        etYgsTrD = (EditText) findViewById(R.id.etYgsTrD);
+        etYgsTrY = (EditText) findViewById(R.id.etYgsTrY);
+        etYgsTrN = (EditText) findViewById(R.id.etYgsTrN);
+        etYgsSosD = (EditText) findViewById(R.id.etYgsSosD);
+        etYgsSosY = (EditText) findViewById(R.id.etYgsSosY);
+        etYgsSosN = (EditText) findViewById(R.id.etYgsSosN);
+        etYgsMatD = (EditText) findViewById(R.id.etYgsMatD);
+        etYgsMatY = (EditText) findViewById(R.id.etYgsMatY);
+        etYgsMatN = (EditText) findViewById(R.id.etYgsMatN);
+        etYgsFenD = (EditText) findViewById(R.id.etYgsFenD);
+        etYgsFenY = (EditText) findViewById(R.id.etYgsFenY);
+        etYgsFenN = (EditText) findViewById(R.id.etYgsFenN);
+        tToplamD = (TextView) findViewById(R.id.tToplamD);
+        tToplamY = (TextView) findViewById(R.id.tToplamY);
+        tToplamN = (TextView) findViewById(R.id.tToplamN);
+        tYgs1 = (TextView) findViewById(R.id.tYgs1);
+        tYgs2 = (TextView) findViewById(R.id.tYgs2);
+        tYgs3 = (TextView) findViewById(R.id.tYgs3);
+        tYgs4 = (TextView) findViewById(R.id.tYgs4);
+        tYgs5 = (TextView) findViewById(R.id.tYgs5);
+        tYgs6 = (TextView) findViewById(R.id.tYgs6);
+        btnHesapla = (Button) findViewById(R.id.btnHesapla);
+        btnLys = (Button) findViewById(R.id.btnLys);
+        btnTemizle = (Button) findViewById(R.id.btnTemizle);
+
+        btnHesapla.setOnClickListener(this);
+        btnLys.setOnClickListener(this);
+        btnTemizle.setOnClickListener(this);
 
         myDb = new DatabaseHelper(this);
     }
 
-    public void YgsHesapla(View view)
-    {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.btnHesapla:
+                ygsHesapla();
+                break;
+            case R.id.btnLys:
+                gitLys();
+                break;
+            case R.id.btnTemizle:
+                ygsTemizle();
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void ygsHesapla() {
         Log.d(LOG_TAG, "Ygs notları alınıyor.");
+
         try {
-            ygs_tr_dogru = Double.parseDouble(et_ygs_tr_dogru.getText().toString());
-            ygs_tr_yanlis = Double.parseDouble(et_ygs_tr_yanlis.getText().toString());
-            ygs_tr_net = Double.parseDouble(et_ygs_tr_net.getText().toString());
-            if (ygs_tr_net == 0) {
-                NetHesapla ygs_tr = new NetHesapla(ygs_tr_dogru, ygs_tr_yanlis);
-                ygs_tr_net = ygs_tr.getNet();
-                et_ygs_tr_net.setText(String.valueOf(format.format(ygs_tr_net)));
-            } else {
-                if (ygs_tr_dogru == 0 && ygs_tr_yanlis == 0) {
-                    et_ygs_tr_net.setText(String.valueOf(format.format(ygs_tr_net)));
-                } else {
-                    NetHesapla ygs_tr = new NetHesapla(ygs_tr_dogru, ygs_tr_yanlis);
-                    ygs_tr_net = ygs_tr.getNet();
-                    et_ygs_tr_net.setText(String.valueOf(format.format(ygs_tr_net)));
-                }
+            boolean trD = etYgsTrD.getText().toString().equals("");
+            boolean trY = etYgsTrY.getText().toString().equals("");
+            boolean trN = etYgsTrN.getText().toString().equals("");
+            if (trD == false && trY == true && trN == true)
+            {
+                ygsTrD = Double.parseDouble(etYgsTrD.getText().toString());
+                ygsTrN = ygsTrD;
+                etYgsTrN.setText(String.valueOf(format.format(ygsTrN)));
             }
-
-            ygs_sosyal_dogru = Double.parseDouble(et_ygs_sosyal_dogru.getText().toString());
-            ygs_sosyal_yanlis = Double.parseDouble(et_ygs_sosyal_yanlis.getText().toString());
-            ygs_sosyal_net = Double.parseDouble(et_ygs_sosyal_net.getText().toString());
-            if (ygs_sosyal_net == 0) {
-                NetHesapla ygs_sosyal = new NetHesapla(ygs_sosyal_dogru, ygs_sosyal_yanlis);
-                ygs_sosyal_net = ygs_sosyal.getNet();
-                et_ygs_sosyal_net.setText(String.valueOf(format.format(ygs_sosyal_net)));
-            } else {
-                if (ygs_sosyal_dogru == 0 && ygs_sosyal_yanlis == 0) {
-                    et_ygs_sosyal_net.setText(String.valueOf(format.format(ygs_sosyal_net)));
-                } else {
-                    NetHesapla ygs_sosyal = new NetHesapla(ygs_sosyal_dogru, ygs_sosyal_yanlis);
-                    ygs_sosyal_net = ygs_sosyal.getNet();
-                    et_ygs_sosyal_net.setText(String.valueOf(format.format(ygs_sosyal_net)));
-                }
+            else if (trD == true && trY == false && trN == true)
+            {
+                NetHesapla ygsTr = new NetHesapla(0, Double.parseDouble(etYgsTrY.getText().toString()));
+                ygsTrN = ygsTr.getNet();
+                etYgsTrN.setText(String.valueOf(format.format(ygsTrN)));
             }
-
-            ygs_mat_dogru = Double.parseDouble(et_ygs_mat_dogru.getText().toString());
-            ygs_mat_yanlis = Double.parseDouble(et_ygs_mat_yanlis.getText().toString());
-            ygs_mat_net = Double.parseDouble(et_ygs_mat_net.getText().toString());
-            if (ygs_mat_net == 0) {
-                NetHesapla ygs_mat = new NetHesapla(ygs_mat_dogru, ygs_mat_yanlis);
-                ygs_mat_net = ygs_mat.getNet();
-                et_ygs_mat_net.setText(String.valueOf(format.format(ygs_mat_net)));
-            } else {
-                if (ygs_mat_dogru == 0 && ygs_mat_yanlis == 0) {
-                    et_ygs_mat_net.setText(String.valueOf(format.format(ygs_mat_net)));
-                } else {
-                    NetHesapla ygs_mat = new NetHesapla(ygs_mat_dogru, ygs_mat_yanlis);
-                    ygs_mat_net = ygs_mat.getNet();
-                    et_ygs_mat_net.setText(String.valueOf(format.format(ygs_mat_net)));
-                }
+            else if(trD == true && trY == true && trN == false)
+            {
+                ygsTrN = Double.parseDouble(etYgsTrN.getText().toString());
             }
-
-            ygs_fen_dogru = Double.parseDouble(et_ygs_fen_dogru.getText().toString());
-            ygs_fen_yanlis = Double.parseDouble(et_ygs_fen_yanlis.getText().toString());
-            ygs_fen_net = Double.parseDouble(et_ygs_fen_net.getText().toString());
-            if (ygs_fen_net == 0) {
-                NetHesapla ygs_fen = new NetHesapla(ygs_fen_dogru, ygs_fen_yanlis);
-                ygs_fen_net = ygs_fen.getNet();
-                et_ygs_fen_net.setText(String.valueOf(format.format(ygs_fen_net)));
-            } else {
-                if (ygs_fen_dogru == 0 && ygs_fen_yanlis == 0) {
-                    et_ygs_fen_net.setText(String.valueOf(format.format(ygs_fen_net)));
-                } else {
-                    NetHesapla ygs_fen = new NetHesapla(ygs_fen_dogru, ygs_fen_yanlis);
-                    ygs_fen_net = ygs_fen.getNet();
-                    et_ygs_fen_net.setText(String.valueOf(format.format(ygs_fen_net)));
-                }
+            else if(trD == false && trY == false && trN == true)
+            {
+                ygsTrD = Double.parseDouble(etYgsTrD.getText().toString());
+                ygsTrY = Double.parseDouble(etYgsTrY.getText().toString());
+                NetHesapla ygsTr = new NetHesapla(ygsTrD, ygsTrY);
+                ygsTrN = ygsTr.getNet();
+                etYgsTrN.setText(String.valueOf(format.format(ygsTrN)));
             }
+            else if(trD == false && trY == true && trN == false)
+            {
+                ygsTrN = Double.parseDouble(etYgsTrD.getText().toString());
+                etYgsTrN.setText(String.valueOf(format.format(ygsTrN)));
+            }
+            else if (trD == true && trY == false && trN == false)
+            {
+                NetHesapla ygsTr = new NetHesapla(0, Double.parseDouble(etYgsTrY.getText().toString()));
+                ygsTrN = ygsTr.getNet();
+                etYgsTrN.setText(String.valueOf(format.format(ygsTrN)));
+            }
+            else if(trD == false && trY == false && trN == false)
+            {
+                ygsTrD = Double.parseDouble(etYgsTrD.getText().toString());
+                ygsTrY = Double.parseDouble(etYgsTrY.getText().toString());
+                NetHesapla ygsTr = new NetHesapla(ygsTrD, ygsTrY);
+                ygsTrN = ygsTr.getNet();
+                etYgsTrN.setText(String.valueOf(format.format(ygsTrN)));
+            }
+            else
+                return;
 
-            text_ygs_toplam_dogru.setText(String.valueOf(format.format(ygs_tr_dogru + ygs_sosyal_dogru + ygs_mat_dogru + ygs_fen_dogru)));
-            text_ygs_toplam_yanlis.setText(String.valueOf(format.format(ygs_tr_yanlis + ygs_sosyal_yanlis + ygs_mat_yanlis + ygs_fen_yanlis)));
-            text_ygs_toplam_net.setText(String.valueOf(format.format(ygs_tr_net + ygs_sosyal_net + ygs_mat_net + ygs_fen_net)));
+
+            boolean sosD = etYgsSosD.getText().toString().equals("");
+            boolean sosY = etYgsSosY.getText().toString().equals("");
+            boolean sosN = etYgsSosN.getText().toString().equals("");
+            if (sosD == false && sosY == true && sosN == true)
+            {
+                ygsSosD = Double.parseDouble(etYgsSosD.getText().toString());
+                ygsSosN = ygsSosD;
+                etYgsSosN.setText(String.valueOf(format.format(ygsSosN)));
+            }
+            else if (sosD == true && sosY == false && sosN == true)
+            {
+                NetHesapla ygsSos = new NetHesapla(0, Double.parseDouble(etYgsSosY.getText().toString()));
+                ygsSosN = ygsSos.getNet();
+                etYgsSosN.setText(String.valueOf(format.format(ygsSosN)));
+            }
+            else if(sosD == true && sosY == true && sosN == false)
+            {
+                ygsSosN = Double.parseDouble(etYgsSosN.getText().toString());
+            }
+            else if(sosD == false && sosY == false && sosN == true)
+            {
+                ygsSosD = Double.parseDouble(etYgsSosD.getText().toString());
+                ygsSosY = Double.parseDouble(etYgsSosY.getText().toString());
+                NetHesapla ygsSos = new NetHesapla(ygsSosD, ygsSosY);
+                ygsSosN = ygsSos.getNet();
+                etYgsSosN.setText(String.valueOf(format.format(ygsSosN)));
+            }
+            else if(sosD == false && sosY == true && sosN == false)
+            {
+                ygsSosN = Double.parseDouble(etYgsSosD.getText().toString());
+                etYgsSosN.setText(String.valueOf(format.format(ygsSosN)));
+            }
+            else if (sosD == true && sosY == false && sosN == false)
+            {
+                NetHesapla ygsSos = new NetHesapla(0, Double.parseDouble(etYgsSosY.getText().toString()));
+                ygsSosN = ygsSos.getNet();
+                etYgsSosN.setText(String.valueOf(format.format(ygsSosN)));
+            }
+            else if(sosD == false && sosY == false && sosN == false)
+            {
+                ygsSosD = Double.parseDouble(etYgsSosD.getText().toString());
+                ygsSosY = Double.parseDouble(etYgsSosY.getText().toString());
+                NetHesapla ygsSos = new NetHesapla(ygsSosD, ygsSosY);
+                ygsSosN = ygsSos.getNet();
+                etYgsSosN.setText(String.valueOf(format.format(ygsSosN)));
+            }
+            else
+                return;
+
+            boolean matD = etYgsMatD.getText().toString().equals("");
+            boolean matY = etYgsMatY.getText().toString().equals("");
+            boolean matN = etYgsMatN.getText().toString().equals("");
+            if (matD == false && matY == true && matN == true)
+            {
+                ygsMatD = Double.parseDouble(etYgsMatD.getText().toString());
+                ygsMatN = ygsMatD;
+                etYgsMatN.setText(String.valueOf(format.format(ygsMatN)));
+            }
+            else if (matD == true && matY == false && matN == true)
+            {
+                NetHesapla ygsMat = new NetHesapla(0, Double.parseDouble(etYgsMatY.getText().toString()));
+                ygsMatN = ygsMat.getNet();
+                etYgsMatN.setText(String.valueOf(format.format(ygsMatN)));
+            }
+            else if(matD == true && matY == true && matN == false)
+            {
+                ygsMatN = Double.parseDouble(etYgsMatN.getText().toString());
+            }
+            else if(matD == false && matY == false && matN == true)
+            {
+                ygsMatD = Double.parseDouble(etYgsMatD.getText().toString());
+                ygsMatY = Double.parseDouble(etYgsMatY.getText().toString());
+                NetHesapla ygsMat = new NetHesapla(ygsMatD, ygsMatY);
+                ygsMatN = ygsMat.getNet();
+                etYgsMatN.setText(String.valueOf(format.format(ygsMatN)));
+            }
+            else if(matD == false && matY == true && matN == false)
+            {
+                ygsMatN = Double.parseDouble(etYgsMatD.getText().toString());
+                etYgsMatN.setText(String.valueOf(format.format(ygsMatN)));
+            }
+            else if (matD == true && matY == false && matN == false)
+            {
+                NetHesapla ygsMat = new NetHesapla(0, Double.parseDouble(etYgsMatY.getText().toString()));
+                ygsMatN = ygsMat.getNet();
+                etYgsMatN.setText(String.valueOf(format.format(ygsMatN)));
+            }
+            else if(matD == false && matY == false && matN == false)
+            {
+                ygsMatD = Double.parseDouble(etYgsMatD.getText().toString());
+                ygsMatY = Double.parseDouble(etYgsMatY.getText().toString());
+                NetHesapla ygsMat = new NetHesapla(ygsMatD, ygsMatY);
+                ygsMatN = ygsMat.getNet();
+                etYgsMatN.setText(String.valueOf(format.format(ygsMatN)));
+            }
+            else
+                return;
+
+            boolean fenD = etYgsFenD.getText().toString().equals("");
+            boolean fenY = etYgsFenY.getText().toString().equals("");
+            boolean fenN = etYgsFenN.getText().toString().equals("");
+            if (fenD == false && fenY == true && fenN == true)
+            {
+                ygsFenD = Double.parseDouble(etYgsFenD.getText().toString());
+                ygsFenN = ygsFenD;
+                etYgsFenN.setText(String.valueOf(format.format(ygsFenN)));
+            }
+            else if (fenD == true && fenY == false && fenN == true)
+            {
+                NetHesapla ygsFen = new NetHesapla(0, Double.parseDouble(etYgsFenY.getText().toString()));
+                ygsFenN = ygsFen.getNet();
+                etYgsFenN.setText(String.valueOf(format.format(ygsFenN)));
+            }
+            else if(fenD == true && fenY == true && fenN == false)
+            {
+                ygsFenN = Double.parseDouble(etYgsFenN.getText().toString());
+            }
+            else if(fenD == false && fenY == false && fenN == true)
+            {
+                ygsFenD = Double.parseDouble(etYgsFenD.getText().toString());
+                ygsFenY = Double.parseDouble(etYgsFenY.getText().toString());
+                NetHesapla ygsFen = new NetHesapla(ygsFenD, ygsFenY);
+                ygsFenN = ygsFen.getNet();
+                etYgsFenN.setText(String.valueOf(format.format(ygsFenN)));
+            }
+            else if(fenD == false && fenY == true && fenN == false)
+            {
+                ygsFenN = Double.parseDouble(etYgsFenD.getText().toString());
+                etYgsFenN.setText(String.valueOf(format.format(ygsFenN)));
+            }
+            else if (fenD == true && fenY == false && fenN == false)
+            {
+                NetHesapla ygsFen = new NetHesapla(0, Double.parseDouble(etYgsFenY.getText().toString()));
+                ygsFenN = ygsFen.getNet();
+                etYgsFenN.setText(String.valueOf(format.format(ygsFenN)));
+            }
+            else if(fenD == false && fenY == false && fenN == false)
+            {
+                ygsFenD = Double.parseDouble(etYgsFenD.getText().toString());
+                ygsFenY = Double.parseDouble(etYgsFenY.getText().toString());
+                NetHesapla ygsFen = new NetHesapla(ygsFenD, ygsFenY);
+                ygsFenN = ygsFen.getNet();
+                etYgsFenN.setText(String.valueOf(format.format(ygsFenN)));
+            }
+            else
+                return;
+
+            tToplamD.setText(String.valueOf(format.format(ygsTrD + ygsSosD + ygsMatD + ygsFenD)));
+            tToplamY.setText(String.valueOf(format.format(ygsTrY + ygsSosY + ygsMatY + ygsFenY)));
+            tToplamN.setText(String.valueOf(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN)));
 
             ygsPuanGoster();
 
             ygsVeritabaniNetEkle();
 
             Log.d(LOG_TAG, "Ygs notları alınıp puanlar hesaplandı.");
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             Log.e(LOG_TAG, e.getMessage());
 
             String hata_mesaji = "Alanları boş bırakmayın.";
             Toast.makeText(MainActivity.this, hata_mesaji, Toast.LENGTH_LONG).show();
         }
     }
-    public void YgsTemizle(View view)
-    {
+
+    public void ygsTemizle() {
         Log.d(LOG_TAG, "Temizleme butonuna basıldı.");
-        try
-        {
-            et_ygs_tr_dogru.setText("0");
-            et_ygs_tr_yanlis.setText("0");
-            et_ygs_tr_net.setText("0");
-            et_ygs_sosyal_dogru.setText("0");
-            et_ygs_sosyal_yanlis.setText("0");
-            et_ygs_sosyal_net.setText("0");
-            et_ygs_mat_dogru.setText("0");
-            et_ygs_mat_yanlis.setText("0");
-            et_ygs_mat_net.setText("0");
-            et_ygs_fen_dogru.setText("0");
-            et_ygs_fen_yanlis.setText("0");
-            et_ygs_fen_net.setText("0");
-            text_ygs_toplam_dogru.setText("0");
-            text_ygs_toplam_yanlis.setText("0");
-            text_ygs_toplam_net.setText("0");
-            text_ygs1.setText("Ygs-1 : 100.16");
-            text_ygs2.setText("Ygs-2 : 100.16");
-            text_ygs3.setText("Ygs-3 : 100.16");
-            text_ygs4.setText("Ygs-4 : 100.16");
-            text_ygs5.setText("Ygs-5 : 100.12");
-            text_ygs6.setText("Ygs-6 : 100.12");
-        }
-        catch(Exception e)
-        {
+        try {
+            etYgsTrD.setText("");
+            etYgsTrY.setText("");
+            etYgsTrN.setText("");
+            etYgsSosD.setText("");
+            etYgsSosY.setText("");
+            etYgsSosN.setText("");
+            etYgsMatD.setText("");
+            etYgsMatY.setText("");
+            etYgsMatN.setText("");
+            etYgsFenD.setText("");
+            etYgsFenY.setText("");
+            etYgsFenN.setText("");
+            tToplamD.setText("");
+            tToplamY.setText("");
+            tToplamN.setText("");
+            tYgs1.setText("Ygs-1 : 100.16");
+            tYgs2.setText("Ygs-2 : 100.16");
+            tYgs3.setText("Ygs-3 : 100.16");
+            tYgs4.setText("Ygs-4 : 100.16");
+            tYgs5.setText("Ygs-5 : 100.12");
+            tYgs6.setText("Ygs-6 : 100.12");
+        } catch (Exception e) {
             Log.e(LOG_TAG, e.getMessage());
         }
 
         Log.d(LOG_TAG, "Temizleme işlemi bitti.");
     }
 
-    public void GitLys(View view)
-    {
+    public void gitLys() {
         Intent i = new Intent(MainActivity.this, Lys.class);
         startActivity(i);
     }
 
-    public void ygsPuanGoster()
-    {
-        YgsPuanTuruHesaplama ygs1 = new YgsPuanTuruHesaplama(ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net);
-        text_ygs1.setText(String.format("Ygs-1 : %.2f", ygs1.getYgs1()));
-        YgsPuanTuruHesaplama ygs2 = new YgsPuanTuruHesaplama(ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net);
-        text_ygs2.setText(String.format("Ygs-2 : %.2f", ygs2.getYgs2()));
-        YgsPuanTuruHesaplama ygs3 = new YgsPuanTuruHesaplama(ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net);
-        text_ygs3.setText(String.format("Ygs-3 : %.2f", ygs3.getYgs3()));
-        YgsPuanTuruHesaplama ygs4 = new YgsPuanTuruHesaplama(ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net);
-        text_ygs4.setText(String.format("Ygs-4 : %.2f", ygs4.getYgs4()));
-        YgsPuanTuruHesaplama ygs5 = new YgsPuanTuruHesaplama(ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net);
-        text_ygs5.setText(String.format("Ygs-5 : %.2f", ygs5.getYgs5()));
-        YgsPuanTuruHesaplama ygs6 = new YgsPuanTuruHesaplama(ygs_tr_net, ygs_sosyal_net, ygs_mat_net, ygs_fen_net);
-        text_ygs6.setText(String.format("Ygs-6 : %.2f", ygs6.getYgs6()));
+    public void ygsPuanGoster() {
+        YgsPuanTuruHesaplama ygs1 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        tYgs1.setText(String.format("Ygs-1 : %.2f", ygs1.getYgs1()));
+        YgsPuanTuruHesaplama ygs2 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        tYgs2.setText(String.format("Ygs-2 : %.2f", ygs2.getYgs2()));
+        YgsPuanTuruHesaplama ygs3 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        tYgs3.setText(String.format("Ygs-3 : %.2f", ygs3.getYgs3()));
+        YgsPuanTuruHesaplama ygs4 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        tYgs4.setText(String.format("Ygs-4 : %.2f", ygs4.getYgs4()));
+        YgsPuanTuruHesaplama ygs5 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        tYgs5.setText(String.format("Ygs-5 : %.2f", ygs5.getYgs5()));
+        YgsPuanTuruHesaplama ygs6 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6.getYgs6()));
     }
 
-    public void ygsVeritabaniNetEkle()
-    {
+    public void ygsVeritabaniNetEkle() {
         Cursor res = myDb.ygsNetleriAl();
-        if(res.getCount() == 0)
-        {
-            boolean tr = myDb.ygsNetEkle("Türkçe", String.valueOf(ygs_tr_net));
-            boolean sosyal = myDb.ygsNetEkle("Sosyal", String.valueOf(ygs_sosyal_net));
-            boolean mat = myDb.ygsNetEkle("Matematik", String.valueOf(ygs_mat_net));
-            boolean fen = myDb.ygsNetEkle("Fen", String.valueOf(ygs_fen_net));
-            if(tr == true && sosyal == true && mat == true && fen == true)
+        if (res.getCount() == 0) {
+            boolean tr = myDb.ygsNetEkle("Türkçe", String.valueOf(ygsTrN));
+            boolean sosyal = myDb.ygsNetEkle("Sosyal", String.valueOf(ygsSosN));
+            boolean mat = myDb.ygsNetEkle("Matematik", String.valueOf(ygsMatN));
+            boolean fen = myDb.ygsNetEkle("Fen", String.valueOf(ygsFenN));
+            if (tr == true && sosyal == true && mat == true && fen == true)
                 Toast.makeText(MainActivity.this, "Ygs netleri veri tabanına eklendi", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(MainActivity.this, "Ygs netleri veri tabanına eklenemedi.", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-            boolean tr = myDb.ygsNetGuncelle("Türkçe", String.valueOf(ygs_tr_net));
-            boolean sosyal = myDb.ygsNetGuncelle("Sosyal", String.valueOf(ygs_sosyal_net));
-            boolean mat = myDb.ygsNetGuncelle("Matematik", String.valueOf(ygs_mat_net));
-            boolean fen = myDb.ygsNetGuncelle("Fen", String.valueOf(ygs_fen_net));
+        } else {
+            boolean tr = myDb.ygsNetGuncelle("Türkçe", String.valueOf(ygsTrN));
+            boolean sosyal = myDb.ygsNetGuncelle("Sosyal", String.valueOf(ygsSosN));
+            boolean mat = myDb.ygsNetGuncelle("Matematik", String.valueOf(ygsMatN));
+            boolean fen = myDb.ygsNetGuncelle("Fen", String.valueOf(ygsFenN));
 
-            if(tr == true && sosyal == true && mat == true && fen == true)
+            if (tr == true && sosyal == true && mat == true && fen == true)
                 Toast.makeText(MainActivity.this, "veri tabanı güncellendi", Toast.LENGTH_LONG).show();
             else
                 Toast.makeText(MainActivity.this, "veri tabanı güncellenemedi", Toast.LENGTH_LONG).show();
         }
     }
+
 }

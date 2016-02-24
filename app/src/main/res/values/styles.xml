@@ -8,4 +8,73 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="ygsDersler">
+        <item name="android:layout_width">75sp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_weight">0.5</item>
+    </style>
+
+    <style name="etYgsDogru">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.3</item>
+        <item name="android:hint">@string/dogru</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="etYgsYanlis">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.3</item>
+        <item name="android:hint">@string/yanlis</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="etYgsNet">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.3</item>
+        <item name="android:hint">@string/net</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+    </style>
+
+    <style name="ygsButon">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
+    <style name="ygsToplam">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textSize">17sp</item>
+        <item name="android:layout_alignParentStart">true</item>
+        <item name="android:layout_weight">0.4</item>
+    </style>
+
+    <style name="ygsPuan">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:textSize">17sp</item>
+    </style>
+
+    <style name="lysDersler">
+        <item name="android:layout_width">75sp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
 </resources>
