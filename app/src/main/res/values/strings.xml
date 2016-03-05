@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ygs - Lys Puan Hesaplama</string>
+    <string name="app_name">Ygs Lys Puan Hesaplama</string>
 
     <string name="ygs1">Ygs-1 : 100.16</string>
     <string name="ygs2">Ygs-2 : 100.16</string>
@@ -25,7 +25,7 @@
     <string name="hesapla">Hesapla</string>
     <string name="lys">Lys</string>
     <string name="temizle">Temizle</string>
-    
+
     <string name="geo">Geometri</string>
     <string name="fizik">Fizik</string>
     <string name="kimya">Kimya</string>
@@ -37,5 +37,12 @@
     <string name="fel">Felsefe/Din</string>
     <string name="ydil">Yabancı Dil</string>
 
-    <string name="sifir">0</string>
+    <string name="obp">"OBP : "</string>
+    <string name="diploma">"Diploma Notu(50-100)"</string>
+
+    <string name="kaydet">Kaydet</string>
+    <string name="paylas">Paylaş</string>
+    <string name="puanlarim">Puanlarım</string>
+    <string name="ygslysnedir">Ygs Lys Nedir?</string>
+    <string name="hakkinda">Hakkında</string>
 </resources>

@@ -7,6 +7,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@color/background"
     tools:context="demirciy.ygslyspuanhesaplama.Lys">
 
     <RelativeLayout
@@ -34,18 +35,21 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysMatD"
                     android:textColorHint="@color/lys1"
+                    android:backgroundTint="@color/lys1"
                     style="@style/etYgsDogru" />
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysMatY"
                     android:textColorHint="@color/lys1"
+                    android:backgroundTint="@color/lys1"
                     style="@style/etYgsYanlis"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysMatN"
                     android:textColorHint="@color/lys1"
+                    android:backgroundTint="@color/lys1"
                     style="@style/etYgsNet"/>
             </LinearLayout>
 
@@ -74,19 +78,22 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysGeoD"
                     android:textColorHint="@color/lys1"
-                    style="@style/etYgsDogru" />
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys1"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysGeoY"
                     android:textColorHint="@color/lys1"
-                    style="@style/etYgsYanlis"/>
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys1"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysGeoN"
                     android:textColorHint="@color/lys1"
-                    style="@style/etYgsNet"/>
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys1"/>
             </LinearLayout>
 
             <LinearLayout
@@ -94,7 +101,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/llFizik"
                 android:layout_below="@id/llGeo"
-                android:layout_toEndOf="@+id/tLys1"
+                android:layout_toEndOf="@+id/tLys2"
                 android:layout_marginTop="15sp">
 
                 <TextView
@@ -107,19 +114,506 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysFizikD"
                     android:textColorHint="@color/lys2"
-                    style="@style/etYgsDogru" />
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys2"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysFizikY"
                     android:textColorHint="@color/lys2"
-                    style="@style/etYgsYanlis"/>
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys2"/>
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/etLysFizikN"
                     android:textColorHint="@color/lys2"
-                    style="@style/etYgsNet"/>
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys2"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lys2"
+                android:id="@+id/tLys2"
+                android:textColor="@color/lys2"
+                android:layout_alignTop="@+id/llKimya"
+                android:layout_alignParentStart="true"
+                android:layout_alignBottom="@+id/llKimya"
+                android:gravity="center_vertical"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llKimya"
+                android:layout_below="@id/llFizik"
+                android:layout_toEndOf="@+id/tLys2">
+
+                <TextView
+                    android:id="@+id/tLysKimya"
+                    android:text="@string/kimya"
+                    android:textColor="@color/lys2"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysKimyaD"
+                    android:textColorHint="@color/lys2"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys2"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysKimyaY"
+                    android:textColorHint="@color/lys2"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys2"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysKimyaN"
+                    android:textColorHint="@color/lys2"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys2"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llBiyo"
+                android:layout_below="@id/llKimya"
+                android:layout_toEndOf="@+id/tLys2">
+
+                <TextView
+                    android:id="@+id/tLysBiyo"
+                    android:text="@string/biyo"
+                    android:textColor="@color/lys2"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysBiyoD"
+                    android:textColorHint="@color/lys2"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys2"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysBiyoY"
+                    android:textColorHint="@color/lys2"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys2"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysBiyoN"
+                    android:textColorHint="@color/lys2"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys2"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llEde"
+                android:layout_below="@id/llBiyo"
+                android:layout_toEndOf="@+id/tLys3"
+                android:layout_marginTop="15sp">
+
+                <TextView
+                    android:id="@+id/tLysEde"
+                    android:text="@string/ede"
+                    android:textColor="@color/lys3"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysEdeD"
+                    android:textColorHint="@color/lys3"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys3"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysEdeY"
+                    android:textColorHint="@color/lys3"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys3"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysEdeN"
+                    android:textColorHint="@color/lys3"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys3"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lys3"
+                android:layout_below="@id/llEde"
+                android:id="@+id/tLys3"
+                android:textColor="@color/lys3"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llCog1"
+                android:layout_below="@id/tLys3"
+                android:layout_toEndOf="@+id/tLys3">
+
+                <TextView
+                    android:id="@+id/tLysCog1"
+                    android:text="@string/cog1"
+                    android:textColor="@color/lys3"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysCog1D"
+                    android:textColorHint="@color/lys3"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys3"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysCog1Y"
+                    android:textColorHint="@color/lys3"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys3"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysCog1N"
+                    android:textColorHint="@color/lys3"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys3"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llTarih"
+                android:layout_below="@id/llCog1"
+                android:layout_toEndOf="@+id/tLys3"
+                android:layout_marginTop="15sp">
+
+                <TextView
+                    android:id="@+id/tLysTarih"
+                    android:text="@string/tarih"
+                    android:textColor="@color/lys4"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysTarihD"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys4"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysTarihY"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys4"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysTarihN"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys4"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lys4"
+                android:id="@+id/tLys4"
+                android:textColor="@color/lys4"
+                android:layout_alignTop="@+id/llCog2"
+                android:layout_alignParentStart="true"
+                android:layout_alignBottom="@+id/llCog2"
+                android:gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llCog2"
+                android:layout_below="@id/llTarih"
+                android:layout_toEndOf="@+id/tLys4">
+
+                <TextView
+                    android:id="@+id/tLysCog2"
+                    android:text="@string/cog2"
+                    android:textColor="@color/lys4"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysCog2D"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys4" />
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysCog2Y"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys4"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysCog2N"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys4"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llFel"
+                android:layout_below="@id/llCog2"
+                android:layout_toEndOf="@+id/tLys4">
+
+                <TextView
+                    android:id="@+id/tLysFel"
+                    android:text="@string/fel"
+                    android:textColor="@color/lys4"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysFelD"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys4"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysFelY"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys4"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysFelN"
+                    android:textColorHint="@color/lys4"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys4"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lys5"
+                android:id="@+id/tLys5"
+                android:textColor="@color/lys5"
+                android:layout_alignTop="@+id/llYdil"
+                android:layout_alignParentStart="true"
+                android:layout_alignBottom="@+id/llYdil"
+                android:gravity="center_vertical" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llYdil"
+                android:layout_below="@id/llFel"
+                android:layout_toEndOf="@+id/tLys3"
+                android:layout_marginTop="15sp">
+
+                <TextView
+                    android:id="@+id/tLysYdil"
+                    android:text="@string/ydil"
+                    android:textColor="@color/lys5"
+                    style="@style/lysDersler"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysYdilD"
+                    android:textColorHint="@color/lys5"
+                    style="@style/etYgsDogru"
+                    android:backgroundTint="@color/lys5"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysYdilY"
+                    android:textColorHint="@color/lys5"
+                    style="@style/etYgsYanlis"
+                    android:backgroundTint="@color/lys5"/>
+                <EditText
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/etLysYdilN"
+                    android:textColorHint="@color/lys5"
+                    style="@style/etYgsNet"
+                    android:backgroundTint="@color/lys5"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rlButonUst"
+            android:id="@+id/llOBP"
+            android:layout_marginTop="5sp">
+
+            <TextView
+                android:layout_width="50sp"
+                android:layout_height="match_parent"
+                android:id="@+id/tOBP"
+                android:text="@string/obp"
+                android:gravity="center_vertical"
+                android:textColor="#795548"/>
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/etDiploma"
+                android:hint="@string/diploma"
+                android:inputType="numberDecimal"
+                android:maxLength="5"
+                android:textAlignment="center"
+                android:textColorHint="#795548"
+                android:backgroundTint="#795548"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/llBtnHT"
+            android:layout_below="@id/llOBP"
+            android:layout_marginTop="10sp">
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnHesapla"
+                android:text="@string/hesapla"
+                android:layout_weight="0.5"
+                android:textColor="@color/butonText"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/btnTemizle"
+                android:text="@string/temizle"
+                android:layout_weight="0.5"
+                android:textColor="@color/butonText"/>
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/rlButonAlt"
+            android:layout_below="@id/llBtnHT"
+            android:layout_marginTop="10sp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llMF12">
+
+                <TextView
+                    android:id="@+id/tMf1"
+                    android:textColor="@color/mf"
+                    style="@style/lysPuanTurleri" />
+                <TextView
+                    android:id="@+id/tMf2"
+                    android:textColor="@color/mf"
+                    style="@style/lysPuanTurleri" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llMF34"
+                android:layout_below="@id/llMF12">
+
+                <TextView
+                    android:id="@+id/tMf3"
+                    android:textColor="@color/mf"
+                    style="@style/lysPuanTurleri"/>
+                <TextView
+                    android:id="@+id/tMf4"
+                    android:textColor="@color/mf"
+                    style="@style/lysPuanTurleri"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llTM12"
+                android:layout_below="@id/llMF34">
+
+                <TextView
+                    android:id="@+id/tTm1"
+                    android:textColor="@color/tm"
+                    style="@style/lysPuanTurleri"/>
+                <TextView
+                    android:id="@+id/tTm2"
+                    android:textColor="@color/tm"
+                    style="@style/lysPuanTurleri"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llTM3"
+                android:layout_below="@id/llTM12">
+
+                <TextView
+                    android:id="@+id/tTm3"
+                    android:textColor="@color/tm"
+                    style="@style/lysPuanTurleri" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llTS12"
+                android:layout_below="@+id/llTM3">
+
+                <TextView
+                    android:id="@+id/tTs1"
+                    android:textColor="@color/ts"
+                    style="@style/lysPuanTurleri"/>
+                <TextView
+                    android:id="@+id/tTs2"
+                    android:textColor="@color/ts"
+                    style="@style/lysPuanTurleri"/>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llYdil12"
+                android:layout_below="@+id/llTS12">
+
+                <TextView
+                    android:id="@+id/tYdil1"
+                    android:textColor="@color/lys5"
+                    style="@style/lysPuanTurleri"/>
+                <TextView
+                    android:id="@+id/tYdil2"
+                    android:textColor="@color/lys5"
+                    style="@style/lysPuanTurleri"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/llYdil3"
+                android:layout_below="@+id/llYdil12">
+
+                <TextView
+                    android:id="@+id/tYdil3"
+                    android:textColor="@color/lys5"
+                    style="@style/lysPuanTurleri"/>
             </LinearLayout>
 
         </RelativeLayout>

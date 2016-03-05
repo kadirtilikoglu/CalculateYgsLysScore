@@ -1,8 +1,5 @@
 package demirciy.ygslyspuanhesaplama;
 
-/**
- * Created by Yusuf on 16.02.2016.
- */
 public class LysPuanHesaplama extends Lys {
 
     private double ygsTr, ygsSos, ygsMat, ygsFen, lysMat, lysGeo, lysFizik, lysKimya, lysBiyo,

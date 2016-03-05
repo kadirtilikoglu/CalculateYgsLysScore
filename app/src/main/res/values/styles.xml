@@ -2,7 +2,6 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-        <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -52,6 +51,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.5</item>
         <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/butonText</item>
     </style>
 
     <style name="ygsToplam">
@@ -67,6 +67,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.5</item>
         <item name="android:textSize">17sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="lysDersler">
@@ -75,6 +76,13 @@
         <item name="android:layout_weight">0.5</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="lysPuanTurleri">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">0.5</item>
+        <item name="android:gravity">center</item>
     </style>
 
 </resources>

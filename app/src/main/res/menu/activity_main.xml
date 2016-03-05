@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".MainActivity">
+
+    <item
+        android:id="@+id/abHesapla"
+        android:title="@string/hesapla"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/abTemizle"
+        android:title="@string/temizle"
+        app:showAsAction="always"/>
+    <item
+        android:id="@+id/abKaydet"
+        android:title="@string/kaydet"
+        app:showAsAction="always"
+        android:icon="@drawable/buton_kaydet"/>
+    <item
+        android:id="@+id/abPaylas"
+        android:title="@string/paylas"
+        app:showAsAction="always"
+        android:icon="@drawable/buton_paylas"/>
+    <item
+        android:id="@+id/abPuanlarim"
+        android:title="@string/puanlarim"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/abYgsLysNedir"
+        android:title="@string/ygslysnedir"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/abHakkinda"
+        android:title="@string/hakkinda"
+        app:showAsAction="never"/>
+
+</menu>

@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="demirciy.ygslyspuanhesaplama.MainActivity">
+    tools:context="demirciy.ygslyspuanhesaplama.MainActivity"
+    android:background="@color/background">
 
       <RelativeLayout
           android:layout_width="wrap_content"
@@ -28,13 +29,14 @@
                       style="@style/ygsDersler" />
                   <EditText
                       android:id="@+id/etYgsTrD"
-                      style="@style/etYgsDogru" />
+                      style="@style/etYgsDogru"/>
                   <EditText
                       android:id="@+id/etYgsTrY"
                       style="@style/etYgsYanlis"/>
                   <EditText
                       android:id="@+id/etYgsTrN"
-                      style="@style/etYgsNet"/>
+                      style="@style/etYgsNet"
+                      />
               </LinearLayout>
 
           <LinearLayout
@@ -110,7 +112,8 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:id="@+id/llToplam"
-              android:layout_below="@+id/llFen">
+              android:layout_below="@+id/llFen"
+              android:layout_marginTop="10sp">
 
               <TextView
                   android:text="@string/toplam"
@@ -133,12 +136,9 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:id="@+id/llButon"
-          android:layout_below="@+id/rlButonUst">
+          android:layout_below="@+id/rlButonUst"
+          android:layout_marginTop="20sp">
 
-          <Button
-              android:id="@+id/btnHesapla"
-              android:text="@string/hesapla"
-              style="@style/ygsButon"/>
           <Button
               android:id="@+id/btnLys"
               android:text="@string/lys"
@@ -154,7 +154,8 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:id="@+id/rlButonAlt"
-          android:layout_below="@+id/llButon">
+          android:layout_below="@+id/llButon"
+          android:layout_marginTop="20sp">
 
           <LinearLayout
               android:layout_width="match_parent"
@@ -210,4 +211,4 @@
           </LinearLayout>
       </RelativeLayout>
 
-  </RelativeLayout>
+</RelativeLayout>
