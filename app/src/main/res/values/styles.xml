@@ -1,73 +1,123 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
     </style>
 
     <style name="ygsDersler">
         <item name="android:layout_width">75sp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/ygs</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_weight">0.8</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="etYgsDogru">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.3</item>
+        <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/dogru</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
+        <item name="android:textColor">@color/ygs</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="etYgsYanlis">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.3</item>
+        <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/yanlis</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
+        <item name="android:textColor">@color/siyah</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="etYgsNet">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.3</item>
+        <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/net</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-    </style>
-
-    <style name="ygsButon">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
-        <item name="android:textAlignment">center</item>
-        <item name="android:textColor">@color/butonText</item>
+        <item name="android:textColor">@color/siyah</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">14sp</item>
     </style>
 
     <style name="ygsToplam">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:layout_alignParentStart">true</item>
-        <item name="android:layout_weight">0.4</item>
+        <item name="android:layout_weight">0.6</item>
+        <item name="android:textColor">@color/ygs</item>
+        <item name="android:typeface">serif</item>
+    </style>
+
+    <style name="ygsToplamD">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:hint">@string/dogru</item>
+        <item name="android:gravity">center</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColorHint">@color/ygs</item>
+    </style>
+    <style name="ygsToplamY">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:hint">@string/yanlis</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+    <style name="ygsToplamN"><item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:hint">@string/net</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
     <style name="ygsPuan">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.5</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="lysDersler">
@@ -83,6 +133,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">0.5</item>
         <item name="android:gravity">center</item>
+    </style>
+
+    <style name="llYgs">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">16sp</item>
+        <item name="android:layout_marginRight">16sp</item>
+
     </style>
 
 </resources>

@@ -45,4 +45,6 @@
     <string name="puanlarim">Puanlarım</string>
     <string name="ygslysnedir">Ygs Lys Nedir?</string>
     <string name="hakkinda">Hakkında</string>
+
+    <string name="lysuyari">"Dikkat! Lys'ye girebilmeniz için 180 puan ve üstü almanız gerekiyor."</string>
 </resources>
