@@ -1,13 +1,13 @@
 package demirciy.ygslyspuanhesaplama;
 
-public class LysPuanHesaplama extends Lys {
+public class LysCalculateScoreType extends Lys {
 
     private double ygsTr, ygsSos, ygsMat, ygsFen, lysMat, lysGeo, lysFizik, lysKimya, lysBiyo,
     lysEde, lysCog1, lysTarih, lysCog2, lysFel, lysYdil;
 
-    public LysPuanHesaplama(double ygsTr, double ygsSos, double ygsMat, double ygsFen, double lysMat,
-    double lysGeo, double lysFizik, double lysKimya, double lysBiyo, double lysEde, double lysCog1,
-    double lysTarih, double lysCog2, double lysFel, double lysYdil)
+    public LysCalculateScoreType(double ygsTr, double ygsSos, double ygsMat, double ygsFen, double lysMat,
+                                 double lysGeo, double lysFizik, double lysKimya, double lysBiyo, double lysEde, double lysCog1,
+                                 double lysTarih, double lysCog2, double lysFel, double lysYdil)
     {
         this.ygsTr = ygsTr;
         this.ygsSos = ygsSos;

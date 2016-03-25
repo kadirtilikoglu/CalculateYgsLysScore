@@ -1,18 +1,27 @@
 package demirciy.ygslyspuanhesaplama;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,34 +30,63 @@ public class MainActivity extends AppCompatActivity {
             etYgsFenY, etYgsFenN;
     private TextView tToplamD, tToplamY, tToplamN, tYgs1, tYgs2,
             tYgs3, tYgs4, tYgs5, tYgs6;
-
     private double ygsTrD, ygsTrY, ygsSosD, ygsSosY, ygsMatD,
             ygsMatY, ygsFenD, ygsFenY;
     public double ygsTrN, ygsSosN, ygsMatN, ygsFenN;
     private double ygs1, ygs2, ygs3, ygs4, ygs5, ygs6;
 
+    private String examName, date;
+
     DecimalFormat format = new DecimalFormat("#.##");
 
-    final String LOG_TAG = "LogCat çıktıları -->";
+    final String LOG_TAG = "LogCat outputs -->";
 
     DatabaseHelper myDb;
 
     //başlagıçta ekrana bir bildiri gönder ve sayısal yeşil, eşit ağırlık mor, sözel açık sarı yazdır
     //iconu ayarla
 
-    //tool bar ı ayarla
+    //puanlarımda puanlarını güzel bi şekilde göster ki ss alınabilsin
 
-    private Toolbar toolbar;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_ygs, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.abLys:
+                goLys();
+                break;
+            case R.id.abClear:
+                ygsClear();
+                break;
+            case R.id.abSave:
+                ygsAlertDialog();
+                break;
+            case R.id.abYgsMyScores:
+                goYgsMyScores();
+                break;
+            case R.id.abWhatisYgsLys:
+                break;
+            case R.id.abAbout:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        Log.i(LOG_TAG, "Uygulama çalışmaya başladı.");
+        getSupportActionBar().setTitle("");
+        Log.i(LOG_TAG, "App started.");
 
         etYgsTrD = (EditText) findViewById(R.id.etYgsTrD);
         etYgsTrY = (EditText) findViewById(R.id.etYgsTrY);
@@ -74,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
+        previousInfo();
+
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -89,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsTrD > 40) {
                             etYgsTrD.setText("");
                             etYgsTrN.setText("");
-                            ygsTrHataMesaji();
+                            questionErrorMessage();
                         } else {
                             ygsTrN = ygsTrD;
                             etYgsTrN.setText(format.format(ygsTrN));
@@ -101,10 +141,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsTrD.setText("");
                             etYgsTrY.setText("");
                             etYgsTrN.setText("");
-                            ygsTrHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsTr = new NetHesapla(ygsTrD, ygsTrY);
-                            ygsTrN = ygsTr.getNet();
+                            CalculateMark ygsTr = new CalculateMark(ygsTrD, ygsTrY);
+                            ygsTrN = ygsTr.getMark();
                             etYgsTrN.setText(format.format(ygsTrN));
                         }
                     }
@@ -117,9 +157,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsTrY.addTextChangedListener(new TextWatcher() {
@@ -139,10 +179,10 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsTrY > 40) {
                             etYgsTrY.setText("");
                             etYgsTrN.setText("");
-                            ygsTrHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsTr = new NetHesapla(0, ygsTrY);
-                            ygsTrN = ygsTr.getNet();
+                            CalculateMark ygsTr = new CalculateMark(0, ygsTrY);
+                            ygsTrN = ygsTr.getMark();
                             etYgsTrN.setText(format.format(ygsTrN));
                         }
 
@@ -153,10 +193,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsTrD.setText("");
                             etYgsTrY.setText("");
                             etYgsTrN.setText("");
-                            ygsTrHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsTr = new NetHesapla(ygsTrD, ygsTrY);
-                            ygsTrN = ygsTr.getNet();
+                            CalculateMark ygsTr = new CalculateMark(ygsTrD, ygsTrY);
+                            ygsTrN = ygsTr.getMark();
                             etYgsTrN.setText(format.format(ygsTrN));
                         }
 
@@ -170,9 +210,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsTrN.addTextChangedListener(new TextWatcher() {
@@ -183,27 +223,23 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
                 try {
-
                     ygsTrN = Double.parseDouble(etYgsTrN.getText().toString());
                     if (ygsTrN > 40) {
                         etYgsTrN.setText("");
-                        ygsTrHataMesaji();
+                        questionErrorMessage();
                     }
 
                 } catch (Exception e) {
 
                 }
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
 
@@ -222,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsSosD > 40) {
                             etYgsSosD.setText("");
                             etYgsSosN.setText("");
-                            ygsSosHataMesaji();
+                            questionErrorMessage();
                         } else {
                             ygsSosN = ygsSosD;
                             etYgsSosN.setText(format.format(ygsSosN));
@@ -234,10 +270,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsSosD.setText("");
                             etYgsSosY.setText("");
                             etYgsSosN.setText("");
-                            ygsSosHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsSos = new NetHesapla(ygsSosD, ygsSosY);
-                            ygsSosN = ygsSos.getNet();
+                            CalculateMark ygsSos = new CalculateMark(ygsSosD, ygsSosY);
+                            ygsSosN = ygsSos.getMark();
                             etYgsSosN.setText(format.format(ygsSosN));
                         }
                     }
@@ -250,9 +286,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsSosY.addTextChangedListener(new TextWatcher() {
@@ -272,10 +308,10 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsSosY > 40) {
                             etYgsSosY.setText("");
                             etYgsSosN.setText("");
-                            ygsSosHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsSos = new NetHesapla(0, ygsSosY);
-                            ygsSosN = ygsSos.getNet();
+                            CalculateMark ygsSos = new CalculateMark(0, ygsSosY);
+                            ygsSosN = ygsSos.getMark();
                             etYgsSosN.setText(format.format(ygsSosN));
                         }
 
@@ -286,10 +322,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsSosD.setText("");
                             etYgsSosY.setText("");
                             etYgsSosN.setText("");
-                            ygsSosHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsSos = new NetHesapla(ygsSosD, ygsSosY);
-                            ygsSosN = ygsSos.getNet();
+                            CalculateMark ygsSos = new CalculateMark(ygsSosD, ygsSosY);
+                            ygsSosN = ygsSos.getMark();
                             etYgsSosN.setText(format.format(ygsSosN));
                         }
 
@@ -303,9 +339,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsSosN.addTextChangedListener(new TextWatcher() {
@@ -323,7 +359,7 @@ public class MainActivity extends AppCompatActivity {
                     ygsSosN = Double.parseDouble(etYgsSosN.getText().toString());
                     if (ygsSosN > 40) {
                         etYgsSosN.setText("");
-                        ygsSosHataMesaji();
+                        questionErrorMessage();
                     }
 
                 } catch (Exception e) {
@@ -334,9 +370,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
 
@@ -355,7 +391,7 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsMatD > 40) {
                             etYgsMatD.setText("");
                             etYgsMatN.setText("");
-                            ygsMatHataMesaji();
+                            questionErrorMessage();
                         } else {
                             ygsMatN = ygsMatD;
                             etYgsMatN.setText(format.format(ygsMatN));
@@ -367,10 +403,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsMatD.setText("");
                             etYgsMatY.setText("");
                             etYgsMatN.setText("");
-                            ygsMatHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsMat = new NetHesapla(ygsMatD, ygsMatY);
-                            ygsMatN = ygsMat.getNet();
+                            CalculateMark ygsMat = new CalculateMark(ygsMatD, ygsMatY);
+                            ygsMatN = ygsMat.getMark();
                             etYgsMatN.setText(format.format(ygsMatN));
                         }
                     }
@@ -383,9 +419,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsMatY.addTextChangedListener(new TextWatcher() {
@@ -405,10 +441,10 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsMatY > 40) {
                             etYgsMatY.setText("");
                             etYgsMatN.setText("");
-                            ygsMatHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsMat = new NetHesapla(0, ygsMatY);
-                            ygsMatN = ygsMat.getNet();
+                            CalculateMark ygsMat = new CalculateMark(0, ygsMatY);
+                            ygsMatN = ygsMat.getMark();
                             etYgsMatN.setText(format.format(ygsMatN));
                         }
 
@@ -419,10 +455,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsMatD.setText("");
                             etYgsMatY.setText("");
                             etYgsMatN.setText("");
-                            ygsMatHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsMat = new NetHesapla(ygsMatD, ygsMatY);
-                            ygsMatN = ygsMat.getNet();
+                            CalculateMark ygsMat = new CalculateMark(ygsMatD, ygsMatY);
+                            ygsMatN = ygsMat.getMark();
                             etYgsMatN.setText(format.format(ygsMatN));
                         }
 
@@ -436,9 +472,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsMatN.addTextChangedListener(new TextWatcher() {
@@ -456,7 +492,7 @@ public class MainActivity extends AppCompatActivity {
                     ygsMatN = Double.parseDouble(etYgsMatN.getText().toString());
                     if (ygsMatN > 40) {
                         etYgsMatN.setText("");
-                        ygsMatHataMesaji();
+                        questionErrorMessage();
                     }
 
                 } catch (Exception e) {
@@ -467,9 +503,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
 
@@ -488,7 +524,7 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsFenD > 40) {
                             etYgsFenD.setText("");
                             etYgsFenN.setText("");
-                            ygsFenHataMesaji();
+                            questionErrorMessage();
                         } else {
                             ygsFenN = ygsFenD;
                             etYgsFenN.setText(format.format(ygsFenN));
@@ -500,10 +536,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsFenD.setText("");
                             etYgsFenY.setText("");
                             etYgsFenN.setText("");
-                            ygsFenHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsFen = new NetHesapla(ygsFenD, ygsFenY);
-                            ygsFenN = ygsFen.getNet();
+                            CalculateMark ygsFen = new CalculateMark(ygsFenD, ygsFenY);
+                            ygsFenN = ygsFen.getMark();
                             etYgsFenN.setText(format.format(ygsFenN));
                         }
                     }
@@ -516,9 +552,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
 
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsFenY.addTextChangedListener(new TextWatcher() {
@@ -538,10 +574,10 @@ public class MainActivity extends AppCompatActivity {
                         if (ygsFenY > 40) {
                             etYgsFenY.setText("");
                             etYgsFenN.setText("");
-                            ygsFenHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsFen = new NetHesapla(0, ygsFenY);
-                            ygsFenN = ygsFen.getNet();
+                            CalculateMark ygsFen = new CalculateMark(0, ygsFenY);
+                            ygsFenN = ygsFen.getMark();
                             etYgsFenN.setText(format.format(ygsFenN));
                         }
 
@@ -552,10 +588,10 @@ public class MainActivity extends AppCompatActivity {
                             etYgsFenD.setText("");
                             etYgsFenY.setText("");
                             etYgsFenN.setText("");
-                            ygsFenHataMesaji();
+                            questionErrorMessage();
                         } else {
-                            NetHesapla ygsFen = new NetHesapla(ygsFenD, ygsFenY);
-                            ygsFenN = ygsFen.getNet();
+                            CalculateMark ygsFen = new CalculateMark(ygsFenD, ygsFenY);
+                            ygsFenN = ygsFen.getMark();
                             etYgsFenN.setText(format.format(ygsFenN));
                         }
 
@@ -569,9 +605,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
         etYgsFenN.addTextChangedListener(new TextWatcher() {
@@ -589,7 +625,7 @@ public class MainActivity extends AppCompatActivity {
                     ygsFenN = Double.parseDouble(etYgsFenN.getText().toString());
                     if (ygsFenN > 40) {
                         etYgsFenN.setText("");
-                        ygsFenHataMesaji();
+                        questionErrorMessage();
                     }
 
                 } catch (Exception e) {
@@ -600,15 +636,15 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                ygsToplamYaz();
-                ygsPuanGoster();
-                ygsVeritabaniNetEkle();
+                ygsPrintSum();
+                ygsShowScore();
+                ygsAddMarkDatabase();
             }
         });
 
     }
 
-    public void ygsToplamYaz() {
+    public void ygsPrintSum() {
         boolean trD = etYgsTrD.getText().toString().equals("");
         boolean trY = etYgsTrY.getText().toString().equals("");
         boolean trN = etYgsTrN.getText().toString().equals("");
@@ -679,64 +715,106 @@ public class MainActivity extends AppCompatActivity {
         tToplamN.setText(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN));
     }
 
-    public void ygsPuanGoster() {
-        YgsPuanTuruHesaplama Ygs1 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+    public void ygsShowScore() {
+        YgsCalculateScoreType Ygs1 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
         ygs1 = Ygs1.getYgs1();
         tYgs1.setText(String.format("Ygs-1 : %.2f", ygs1));
-        YgsPuanTuruHesaplama Ygs2 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        YgsCalculateScoreType Ygs2 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
         ygs2 = Ygs2.getYgs2();
         tYgs2.setText(String.format("Ygs-2 : %.2f", ygs2));
-        YgsPuanTuruHesaplama Ygs3 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        YgsCalculateScoreType Ygs3 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
         ygs3 = Ygs3.getYgs3();
         tYgs3.setText(String.format("Ygs-3 : %.2f", ygs3));
-        YgsPuanTuruHesaplama Ygs4 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        YgsCalculateScoreType Ygs4 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
         ygs4 = Ygs4.getYgs4();
         tYgs4.setText(String.format("Ygs-4 : %.2f", ygs4));
-        YgsPuanTuruHesaplama Ygs5 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        YgsCalculateScoreType Ygs5 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
         ygs5 = Ygs5.getYgs5();
         tYgs5.setText(String.format("Ygs-5 : %.2f", ygs5));
-        YgsPuanTuruHesaplama Ygs6 = new YgsPuanTuruHesaplama(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+        YgsCalculateScoreType Ygs6 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
         ygs6 = Ygs6.getYgs6();
         tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
     }
 
-    public void ygsVeritabaniNetEkle() {
-        Log.d(LOG_TAG, "Ygs notları veri tabanına ekleniyor.");
+    public void ygsAddMarkDatabase() {
+        Log.d(LOG_TAG, "Ygs marks are adding into database.");
 
-        Cursor res = myDb.ygsNetleriAl();
+        Cursor res = myDb.ygsGetMark();
         if (res.getCount() == 0) {
-            myDb.ygsNetEkle("Türkçe", String.valueOf(ygsTrN));
-            myDb.ygsNetEkle("Sosyal", String.valueOf(ygsSosN));
-            myDb.ygsNetEkle("Matematik", String.valueOf(ygsMatN));
-            myDb.ygsNetEkle("Fen", String.valueOf(ygsFenN));
+            myDb.ygsAddMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
+            myDb.ygsAddMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
+            myDb.ygsAddMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
+            myDb.ygsAddMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
         } else {
-            myDb.ygsNetGuncelle("Türkçe", String.valueOf(ygsTrN));
-            myDb.ygsNetGuncelle("Sosyal", String.valueOf(ygsSosN));
-            myDb.ygsNetGuncelle("Matematik", String.valueOf(ygsMatN));
-            myDb.ygsNetGuncelle("Fen", String.valueOf(ygsFenN));
+            myDb.ygsUpdateMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
+            myDb.ygsUpdateMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
+            myDb.ygsUpdateMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
+            myDb.ygsUpdateMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
         }
-        Log.d(LOG_TAG, "Türkçe: " + ygsTrN + "\nSosyal: " + ygsSosN + "\nMatematik: " + ygsMatN + "\nFen: " + ygsFenN);
-        Log.d(LOG_TAG, "Ygs notları veri tabanına eklendi.");
+        Log.d(LOG_TAG, "Türkçe: " + ygsTrD + "-" + ygsTrY + "-" + ygsTrN +
+                "\nSosyal: " + ygsSosD + "-" + ygsTrY + "-" + ygsSosN +
+                "\nMatematik: " + ygsMatD + "-" + ygsMatY + "-" + ygsMatN +
+                "\nFen: " + ygsFenD + "-" + ygsFenY + "-" + ygsFenN);
+        Log.d(LOG_TAG, "Ygs marks added into database.");
     }
 
-    public void ygsTemizle() {
-        Log.d(LOG_TAG, "Temizleme butonuna basıldı.");
-        try {
-            Cursor res = myDb.ygsNetleriAl();
-            if (res.getCount() == 0) {
-                myDb.ygsNetEkle("Türkçe", String.valueOf(0));
-                myDb.ygsNetEkle("Sosyal", String.valueOf(0));
-                myDb.ygsNetEkle("Matematik", String.valueOf(0));
-                myDb.ygsNetEkle("Fen", String.valueOf(0));
+    public void ygsAlertDialog() {
 
-            } else {
-                myDb.ygsNetGuncelle("Türkçe", String.valueOf(0));
-                myDb.ygsNetGuncelle("Sosyal", String.valueOf(0));
-                myDb.ygsNetGuncelle("Matematik", String.valueOf(0));
-                myDb.ygsNetGuncelle("Fen", String.valueOf(0));
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+        LayoutInflater inflater = this.getLayoutInflater();
+        final View dialogView = inflater.inflate(R.layout.alertdialog_ygs_add_score_name, null);
+        dialogBuilder.setView(dialogView);
+
+        final EditText etYgsExamName = (EditText) dialogView.findViewById(R.id.etYgsExamName);
+        dialogBuilder.setTitle("YGS puan kaydet");
+        dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak denemesi");
+        dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                boolean isNull = etYgsExamName.getText().toString().equals("");
+                if (isNull) {
+                    date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+                    examName = "Adsız";
+                    ygsAddScoreDatabase();
+                } else {
+                    date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+                    examName = etYgsExamName.getText().toString();
+                    ygsAddScoreDatabase();
+                }
             }
+        });
+        dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                dialog.cancel();
+            }
+        });
+        AlertDialog b = dialogBuilder.create();
+        b.show();
+    }
+
+    public void ygsAddScoreDatabase() {
+        Log.d(LOG_TAG, "Ygs scores are adding into database.");
+
+            myDb.ygsAddScore(date, examName, String.valueOf(ygsTrN), "YGS1", String.valueOf(ygs1));
+            myDb.ygsAddScore(date, examName, String.valueOf(ygsSosN), "YGS2", String.valueOf(ygs2));
+            myDb.ygsAddScore(date, examName, String.valueOf(ygsMatN), "YGS3", String.valueOf(ygs3));
+            myDb.ygsAddScore(date, examName, String.valueOf(ygsFenN), "YGS4", String.valueOf(ygs4));
+            myDb.ygsAddScore(date, examName, "0", "YGS5", String.valueOf(ygs5));
+            myDb.ygsAddScore(date, examName, "0", "YGS6", String.valueOf(ygs6));
+
+        String errorMessage = "YGS puanı kaydedildi.";
+        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
+
+        Log.d(LOG_TAG, "YGS1: " + ygs1 + "\nYGS2: " + ygs2 + "\nYGS3: " + ygs3 + "\nYGS4: " + ygs4
+                + "\nYGS5: " + ygs5 + "\nYGS6: " + ygs6);
+
+        Log.d(LOG_TAG, "Ygs scores added into database.");
+    }
+
+    public void ygsClear() {
+        Log.d(LOG_TAG, "Pressed clear button.");
+        try {
             ygsTrD = 0;
             ygsTrY = 0;
             ygsTrN = 0;
@@ -774,14 +852,14 @@ public class MainActivity extends AppCompatActivity {
             Log.e(LOG_TAG, e.getMessage());
         }
 
-        Log.d(LOG_TAG, "Temizleme işlemi bitti.");
+        Log.d(LOG_TAG, "Clear is done.");
     }
 
-    public void gitLys() {
+    public void goLys() {
         Intent i = new Intent(MainActivity.this, Lys.class);
         if (ygs1 < 180 && ygs2 < 180 && ygs3 < 180 && ygs4 < 180 && ygs5 < 180 && ygs6 < 180) {
-            String hata_mesaji = "180 barajını geçemediniz. Lys'ye giremezsiniz.";
-            Toast.makeText(MainActivity.this, hata_mesaji, Toast.LENGTH_LONG).show();
+            String errorMessage = "180 barajını geçemediniz. Lys'ye giremezsiniz.";
+            Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
 
             startActivity(i);
         } else {
@@ -789,23 +867,68 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void ygsTrHataMesaji() {
-        String hata_mesaji = "Ygs Türkçe toplam soru sayısı 40'tır.";
-        Toast.makeText(MainActivity.this, hata_mesaji, Toast.LENGTH_LONG).show();
+    public void questionErrorMessage() {
+        String errorMessage = "Soru sayısından fazla doğru ve yanlış sayısı girdiniz.";
+        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
-    public void ygsSosHataMesaji() {
-        String hata_mesaji = "Ygs Sosyal toplam soru sayısı 40'tır.";
-        Toast.makeText(MainActivity.this, hata_mesaji, Toast.LENGTH_LONG).show();
+    public void previousInfo() {
+        try {
+            Cursor res = myDb.ygsGetMark();
+
+            String[] corrects = new String[4];
+            String[] incorrects = new String[4];
+            String[] marks = new String[4];
+            int c = 0, i = 0, m = 0;
+
+            while (res.moveToNext()) {
+                corrects[c] = res.getString(1);
+                incorrects[i] = res.getString(2);
+                marks[m] = res.getString(3);
+                c++;
+                i++;
+                m++;
+            }
+
+            ygsTrD = Double.parseDouble(corrects[0]);
+            ygsTrY = Double.parseDouble(incorrects[0]);
+            ygsTrN = Double.parseDouble(marks[0]);
+            etYgsTrD.setText(format.format(ygsTrD));
+            etYgsTrY.setText(format.format(ygsTrY));
+            etYgsTrN.setText(format.format(ygsTrN));
+
+            ygsSosD = Double.parseDouble(corrects[1]);
+            ygsSosY = Double.parseDouble(incorrects[1]);
+            ygsSosN = Double.parseDouble(marks[1]);
+            etYgsSosD.setText(format.format(ygsSosD));
+            etYgsSosY.setText(format.format(ygsSosY));
+            etYgsSosN.setText(format.format(ygsSosN));
+
+            ygsMatD = Double.parseDouble(corrects[2]);
+            ygsMatY = Double.parseDouble(incorrects[2]);
+            ygsMatN = Double.parseDouble(marks[2]);
+            etYgsMatD.setText(format.format(ygsMatD));
+            etYgsMatY.setText(format.format(ygsMatY));
+            etYgsMatN.setText(format.format(ygsMatN));
+
+            ygsFenD = Double.parseDouble(corrects[3]);
+            ygsFenY = Double.parseDouble(incorrects[3]);
+            ygsFenN = Double.parseDouble(marks[3]);
+            etYgsFenD.setText(format.format(ygsFenD));
+            etYgsFenY.setText(format.format(ygsFenY));
+            etYgsFenN.setText(format.format(ygsFenN));
+
+            ygsShowScore();
+            ygsPrintSum();
+        } catch (Exception e) {
+
+        }
+
     }
 
-    public void ygsMatHataMesaji() {
-        String hata_mesaji = "Ygs Matematik toplam soru sayısı 40'tır.";
-        Toast.makeText(MainActivity.this, hata_mesaji, Toast.LENGTH_LONG).show();
-    }
-
-    public void ygsFenHataMesaji() {
-        String hata_mesaji = "Ygs Fen toplam soru sayısı 40'tır.";
-        Toast.makeText(MainActivity.this, hata_mesaji, Toast.LENGTH_LONG).show();
+    public void goYgsMyScores()
+    {
+        Intent i = new Intent(MainActivity.this, YgsMyScores.class);
+        startActivity(i);
     }
 }

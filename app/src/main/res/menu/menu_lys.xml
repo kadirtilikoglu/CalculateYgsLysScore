@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/abClear"
+        android:title="Temizle"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/abSave"
+        android:title="Kaydet"
+        app:showAsAction="always"
+        android:icon="@drawable/button_save"/>
+    <item
+        android:id="@+id/abLysMyScores"
+        android:title="YGS-LYS Puanlarim"
+        app:showAsAction="always"
+        android:icon="@drawable/button_myscores"/>
+    <item
+        android:id="@+id/abWhatisYgsLys"
+        android:title="Ygs Lys Nedir?"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/abAbout"
+        android:title="Hakkında"
+        app:showAsAction="never" />
+
+</menu>

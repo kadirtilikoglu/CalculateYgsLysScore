@@ -3,18 +3,19 @@ package demirciy.ygslyspuanhesaplama;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
-public class Lys extends AppCompatActivity implements View.OnClickListener {
+public class Lys extends AppCompatActivity {
 
-    private EditText etLysMatD, etLysMatY, etLysMatN, etLysGeoD, etLysGeoY,
+    public EditText etLysMatD, etLysMatY, etLysMatN, etLysGeoD, etLysGeoY,
             etLysGeoN, etLysFizikD, etLysFizikY, etLysFizikN, etLysKimyaD,
             etLysKimyaY, etLysKimyaN, etLysBiyoD, etLysBiyoY, etLysBiyoN,
             etLysEdeD, etLysEdeY, etLysEdeN, etLysCog1D, etLysCog1Y, etLysCog1N,
@@ -24,13 +25,47 @@ public class Lys extends AppCompatActivity implements View.OnClickListener {
             tTm3, tTs1, tTs2, tYdil1, tYdil2, tYdil3;
 
     private double lysMatN, lysGeoN, lysFizikN, lysKimyaN, lysBiyoN, lysEdeN, lysCog1N, lysTarihN,
-            lysCog2N, lysFelN, lysYdilN, OBP;
+            lysCog2N, lysFelN, lysYdilN, OBP, lysMatD, lysMatY, lysGeoD, lysGeoY, lysFizikD, lysFizikY,
+            lysKimyaD, lysKimyaY, lysBiyoD, lysBiyoY, lysEdeD, lysEdeY, lysCog1D, lysCog1Y, lysTarihD,
+            lysTarihY, lysCog2D, lysCog2Y, lysFelD, lysFelY, lysYdilD, lysYdilY;
+
+
+    //ygs puanlarını kaydederken lys puan türleri için 0 değerini gönder.
+    //ygs ve lys notları ayrı ayrı kaydedilebilsin.
+
 
     DecimalFormat format = new DecimalFormat("#.##");
 
-    final String LOG_TAG = "Hata bildirisi...";
+    final String LOG_TAG = "LogCat outputs -->";
 
     DatabaseHelper myDb;
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_lys, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.abClear:
+                lysClear();
+                break;
+            case R.id.abSave:
+//                ygsAlertDialog();
+                break;
+            case R.id.abLysMyScores:
+                break;
+            case R.id.abWhatisYgsLys:
+                break;
+            case R.id.abAbout:
+                break;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +106,6 @@ public class Lys extends AppCompatActivity implements View.OnClickListener {
         etLysYdilY = (EditText) findViewById(R.id.etLysYdilY);
         etLysYdilN = (EditText) findViewById(R.id.etLysYdilN);
         etDiploma = (EditText) findViewById(R.id.etDiploma);
-        Button btnHesapla = (Button) findViewById(R.id.btnHesapla);
-        Button btnTemizle = (Button) findViewById(R.id.btnTemizle);
         tMf1 = (TextView) findViewById(R.id.tMf1);
         tMf2 = (TextView) findViewById(R.id.tMf2);
         tMf3 = (TextView) findViewById(R.id.tMf3);
@@ -86,1059 +119,1414 @@ public class Lys extends AppCompatActivity implements View.OnClickListener {
         tYdil2 = (TextView) findViewById(R.id.tYdil2);
         tYdil3 = (TextView) findViewById(R.id.tYdil3);
 
-        btnHesapla.setOnClickListener(this);
-        btnTemizle.setOnClickListener(this);
-
         myDb = new DatabaseHelper(this);
 
-        lysPuanHesapIslemleri(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btnHesapla:
-                yerlestirmePuanHesapla();
-                break;
-            case R.id.btnTemizle:
-                lysTemizle();
-                break;
-            default:
-                break;
-        }
-    }
-
-    public void yerlestirmePuanHesapla() {
-        Log.d(LOG_TAG, "Lys notları alınıyor.");
-        try {
-            boolean matD = etLysMatD.getText().toString().equals("");
-            boolean matY = etLysMatY.getText().toString().equals("");
-            boolean matN = etLysMatN.getText().toString().equals("");
-            double lysMatD, lysMatY, lysGeoD, lysGeoY, lysFizikD, lysFizikY, lysKimyaD, lysKimyaY,
-                    lysBiyoD, lysBiyoY, lysEdeD, lysEdeY, lysCog1D, lysCog1Y, lysTarihD, lysTarihY, lysCog2D, lysCog2Y, lysFelD, lysFelY, lysYdilD, lysYdilY;
-
-            if (!matD && matY && matN) {
-                lysMatD = Double.parseDouble(etLysMatD.getText().toString());
-                if (lysMatD > 50) {
-                    etLysMatD.setText("");
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysMatN = lysMatD;
-                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
-                }
-
-            } else if (matD && !matY && matN) {
-                lysMatY = Double.parseDouble(etLysMatY.getText().toString());
-                if (lysMatY > 50) {
-                    etLysMatY.setText("");
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysMat = new NetHesapla(0, lysMatY);
-                    lysMatN = lysMat.getNet();
-                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
-                }
-            } else if (matD && matY && !matN) {
-                lysMatN = Double.parseDouble(etLysMatN.getText().toString());
-                if (lysMatN > 50) {
-                    etLysMatN.setText("");
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!matD && !matY && matN) {
-                lysMatD = Double.parseDouble(etLysMatD.getText().toString());
-                lysMatY = Double.parseDouble(etLysMatY.getText().toString());
-                if (lysMatD + lysMatY > 50) {
-                    etLysMatD.setText("");
-                    etLysMatY.setText("");
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysMat = new NetHesapla(lysMatD, lysMatY);
-                    lysMatN = lysMat.getNet();
-                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
-                }
-
-            } else if (!matD && matY) {
-                lysMatD = Double.parseDouble(etLysMatD.getText().toString());
-                if (lysMatD > 50) {
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysMatN = lysMatD;
-                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
-                }
-
-            } else if (matD && !matY) {
-                lysMatY = Double.parseDouble(etLysMatY.getText().toString());
-                if (lysMatY > 50) {
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysMat = new NetHesapla(0, lysMatY);
-                    lysMatN = lysMat.getNet();
-                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
-                }
-
-            } else if (!matD) {
-                lysMatD = Double.parseDouble(etLysMatD.getText().toString());
-                lysMatY = Double.parseDouble(etLysMatY.getText().toString());
-                if (lysMatD + lysMatY > 50) {
-                    String hata_mesaji = "Matematik testinde soru sayısı 50'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysMat = new NetHesapla(lysMatD, lysMatY);
-                    lysMatN = lysMat.getNet();
-                    etLysMatN.setText(String.valueOf(format.format(lysMatN)));
-                }
-
-            } else
-                lysMatN = 0;
-
-            boolean geoD = etLysGeoD.getText().toString().equals("");
-            boolean geoY = etLysGeoY.getText().toString().equals("");
-            boolean geoN = etLysGeoN.getText().toString().equals("");
-            if (!geoD && geoY && geoN) {
-                lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
-                if (lysGeoD > 30) {
-                    etLysGeoD.setText("");
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysGeoN = lysGeoD;
-                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
-                }
-
-            } else if (geoD && !geoY && geoN) {
-                lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
-                if (lysGeoY > 30) {
-                    etLysGeoY.setText("");
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysGeo = new NetHesapla(0, lysGeoY);
-                    lysGeoN = lysGeo.getNet();
-                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
-                }
-            } else if (geoD && geoY && !geoN) {
-                lysGeoN = Double.parseDouble(etLysGeoN.getText().toString());
-                if (lysGeoN > 30) {
-                    etLysGeoN.setText("");
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!geoD && !geoY && geoN) {
-                lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
-                lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
-                if (lysGeoD + lysGeoY > 30) {
-                    etLysGeoD.setText("");
-                    etLysGeoY.setText("");
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysGeo = new NetHesapla(lysGeoD, lysGeoY);
-                    lysGeoN = lysGeo.getNet();
-                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
-                }
-
-            } else if (!geoD && geoY) {
-                lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
-                if (lysGeoD > 30) {
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysGeoN = lysGeoD;
-                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
-                }
-
-            } else if (geoD && !geoY) {
-                lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
-                if (lysGeoY > 30) {
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysGeo = new NetHesapla(0, lysGeoY);
-                    lysGeoN = lysGeo.getNet();
-                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
-                }
-
-            } else if (!geoD) {
-                lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
-                lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
-                if (lysGeoD + lysGeoY > 30) {
-                    String hata_mesaji = "Geometri testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysGeo = new NetHesapla(lysGeoD, lysGeoY);
-                    lysGeoN = lysGeo.getNet();
-                    etLysGeoN.setText(String.valueOf(format.format(lysGeoN)));
-                }
-
-            } else
-                lysGeoN = 0;
-
-            boolean fizikD = etLysFizikD.getText().toString().equals("");
-            boolean fizikY = etLysFizikY.getText().toString().equals("");
-            boolean fizikN = etLysFizikN.getText().toString().equals("");
-            if (!fizikD && fizikY && fizikN) {
-                lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
-                if (lysFizikD > 30) {
-                    etLysFizikD.setText("");
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysFizikN = lysFizikD;
-                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
-                }
-
-            } else if (fizikD && !fizikY && fizikN) {
-                lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
-                if (lysFizikY > 30) {
-                    etLysFizikY.setText("");
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFizik = new NetHesapla(0, lysFizikY);
-                    lysFizikN = lysFizik.getNet();
-                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
-                }
-            } else if (fizikD && fizikY && !fizikN) {
-                lysFizikN = Double.parseDouble(etLysFizikN.getText().toString());
-                if (lysFizikN > 30) {
-                    etLysFizikN.setText("");
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!fizikD && !fizikY && fizikN) {
-                lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
-                lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
-                if (lysFizikD + lysFizikY > 30) {
-                    etLysFizikD.setText("");
-                    etLysFizikY.setText("");
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFizik = new NetHesapla(lysFizikD, lysFizikY);
-                    lysFizikN = lysFizik.getNet();
-                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
-                }
-
-            } else if (!fizikD && fizikY) {
-                lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
-                if (lysFizikD > 30) {
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysFizikN = lysFizikD;
-                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
-                }
-
-            } else if (fizikD && !fizikY) {
-                lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
-                if (lysFizikY > 30) {
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFizik = new NetHesapla(0, lysFizikY);
-                    lysFizikN = lysFizik.getNet();
-                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
-                }
-
-            } else if (!fizikD) {
-                lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
-                lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
-                if (lysFizikD + lysFizikY > 30) {
-                    String hata_mesaji = "Fizik testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFizik = new NetHesapla(lysFizikD, lysFizikY);
-                    lysFizikN = lysFizik.getNet();
-                    etLysFizikN.setText(String.valueOf(format.format(lysFizikN)));
-                }
-
-            } else
-                lysFizikN = 0;
-
-            boolean kimyaD = etLysKimyaD.getText().toString().equals("");
-            boolean kimyaY = etLysKimyaY.getText().toString().equals("");
-            boolean kimyaN = etLysKimyaN.getText().toString().equals("");
-            if (!kimyaD && kimyaY && kimyaN) {
-                lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
-                if (lysKimyaD > 30) {
-                    etLysKimyaD.setText("");
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysKimyaN = lysKimyaD;
-                    etLysKimyaN.setText(String.valueOf(format.format(lysKimyaN)));
-                }
-
-            } else if (kimyaD && !kimyaY && kimyaN) {
-                lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
-                if (lysKimyaY > 30) {
-                    etLysKimyaY.setText("");
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysKimya = new NetHesapla(0, lysKimyaY);
-                    lysKimyaN = lysKimya.getNet();
-                    etLysKimyaN.setText(String.valueOf(format.format(lysKimyaN)));
-                }
-            } else if (kimyaD && kimyaY && !kimyaN) {
-                lysKimyaN = Double.parseDouble(etLysKimyaN.getText().toString());
-                if (lysKimyaN > 30) {
-                    etLysKimyaN.setText("");
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!kimyaD && !kimyaY && kimyaN) {
-                lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
-                lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
-                if (lysKimyaD + lysKimyaY > 30) {
-                    etLysKimyaD.setText("");
-                    etLysKimyaY.setText("");
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysKimya = new NetHesapla(lysKimyaD, lysKimyaY);
-                    lysKimyaN = lysKimya.getNet();
-                    etLysKimyaN.setText(String.valueOf(format.format(lysKimyaN)));
-                }
-
-            } else if (!kimyaD && kimyaY) {
-                lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
-                if (lysKimyaD > 30) {
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysKimyaN = lysKimyaD;
-                    etLysKimyaN.setText(String.valueOf(format.format(lysKimyaN)));
-                }
-
-            } else if (kimyaD && !kimyaY) {
-                lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
-                if (lysKimyaY > 30) {
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysKimya = new NetHesapla(0, lysKimyaY);
-                    lysKimyaN = lysKimya.getNet();
-                    etLysKimyaN.setText(String.valueOf(format.format(lysKimyaN)));
-                }
-
-            } else if (!kimyaD) {
-                lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
-                lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
-                if (lysKimyaD + lysKimyaY > 30) {
-                    String hata_mesaji = "Kimya testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysKimya = new NetHesapla(lysKimyaD, lysKimyaY);
-                    lysKimyaN = lysKimya.getNet();
-                    etLysKimyaN.setText(String.valueOf(format.format(lysKimyaN)));
-                }
-
-            } else
-                lysKimyaN = 0;
-
-            boolean biyoD = etLysBiyoD.getText().toString().equals("");
-            boolean biyoY = etLysBiyoY.getText().toString().equals("");
-            boolean biyoN = etLysBiyoN.getText().toString().equals("");
-            if (!biyoD && biyoY && biyoN) {
-                lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
-                if (lysBiyoD > 30) {
-                    etLysBiyoD.setText("");
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysBiyoN = lysBiyoD;
-                    etLysBiyoN.setText(String.valueOf(format.format(lysBiyoN)));
-                }
-
-            } else if (biyoD && !biyoY && biyoN) {
-                lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
-                if (lysBiyoY > 30) {
-                    etLysBiyoY.setText("");
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysBiyo = new NetHesapla(0, lysBiyoY);
-                    lysBiyoN = lysBiyo.getNet();
-                    etLysBiyoN.setText(String.valueOf(format.format(lysBiyoN)));
-                }
-            } else if (biyoD && biyoY && !biyoN) {
-                lysBiyoN = Double.parseDouble(etLysBiyoN.getText().toString());
-                if (lysBiyoN > 30) {
-                    etLysBiyoN.setText("");
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!biyoD && !biyoY && biyoN) {
-                lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
-                lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
-                if (lysBiyoD + lysBiyoY > 30) {
-                    etLysBiyoD.setText("");
-                    etLysBiyoY.setText("");
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysBiyo = new NetHesapla(lysBiyoD, lysBiyoY);
-                    lysBiyoN = lysBiyo.getNet();
-                    etLysBiyoN.setText(String.valueOf(format.format(lysBiyoN)));
-                }
-
-            } else if (!biyoD && biyoY) {
-                lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
-                if (lysBiyoD > 30) {
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysBiyoN = lysBiyoD;
-                    etLysBiyoN.setText(String.valueOf(format.format(lysBiyoN)));
-                }
-
-            } else if (biyoD && !biyoY) {
-                lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
-                if (lysBiyoY > 30) {
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysBiyo = new NetHesapla(0, lysBiyoY);
-                    lysBiyoN = lysBiyo.getNet();
-                    etLysBiyoN.setText(String.valueOf(format.format(lysBiyoN)));
-                }
-
-            } else if (!biyoD) {
-                lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
-                lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
-                if (lysBiyoD + lysBiyoY > 30) {
-                    String hata_mesaji = "Biyoloji testinde soru sayısı 30'dur.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysBiyo = new NetHesapla(lysBiyoD, lysBiyoY);
-                    lysBiyoN = lysBiyo.getNet();
-                    etLysBiyoN.setText(String.valueOf(format.format(lysBiyoN)));
-                }
-
-            } else
-                lysBiyoN = 0;
-
-            boolean edeD = etLysEdeD.getText().toString().equals("");
-            boolean edeY = etLysEdeY.getText().toString().equals("");
-            boolean edeN = etLysEdeN.getText().toString().equals("");
-            if (!edeD && edeY && edeN) {
-                lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
-                if (lysEdeD > 56) {
-                    etLysEdeD.setText("");
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysEdeN = lysEdeD;
-                    etLysEdeN.setText(String.valueOf(format.format(lysEdeN)));
-                }
-
-            } else if (edeD && !edeY && edeN) {
-                lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
-                if (lysEdeY > 56) {
-                    etLysEdeY.setText("");
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysEde = new NetHesapla(0, lysEdeY);
-                    lysEdeN = lysEde.getNet();
-                    etLysEdeN.setText(String.valueOf(format.format(lysEdeN)));
-                }
-            } else if (edeD && edeY && !edeN) {
-                lysEdeN = Double.parseDouble(etLysEdeN.getText().toString());
-                if (lysEdeN > 56) {
-                    etLysEdeN.setText("");
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!edeD && !edeY && edeN) {
-                lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
-                lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
-                if (lysEdeD + lysEdeY > 56) {
-                    etLysEdeD.setText("");
-                    etLysEdeY.setText("");
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysEde = new NetHesapla(lysEdeD, lysEdeY);
-                    lysEdeN = lysEde.getNet();
-                    etLysEdeN.setText(String.valueOf(format.format(lysEdeN)));
-                }
-
-            } else if (!edeD && edeY) {
-                lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
-                if (lysEdeD > 56) {
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysEdeN = lysEdeD;
-                    etLysEdeN.setText(String.valueOf(format.format(lysEdeN)));
-                }
-
-            } else if (edeD && !edeY) {
-                lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
-                if (lysEdeY > 56) {
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysEde = new NetHesapla(0, lysEdeY);
-                    lysEdeN = lysEde.getNet();
-                    etLysEdeN.setText(String.valueOf(format.format(lysEdeN)));
-                }
-
-            } else if (!edeD) {
-                lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
-                lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
-                if (lysEdeD + lysEdeY > 56) {
-                    String hata_mesaji = "Edebiyat testinde soru sayısı 56'dır.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysEde = new NetHesapla(lysEdeD, lysEdeY);
-                    lysEdeN = lysEde.getNet();
-                    etLysEdeN.setText(String.valueOf(format.format(lysEdeN)));
-                }
-
-            } else
-                lysEdeN = 0;
-
-            boolean cog1D = etLysCog1D.getText().toString().equals("");
-            boolean cog1Y = etLysCog1Y.getText().toString().equals("");
-            boolean cog1N = etLysCog1N.getText().toString().equals("");
-            if (!cog1D && cog1Y && cog1N) {
-                lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
-                if (lysCog1D > 24) {
-                    etLysCog1D.setText("");
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysCog1N = lysCog1D;
-                    etLysCog1N.setText(String.valueOf(format.format(lysCog1N)));
-                }
-
-            } else if (cog1D && !cog1Y && cog1N) {
-                lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
-                if (lysCog1Y > 24) {
-                    etLysCog1Y.setText("");
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog1 = new NetHesapla(0, lysCog1Y);
-                    lysCog1N = lysCog1.getNet();
-                    etLysCog1N.setText(String.valueOf(format.format(lysCog1N)));
-                }
-            } else if (cog1D && cog1Y && !cog1N) {
-                lysCog1N = Double.parseDouble(etLysCog1N.getText().toString());
-                if (lysCog1N > 24) {
-                    etLysCog1N.setText("");
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!cog1D && !cog1Y && cog1N) {
-                lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
-                lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
-                if (lysCog1D + lysCog1Y > 24) {
-                    etLysCog1D.setText("");
-                    etLysCog1Y.setText("");
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog1 = new NetHesapla(lysCog1D, lysCog1Y);
-                    lysCog1N = lysCog1.getNet();
-                    etLysCog1N.setText(String.valueOf(format.format(lysCog1N)));
-                }
-
-            } else if (!cog1D && cog1Y) {
-                lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
-                if (lysCog1D > 24) {
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysCog1N = lysCog1D;
-                    etLysCog1N.setText(String.valueOf(format.format(lysCog1N)));
-                }
-
-            } else if (cog1D && !cog1Y) {
-                lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
-                if (lysCog1Y > 24) {
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog1 = new NetHesapla(0, lysCog1Y);
-                    lysCog1N = lysCog1.getNet();
-                    etLysCog1N.setText(String.valueOf(format.format(lysCog1N)));
-                }
-
-            } else if (!cog1D) {
-                lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
-                lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
-                if (lysCog1D + lysCog1Y > 24) {
-                    String hata_mesaji = "Coğrafya-1 testinde soru sayısı 24'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog1 = new NetHesapla(lysCog1D, lysCog1Y);
-                    lysCog1N = lysCog1.getNet();
-                    etLysCog1N.setText(String.valueOf(format.format(lysCog1N)));
-                }
-
-            } else
-                lysCog1N = 0;
-
-            boolean tarihD = etLysTarihD.getText().toString().equals("");
-            boolean tarihY = etLysTarihY.getText().toString().equals("");
-            boolean tarihN = etLysTarihN.getText().toString().equals("");
-            if (!tarihD && tarihY && tarihN) {
-                lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
-                if (lysTarihD > 44) {
-                    etLysTarihD.setText("");
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysTarihN = lysTarihD;
-                    etLysTarihN.setText(String.valueOf(format.format(lysTarihN)));
-                }
-
-            } else if (tarihD && !tarihY && tarihN) {
-                lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
-                if (lysTarihY > 44) {
-                    etLysTarihY.setText("");
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysTarih = new NetHesapla(0, lysTarihY);
-                    lysTarihN = lysTarih.getNet();
-                    etLysTarihN.setText(String.valueOf(format.format(lysTarihN)));
-                }
-            } else if (tarihD && tarihY && !tarihN) {
-                lysTarihN = Double.parseDouble(etLysTarihN.getText().toString());
-                if (lysTarihN > 44) {
-                    etLysTarihN.setText("");
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!tarihD && !tarihY && tarihN) {
-                lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
-                lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
-                if (lysTarihD + lysTarihY > 44) {
-                    etLysTarihD.setText("");
-                    etLysTarihY.setText("");
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysTarih = new NetHesapla(lysTarihD, lysTarihY);
-                    lysTarihN = lysTarih.getNet();
-                    etLysTarihN.setText(String.valueOf(format.format(lysTarihN)));
-                }
-
-            } else if (!tarihD && tarihY) {
-                lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
-                if (lysTarihD > 44) {
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysTarihN = lysTarihD;
-                    etLysTarihN.setText(String.valueOf(format.format(lysTarihN)));
-                }
-
-            } else if (tarihD && !tarihY) {
-                lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
-                if (lysTarihY > 44) {
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysTarih = new NetHesapla(0, lysTarihY);
-                    lysTarihN = lysTarih.getNet();
-                    etLysTarihN.setText(String.valueOf(format.format(lysTarihN)));
-                }
-
-            } else if (!tarihD) {
-                lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
-                lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
-                if (lysTarihD + lysTarihY > 44) {
-                    String hata_mesaji = "Tarih testinde soru sayısı 44'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysTarih = new NetHesapla(lysTarihD, lysTarihY);
-                    lysTarihN = lysTarih.getNet();
-                    etLysTarihN.setText(String.valueOf(format.format(lysTarihN)));
-                }
-
-            } else
-                lysTarihN = 0;
-
-            boolean cog2D = etLysCog2D.getText().toString().equals("");
-            boolean cog2Y = etLysCog2Y.getText().toString().equals("");
-            boolean cog2N = etLysCog2N.getText().toString().equals("");
-            if (!cog2D && cog2Y && cog2N) {
-                lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
-                if (lysCog2D > 14) {
-                    etLysCog2D.setText("");
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysCog2N = lysCog2D;
-                    etLysCog2N.setText(String.valueOf(format.format(lysCog2N)));
-                }
-
-            } else if (cog2D && !cog2Y && cog2N) {
-                lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
-                if (lysCog2Y > 14) {
-                    etLysCog2Y.setText("");
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog2 = new NetHesapla(0, lysCog2Y);
-                    lysCog2N = lysCog2.getNet();
-                    etLysCog2N.setText(String.valueOf(format.format(lysCog2N)));
-                }
-            } else if (cog2D && cog2Y && !cog2N) {
-                lysCog2N = Double.parseDouble(etLysCog2N.getText().toString());
-                if (lysCog2N > 14) {
-                    etLysCog2N.setText("");
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!cog2D && !cog2Y && cog2N) {
-                lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
-                lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
-                if (lysCog2D + lysCog2Y > 14) {
-                    etLysCog2D.setText("");
-                    etLysCog2Y.setText("");
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog2 = new NetHesapla(lysCog2D, lysCog2Y);
-                    lysCog2N = lysCog2.getNet();
-                    etLysCog2N.setText(String.valueOf(format.format(lysCog2N)));
-                }
-
-            } else if (!cog2D && cog2Y) {
-                lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
-                if (lysCog2D > 14) {
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysCog2N = lysCog2D;
-                    etLysCog2N.setText(String.valueOf(format.format(lysCog2N)));
-                }
-
-            } else if (cog2D && !cog2Y) {
-                lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
-                if (lysCog2Y > 14) {
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog2 = new NetHesapla(0, lysCog2Y);
-                    lysCog2N = lysCog2.getNet();
-                    etLysCog2N.setText(String.valueOf(format.format(lysCog2N)));
-                }
-
-            } else if (!cog2D) {
-                lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
-                lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
-                if (lysCog2D + lysCog2Y > 14) {
-                    String hata_mesaji = "Coğrafya-2 testinde soru sayısı 14'dür.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysCog2 = new NetHesapla(lysCog2D, lysCog2Y);
-                    lysCog2N = lysCog2.getNet();
-                    etLysCog2N.setText(String.valueOf(format.format(lysCog2N)));
-                }
-
-            } else
-                lysCog2N = 0;
-
-            boolean felD = etLysFelD.getText().toString().equals("");
-            boolean felY = etLysFelY.getText().toString().equals("");
-            boolean felN = etLysFelN.getText().toString().equals("");
-            if (!felD && felY && felN) {
-                lysFelD = Double.parseDouble(etLysFelD.getText().toString());
-                if (lysFelD > 32) {
-                    etLysFelD.setText("");
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysFelN = lysFelD;
-                    etLysFelN.setText(String.valueOf(format.format(lysFelN)));
-                }
-
-            } else if (felD && !felY && felN) {
-                lysFelY = Double.parseDouble(etLysFelY.getText().toString());
-                if (lysFelY > 32) {
-                    etLysFelY.setText("");
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFel = new NetHesapla(0, lysFelY);
-                    lysFelN = lysFel.getNet();
-                    etLysFelN.setText(String.valueOf(format.format(lysFelN)));
-                }
-            } else if (felD && felY && !felN) {
-                lysFelN = Double.parseDouble(etLysFelN.getText().toString());
-                if (lysFelN > 32) {
-                    etLysFelN.setText("");
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!felD && !felY && felN) {
-                lysFelD = Double.parseDouble(etLysFelD.getText().toString());
-                lysFelY = Double.parseDouble(etLysFelY.getText().toString());
-                if (lysFelD + lysFelY > 32) {
-                    etLysFelD.setText("");
-                    etLysFelY.setText("");
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFel = new NetHesapla(lysFelD, lysFelY);
-                    lysFelN = lysFel.getNet();
-                    etLysFelN.setText(String.valueOf(format.format(lysFelN)));
-                }
-
-            } else if (!felD && felY) {
-                lysFelD = Double.parseDouble(etLysFelD.getText().toString());
-                if (lysFelD > 32) {
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysFelN = lysFelD;
-                    etLysFelN.setText(String.valueOf(format.format(lysFelN)));
-                }
-
-            } else if (felD && !felY) {
-                lysFelY = Double.parseDouble(etLysFelY.getText().toString());
-                if (lysFelY > 32) {
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFel = new NetHesapla(0, lysFelY);
-                    lysFelN = lysFel.getNet();
-                    etLysFelN.setText(String.valueOf(format.format(lysFelN)));
-                }
-
-            } else if (!felD) {
-                lysFelD = Double.parseDouble(etLysFelD.getText().toString());
-                lysFelY = Double.parseDouble(etLysFelY.getText().toString());
-                if (lysFelD + lysFelY > 32) {
-                    String hata_mesaji = "Felsefe/Din testinde soru sayısı 32'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysFel = new NetHesapla(lysFelD, lysFelY);
-                    lysFelN = lysFel.getNet();
-                    etLysFelN.setText(String.valueOf(format.format(lysFelN)));
-                }
-
-            } else
-                lysFelN = 0;
-
-            boolean ydilD = etLysYdilD.getText().toString().equals("");
-            boolean ydilY = etLysYdilY.getText().toString().equals("");
-            boolean ydilN = etLysYdilN.getText().toString().equals("");
-            if (!ydilD && ydilY && ydilN) {
-                lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
-                if (lysYdilD > 80) {
-                    etLysYdilD.setText("");
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysYdilN = lysYdilD;
-                    etLysYdilN.setText(String.valueOf(format.format(lysYdilN)));
-                }
-
-            } else if (ydilD && !ydilY && ydilN) {
-                lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                if (lysYdilY > 80) {
-                    etLysYdilY.setText("");
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysYdil = new NetHesapla(0, lysYdilY);
-                    lysYdilN = lysYdil.getNet();
-                    etLysYdilN.setText(String.valueOf(format.format(lysYdilN)));
-                }
-            } else if (ydilD && ydilY && !ydilN) {
-                lysYdilN = Double.parseDouble(etLysYdilN.getText().toString());
-                if (lysYdilN > 80) {
-                    etLysYdilN.setText("");
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                }
-            } else if (!ydilD && !ydilY && ydilN) {
-                lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
-                lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                if (lysYdilD + lysYdilY > 80) {
-                    etLysYdilD.setText("");
-                    etLysYdilY.setText("");
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysYdil = new NetHesapla(lysYdilD, lysYdilY);
-                    lysYdilN = lysYdil.getNet();
-                    etLysYdilN.setText(String.valueOf(format.format(lysYdilN)));
-                }
-
-            } else if (!ydilD && ydilY) {
-                lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
-                if (lysYdilD > 80) {
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    lysYdilN = lysYdilD;
-                    etLysYdilN.setText(String.valueOf(format.format(lysYdilN)));
-                }
-
-            } else if (ydilD && !ydilY) {
-                lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                if (lysYdilY > 80) {
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysYdil = new NetHesapla(0, lysYdilY);
-                    lysYdilN = lysYdil.getNet();
-                    etLysYdilN.setText(String.valueOf(format.format(lysYdilN)));
-                }
-
-            } else if (!ydilD) {
-                lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
-                lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                if (lysYdilD + lysYdilY > 80) {
-                    String hata_mesaji = "Yabancı Dil testinde soru sayısı 80'dir.";
-                    Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-                    return;
-                } else {
-                    NetHesapla lysYdil = new NetHesapla(lysYdilD, lysYdilY);
-                    lysYdilN = lysYdil.getNet();
-                    etLysYdilN.setText(String.valueOf(format.format(lysYdilN)));
-                }
-
-            } else
-                lysYdilN = 0;
-
-            boolean obp = etDiploma.getText().toString().equals("");
-            if (obp) {
-                OBP = 0;
-            } else {
-                OBP = Double.parseDouble(etDiploma.getText().toString());
-                OBP = (OBP*5)*0.12;
+        lysShowScore();
+
+        etLysMatD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
             }
 
-            lysPuanHesapIslemleri(lysMatN, lysGeoN, lysFizikN, lysKimyaN, lysBiyoN, lysEdeN, lysCog1N,
-                    lysTarihN, lysCog2N, lysFelN, lysYdilN);
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            Log.d(LOG_TAG, "Lys notları alınıp puanlar hesaplandı.");
-        } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
-            String hata_mesaji = "Alanları boş bırakmayın.";
-            Toast.makeText(Lys.this, hata_mesaji, Toast.LENGTH_LONG).show();
-        }
+                try {
+                    boolean matY = etLysMatY.getText().toString().equals("");
+                    if (matY) {
+                        lysMatD = Double.parseDouble(etLysMatD.getText().toString());
+                        if (lysMatD > 50) {
+                            etLysMatD.setText("");
+                            etLysMatN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysMatN = lysMatD;
+                            etLysMatN.setText(format.format(lysMatN));
+                        }
+                    } else {
+                        lysMatD = Double.parseDouble(etLysMatD.getText().toString());
+                        lysMatY = Double.parseDouble(etLysMatY.getText().toString());
+                        if (lysMatD + lysMatY > 50) {
+                            etLysMatD.setText("");
+                            etLysMatY.setText("");
+                            etLysMatN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysMat = new CalculateMark(lysMatD, lysMatY);
+                            lysMatN = lysMat.getMark();
+                            etLysMatN.setText(format.format(lysMatN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysMatY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean matD = etLysMatD.getText().toString().equals("");
+
+                    if (matD) {
+                        lysMatY = Double.parseDouble(etLysMatY.getText().toString());
+                        if (lysMatY > 50) {
+                            etLysMatY.setText("");
+                            etLysMatN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysMat = new CalculateMark(0, lysMatY);
+                            lysMatN = lysMat.getMark();
+                            etLysMatN.setText(format.format(lysMatN));
+                        }
+
+                    } else {
+                        lysMatD = Double.parseDouble(etLysMatD.getText().toString());
+                        lysMatY = Double.parseDouble(etLysMatY.getText().toString());
+                        if (lysMatD + lysMatY > 50) {
+                            etLysMatD.setText("");
+                            etLysMatY.setText("");
+                            etLysMatN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysMat = new CalculateMark(lysMatD, lysMatY);
+                            lysMatN = lysMat.getMark();
+                            etLysMatN.setText(format.format(lysMatN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysMatN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                try {
+
+                    lysMatN = Double.parseDouble(etLysMatN.getText().toString());
+                    if (lysMatN > 50) {
+                        etLysMatN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysGeoD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean geoY = etLysGeoY.getText().toString().equals("");
+                    if (geoY) {
+                        lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
+                        if (lysGeoD > 30) {
+                            etLysGeoD.setText("");
+                            etLysGeoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysGeoN = lysGeoD;
+                            etLysGeoN.setText(format.format(lysGeoN));
+                        }
+                    } else {
+                        lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
+                        lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
+                        if (lysGeoD + lysGeoY > 30) {
+                            etLysGeoD.setText("");
+                            etLysGeoY.setText("");
+                            etLysGeoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysGeo = new CalculateMark(lysGeoD, lysGeoY);
+                            lysGeoN = lysGeo.getMark();
+                            etLysGeoN.setText(format.format(lysGeoN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysGeoY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean geoD = etLysGeoD.getText().toString().equals("");
+
+                    if (geoD) {
+                        lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
+                        if (lysGeoY > 30) {
+                            etLysGeoY.setText("");
+                            etLysGeoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysGeo = new CalculateMark(0, lysGeoY);
+                            lysGeoN = lysGeo.getMark();
+                            etLysGeoN.setText(format.format(lysGeoN));
+                        }
+
+                    } else {
+                        lysGeoD = Double.parseDouble(etLysGeoD.getText().toString());
+                        lysGeoY = Double.parseDouble(etLysGeoY.getText().toString());
+                        if (lysGeoD + lysGeoY > 30) {
+                            etLysGeoD.setText("");
+                            etLysGeoY.setText("");
+                            etLysGeoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysGeo = new CalculateMark(lysGeoD, lysGeoY);
+                            lysGeoN = lysGeo.getMark();
+                            etLysGeoN.setText(format.format(lysGeoN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysGeoN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                try {
+
+                    lysGeoN = Double.parseDouble(etLysGeoN.getText().toString());
+                    if (lysGeoN > 30) {
+                        etLysGeoN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysFizikD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean fizikY = etLysFizikY.getText().toString().equals("");
+                    if (fizikY) {
+                        lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
+                        if (lysFizikD > 30) {
+                            etLysFizikD.setText("");
+                            etLysFizikN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysFizikN = lysFizikD;
+                            etLysFizikN.setText(format.format(lysFizikN));
+                        }
+                    } else {
+                        lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
+                        lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
+                        if (lysFizikD + lysFizikY > 30) {
+                            etLysFizikD.setText("");
+                            etLysFizikY.setText("");
+                            etLysFizikN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysFizik = new CalculateMark(lysFizikD, lysFizikY);
+                            lysFizikN = lysFizik.getMark();
+                            etLysFizikN.setText(format.format(lysFizikN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysFizikY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean fizikD = etLysFizikD.getText().toString().equals("");
+
+                    if (fizikD) {
+                        lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
+                        if (lysFizikY > 30) {
+                            etLysFizikY.setText("");
+                            etLysFizikN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysFizik = new CalculateMark(0, lysFizikY);
+                            lysFizikN = lysFizik.getMark();
+                            etLysFizikN.setText(format.format(lysFizikN));
+                        }
+
+                    } else {
+                        lysFizikD = Double.parseDouble(etLysFizikD.getText().toString());
+                        lysFizikY = Double.parseDouble(etLysFizikY.getText().toString());
+                        if (lysFizikD + lysFizikY > 30) {
+                            etLysFizikD.setText("");
+                            etLysFizikY.setText("");
+                            etLysFizikN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysFizik = new CalculateMark(lysFizikD, lysFizikY);
+                            lysFizikN = lysFizik.getMark();
+                            etLysFizikN.setText(format.format(lysFizikN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysFizikN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                try {
+
+                    lysFizikN = Double.parseDouble(etLysFizikN.getText().toString());
+                    if (lysFizikN > 30) {
+                        etLysFizikN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysKimyaD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean kimyaY = etLysKimyaY.getText().toString().equals("");
+                    if (kimyaY) {
+                        lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
+                        if (lysKimyaD > 30) {
+                            etLysKimyaD.setText("");
+                            etLysKimyaN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysKimyaN = lysKimyaD;
+                            etLysKimyaN.setText(format.format(lysKimyaN));
+                        }
+                    } else {
+                        lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
+                        lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
+                        if (lysKimyaD + lysKimyaY > 30) {
+                            etLysKimyaD.setText("");
+                            etLysKimyaY.setText("");
+                            etLysKimyaN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysKimya = new CalculateMark(lysKimyaD, lysKimyaY);
+                            lysKimyaN = lysKimya.getMark();
+                            etLysKimyaN.setText(format.format(lysKimyaN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysKimyaY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean kimyaD = etLysKimyaD.getText().toString().equals("");
+
+                    if (kimyaD) {
+                        lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
+                        if (lysKimyaY > 30) {
+                            etLysKimyaY.setText("");
+                            etLysKimyaN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysKimya = new CalculateMark(0, lysKimyaY);
+                            lysKimyaN = lysKimya.getMark();
+                            etLysKimyaN.setText(format.format(lysKimyaN));
+                        }
+
+                    } else {
+                        lysKimyaD = Double.parseDouble(etLysKimyaD.getText().toString());
+                        lysKimyaY = Double.parseDouble(etLysKimyaY.getText().toString());
+                        if (lysKimyaD + lysKimyaY > 30) {
+                            etLysKimyaD.setText("");
+                            etLysKimyaY.setText("");
+                            etLysKimyaN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysKimya = new CalculateMark(lysKimyaD, lysKimyaY);
+                            lysKimyaN = lysKimya.getMark();
+                            etLysKimyaN.setText(format.format(lysKimyaN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysKimyaN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                try {
+
+                    lysKimyaN = Double.parseDouble(etLysKimyaN.getText().toString());
+                    if (lysKimyaN > 30) {
+                        etLysKimyaN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysBiyoD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean biyoY = etLysBiyoY.getText().toString().equals("");
+                    if (biyoY) {
+                        lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
+                        if (lysBiyoD > 30) {
+                            etLysBiyoD.setText("");
+                            etLysBiyoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysBiyoN = lysBiyoD;
+                            etLysBiyoN.setText(format.format(lysBiyoN));
+                        }
+                    } else {
+                        lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
+                        lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
+                        if (lysBiyoD + lysBiyoY > 30) {
+                            etLysBiyoD.setText("");
+                            etLysBiyoY.setText("");
+                            etLysBiyoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysBiyo = new CalculateMark(lysBiyoD, lysBiyoY);
+                            lysBiyoN = lysBiyo.getMark();
+                            etLysBiyoN.setText(format.format(lysBiyoN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysBiyoY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean biyoD = etLysBiyoD.getText().toString().equals("");
+
+                    if (biyoD) {
+                        lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
+                        if (lysBiyoY > 30) {
+                            etLysBiyoY.setText("");
+                            etLysBiyoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysBiyo = new CalculateMark(0, lysBiyoY);
+                            lysBiyoN = lysBiyo.getMark();
+                            etLysBiyoN.setText(format.format(lysBiyoN));
+                        }
+
+                    } else {
+                        lysBiyoD = Double.parseDouble(etLysBiyoD.getText().toString());
+                        lysBiyoY = Double.parseDouble(etLysBiyoY.getText().toString());
+                        if (lysBiyoD + lysBiyoY > 30) {
+                            etLysBiyoD.setText("");
+                            etLysBiyoY.setText("");
+                            etLysBiyoN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysBiyo = new CalculateMark(lysBiyoD, lysBiyoY);
+                            lysBiyoN = lysBiyo.getMark();
+                            etLysBiyoN.setText(format.format(lysBiyoN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysBiyoN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                try {
+
+                    lysBiyoN = Double.parseDouble(etLysBiyoN.getText().toString());
+                    if (lysBiyoN > 40) {
+                        etLysBiyoN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysEdeD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean edeY = etLysEdeY.getText().toString().equals("");
+                    if (edeY) {
+                        lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
+                        if (lysEdeD > 56) {
+                            etLysEdeD.setText("");
+                            etLysEdeN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysEdeN = lysEdeD;
+                            etLysEdeN.setText(format.format(lysEdeN));
+                        }
+                    } else {
+                        lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
+                        lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
+                        if (lysEdeD + lysEdeY > 56) {
+                            etLysEdeD.setText("");
+                            etLysEdeY.setText("");
+                            etLysEdeN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysEde = new CalculateMark(lysEdeD, lysEdeY);
+                            lysEdeN = lysEde.getMark();
+                            etLysEdeN.setText(format.format(lysEdeN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysEdeY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean edeD = etLysEdeD.getText().toString().equals("");
+
+                    if (edeD) {
+                        lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
+                        if (lysEdeY > 56) {
+                            etLysEdeY.setText("");
+                            etLysEdeN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysEde = new CalculateMark(0, lysEdeY);
+                            lysEdeN = lysEde.getMark();
+                            etLysEdeN.setText(format.format(lysEdeN));
+                        }
+
+                    } else {
+                        lysEdeD = Double.parseDouble(etLysEdeD.getText().toString());
+                        lysEdeY = Double.parseDouble(etLysEdeY.getText().toString());
+                        if (lysEdeD + lysEdeY > 56) {
+                            etLysEdeD.setText("");
+                            etLysEdeY.setText("");
+                            etLysEdeN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysEde = new CalculateMark(lysEdeD, lysEdeY);
+                            lysEdeN = lysEde.getMark();
+                            etLysEdeN.setText(format.format(lysEdeN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysEdeN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+
+                    lysEdeN = Double.parseDouble(etLysEdeN.getText().toString());
+                    if (lysEdeN > 56) {
+                        etLysEdeN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysCog1D.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean cog1Y = etLysCog1Y.getText().toString().equals("");
+                    if (cog1Y) {
+                        lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
+                        if (lysCog1D > 24) {
+                            etLysCog1D.setText("");
+                            etLysCog1N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysCog1N = lysCog1D;
+                            etLysCog1N.setText(format.format(lysCog1N));
+                        }
+                    } else {
+                        lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
+                        lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
+                        if (lysCog1D + lysCog1Y > 24) {
+                            etLysCog1D.setText("");
+                            etLysCog1Y.setText("");
+                            etLysCog1N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysCog1 = new CalculateMark(lysCog1D, lysCog1Y);
+                            lysCog1N = lysCog1.getMark();
+                            etLysCog1N.setText(format.format(lysCog1N));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysCog1Y.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean cog1D = etLysCog1D.getText().toString().equals("");
+
+                    if (cog1D) {
+                        lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
+                        if (lysCog1Y > 24) {
+                            etLysCog1Y.setText("");
+                            etLysCog1N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysCog1 = new CalculateMark(0, lysCog1Y);
+                            lysCog1N = lysCog1.getMark();
+                            etLysCog1N.setText(format.format(lysCog1N));
+                        }
+
+                    } else {
+                        lysCog1D = Double.parseDouble(etLysCog1D.getText().toString());
+                        lysCog1Y = Double.parseDouble(etLysCog1Y.getText().toString());
+                        if (lysCog1D + lysCog1Y > 24) {
+                            etLysCog1D.setText("");
+                            etLysCog1Y.setText("");
+                            etLysCog1N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysCog1 = new CalculateMark(lysCog1D, lysCog1Y);
+                            lysCog1N = lysCog1.getMark();
+                            etLysCog1N.setText(format.format(lysCog1N));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysCog1N.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                try {
+
+                    lysCog1N = Double.parseDouble(etLysCog1N.getText().toString());
+                    if (lysCog1N > 24) {
+                        etLysCog1N.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysTarihD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean tarihY = etLysTarihY.getText().toString().equals("");
+                    if (tarihY) {
+                        lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
+                        if (lysTarihD > 44) {
+                            etLysTarihD.setText("");
+                            etLysTarihN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysTarihN = lysTarihD;
+                            etLysTarihN.setText(format.format(lysTarihN));
+                        }
+                    } else {
+                        lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
+                        lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
+                        if (lysTarihD + lysTarihY > 44) {
+                            etLysTarihD.setText("");
+                            etLysTarihY.setText("");
+                            etLysTarihN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysTarih = new CalculateMark(lysTarihD, lysTarihY);
+                            lysTarihN = lysTarih.getMark();
+                            etLysTarihN.setText(format.format(lysTarihN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysTarihY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean tarihD = etLysTarihD.getText().toString().equals("");
+
+                    if (tarihD) {
+                        lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
+                        if (lysTarihY > 44) {
+                            etLysTarihY.setText("");
+                            etLysTarihN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysTarih = new CalculateMark(0, lysTarihY);
+                            lysTarihN = lysTarih.getMark();
+                            etLysTarihN.setText(format.format(lysTarihN));
+                        }
+
+                    } else {
+                        lysTarihD = Double.parseDouble(etLysTarihD.getText().toString());
+                        lysTarihY = Double.parseDouble(etLysTarihY.getText().toString());
+                        if (lysTarihD + lysTarihY > 44) {
+                            etLysTarihD.setText("");
+                            etLysTarihY.setText("");
+                            etLysTarihN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysTarih = new CalculateMark(lysTarihD, lysTarihY);
+                            lysTarihN = lysTarih.getMark();
+                            etLysTarihN.setText(format.format(lysTarihN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysTarihN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    lysTarihN = Double.parseDouble(etLysTarihN.getText().toString());
+                    if (lysTarihN > 44) {
+                        etLysTarihN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysCog2D.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean cog2Y = etLysCog2Y.getText().toString().equals("");
+                    if (cog2Y) {
+                        lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
+                        if (lysCog2D > 14) {
+                            etLysCog2D.setText("");
+                            etLysCog2N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysCog2N = lysCog2D;
+                            etLysCog2N.setText(format.format(lysCog2N));
+                        }
+                    } else {
+                        lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
+                        lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
+                        if (lysCog2D + lysCog2Y > 14) {
+                            etLysCog2D.setText("");
+                            etLysCog2Y.setText("");
+                            etLysCog2N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysCog2 = new CalculateMark(lysCog2D, lysCog2Y);
+                            lysCog2N = lysCog2.getMark();
+                            etLysCog2N.setText(format.format(lysCog2N));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysCog2Y.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean cog2D = etLysCog2D.getText().toString().equals("");
+
+                    if (cog2D) {
+                        lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
+                        if (lysCog2Y > 14) {
+                            etLysCog2Y.setText("");
+                            etLysCog2N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysCog2 = new CalculateMark(0, lysCog2Y);
+                            lysCog2N = lysCog2.getMark();
+                            etLysCog2N.setText(format.format(lysCog2N));
+                        }
+
+                    } else {
+                        lysCog2D = Double.parseDouble(etLysCog2D.getText().toString());
+                        lysCog2Y = Double.parseDouble(etLysCog2Y.getText().toString());
+                        if (lysCog2D + lysCog2Y > 14) {
+                            etLysCog2D.setText("");
+                            etLysCog2Y.setText("");
+                            etLysCog2N.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysCog2 = new CalculateMark(lysCog2D, lysCog2Y);
+                            lysCog2N = lysCog2.getMark();
+                            etLysCog2N.setText(format.format(lysCog2N));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysCog2N.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    lysCog2N = Double.parseDouble(etLysCog2N.getText().toString());
+                    if (lysCog2N > 14) {
+                        etLysCog2N.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysFelD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean felY = etLysFelY.getText().toString().equals("");
+                    if (felY) {
+                        lysFelD = Double.parseDouble(etLysFelD.getText().toString());
+                        if (lysFelD > 32) {
+                            etLysFelD.setText("");
+                            etLysFelN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysFelN = lysFelD;
+                            etLysFelN.setText(format.format(lysFelN));
+                        }
+                    } else {
+                        lysFelD = Double.parseDouble(etLysFelD.getText().toString());
+                        lysFelY = Double.parseDouble(etLysFelY.getText().toString());
+                        if (lysFelD + lysFelY > 32) {
+                            etLysFelD.setText("");
+                            etLysFelY.setText("");
+                            etLysFelN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysFel = new CalculateMark(lysFelD, lysFelY);
+                            lysFelN = lysFel.getMark();
+                            etLysFelN.setText(format.format(lysFelN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysFelY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean felD = etLysFelD.getText().toString().equals("");
+
+                    if (felD) {
+                        lysFelY = Double.parseDouble(etLysFelY.getText().toString());
+                        if (lysFelY > 32) {
+                            etLysFelY.setText("");
+                            etLysFelN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysFel = new CalculateMark(0, lysFelY);
+                            lysFelN = lysFel.getMark();
+                            etLysFelN.setText(format.format(lysFelN));
+                        }
+
+                    } else {
+                        lysFelD = Double.parseDouble(etLysFelD.getText().toString());
+                        lysFelY = Double.parseDouble(etLysFelY.getText().toString());
+                        if (lysFelD + lysFelY > 32) {
+                            etLysFelD.setText("");
+                            etLysFelY.setText("");
+                            etLysFelN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysFel = new CalculateMark(lysFelD, lysFelY);
+                            lysFelN = lysFel.getMark();
+                            etLysFelN.setText(format.format(lysFelN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+                lysShowScore();
+
+            }
+        });
+        etLysFelN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    lysFelN = Double.parseDouble(etLysFelN.getText().toString());
+                    if (lysFelN > 32) {
+                        etLysFelN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etLysYdilD.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean ydilY = etLysYdilY.getText().toString().equals("");
+                    if (ydilY) {
+                        lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
+                        if (lysYdilD > 40) {
+                            etLysYdilD.setText("");
+                            etLysYdilN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            lysYdilN = lysYdilD;
+                            etLysYdilN.setText(format.format(lysYdilN));
+                        }
+                    } else {
+                        lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
+                        lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
+                        if (lysYdilD + lysYdilY > 40) {
+                            etLysYdilD.setText("");
+                            etLysYdilY.setText("");
+                            etLysYdilN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysYdil = new CalculateMark(lysYdilD, lysYdilY);
+                            lysYdilN = lysYdil.getMark();
+                            etLysYdilN.setText(format.format(lysYdilN));
+                        }
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysYdilY.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                try {
+                    boolean ydilD = etLysYdilD.getText().toString().equals("");
+
+                    if (ydilD) {
+                        lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
+                        if (lysYdilY > 40) {
+                            etLysYdilY.setText("");
+                            etLysYdilN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysYdil = new CalculateMark(0, lysYdilY);
+                            lysYdilN = lysYdil.getMark();
+                            etLysYdilN.setText(format.format(lysYdilN));
+                        }
+
+                    } else {
+                        lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
+                        lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
+                        if (lysYdilD + lysYdilY > 40) {
+                            etLysYdilD.setText("");
+                            etLysYdilY.setText("");
+                            etLysYdilN.setText("");
+                            questionErrorMessage();
+                        } else {
+                            CalculateMark lysYdil = new CalculateMark(lysYdilD, lysYdilY);
+                            lysYdilN = lysYdil.getMark();
+                            etLysYdilN.setText(format.format(lysYdilN));
+                        }
+
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+        etLysYdilN.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    lysYdilN = Double.parseDouble(etLysYdilN.getText().toString());
+                    if (lysYdilN > 40) {
+                        etLysYdilN.setText("");
+                        questionErrorMessage();
+                    }
+
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+            }
+        });
+
+        etDiploma.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                boolean obp = etDiploma.getText().toString().equals("");
+                if (obp) {
+                    OBP = 0;
+                } else {
+                    OBP = Double.parseDouble(etDiploma.getText().toString());
+                    OBP = (OBP * 5) * 0.12;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                lysShowScore();
+
+            }
+        });
+
     }
 
-    public void lysPuanHesapIslemleri(double lysMatN, double lysGeoN, double lysFizikN, double lysKimyaN,
-                                      double lysBiyoN, double lysEdeN, double lysCog1N, double lysTarihN, double lysCog2N, double lysFelN, double lysYdilN) {
-        this.lysMatN = lysMatN;
-        this.lysGeoN = lysGeoN;
-        this.lysFizikN = lysFizikN;
-        this.lysKimyaN = lysKimyaN;
-        this.lysBiyoN = lysBiyoN;
-        this.lysEdeN = lysEdeN;
-        this.lysCog1N = lysCog1N;
-        this.lysTarihN = lysTarihN;
-        this.lysCog2N = lysCog2N;
-        this.lysFelN = lysFelN;
-        this.lysYdilN = lysYdilN;
+    public void lysShowScore() {
 
-        Cursor res = myDb.ygsNetleriAl();
+        Cursor res = myDb.ygsGetMark();
 
-        String[] netler = new String[4];
-        int n = 0;
+        String[] marks = new String[4];
+        int m = 0;
 
         while (res.moveToNext()) {
-            netler[n] = res.getString(1);
-            n++;
+            marks[m] = res.getString(3);
+            m++;
         }
 
-        LysPuanHesaplama lys = new LysPuanHesaplama(Double.parseDouble(netler[0]), Double.parseDouble(netler[1]),
-                Double.parseDouble(netler[2]), Double.parseDouble(netler[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
+        LysCalculateScoreType lys = new LysCalculateScoreType(Double.parseDouble(marks[0]), Double.parseDouble(marks[1]),
+                Double.parseDouble(marks[2]), Double.parseDouble(marks[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
                 lysBiyoN, lysEdeN, lysCog1N, lysTarihN, lysCog2N, lysFelN, lysYdilN);
         tMf1.setText(String.format("MF-1 : %.2f", lys.getMF1() + OBP));
         tMf2.setText(String.format("MF-2 : %.2f", lys.getMF2() + OBP));
@@ -1154,18 +1542,41 @@ public class Lys extends AppCompatActivity implements View.OnClickListener {
         tYdil3.setText(String.format("Dil-3 : %.2f", lys.getDil3() + OBP));
     }
 
-    public void lysTemizle() {
+    public void lysClear() {
+        lysMatD = 0;
+        lysMatY = 0;
         lysMatN = 0;
+        lysGeoD = 0;
+        lysGeoY = 0;
         lysGeoN = 0;
+        lysFizikD = 0;
+        lysFizikY = 0;
         lysFizikN = 0;
+        lysKimyaD = 0;
+        lysKimyaY = 0;
         lysKimyaN = 0;
+        lysBiyoD = 0;
+        lysBiyoY = 0;
         lysBiyoN = 0;
+        lysEdeD = 0;
+        lysEdeY = 0;
         lysEdeN = 0;
+        lysCog1D = 0;
+        lysCog1Y = 0;
         lysCog1N = 0;
+        lysTarihD = 0;
+        lysTarihY = 0;
         lysTarihN = 0;
+        lysCog2D = 0;
+        lysCog2Y = 0;
         lysCog2N = 0;
+        lysFelD = 0;
+        lysFelY = 0;
         lysFelN = 0;
+        lysYdilD = 0;
+        lysYdilY = 0;
         lysYdilN = 0;
+        OBP = 0;
         etLysMatD.setText("");
         etLysMatY.setText("");
         etLysMatN.setText("");
@@ -1199,8 +1610,14 @@ public class Lys extends AppCompatActivity implements View.OnClickListener {
         etLysYdilD.setText("");
         etLysYdilY.setText("");
         etLysYdilN.setText("");
+        etDiploma.setText("");
 
-        lysPuanHesapIslemleri(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+        lysShowScore();
+    }
+
+    public void questionErrorMessage() {
+        String errorMessage = "Soru sayısından fazla doğru ve yanlış sayısı girdiniz.";
+        Toast.makeText(Lys.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
 }

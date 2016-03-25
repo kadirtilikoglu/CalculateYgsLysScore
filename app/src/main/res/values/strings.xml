@@ -47,4 +47,7 @@
     <string name="hakkinda">Hakkında</string>
 
     <string name="lysuyari">"Dikkat! Lys'ye girebilmeniz için 180 puan ve üstü almanız gerekiyor."</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
