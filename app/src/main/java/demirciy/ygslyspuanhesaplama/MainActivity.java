@@ -13,15 +13,16 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
+import demirciy.ygslyspuanhesaplama.model.YgsScore;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -47,6 +48,8 @@ public class MainActivity extends AppCompatActivity {
     //iconu ayarla
 
     //puanlarımda puanlarını güzel bi şekilde göster ki ss alınabilsin
+
+    //Listview örnek yap- SONRA CUSTOM LISTVView yap - sonra expandable listview yap
 
 
     @Override
@@ -796,12 +799,61 @@ public class MainActivity extends AppCompatActivity {
     public void ygsAddScoreDatabase() {
         Log.d(LOG_TAG, "Ygs scores are adding into database.");
 
-            myDb.ygsAddScore(date, examName, String.valueOf(ygsTrN), "YGS1", String.valueOf(ygs1));
-            myDb.ygsAddScore(date, examName, String.valueOf(ygsSosN), "YGS2", String.valueOf(ygs2));
-            myDb.ygsAddScore(date, examName, String.valueOf(ygsMatN), "YGS3", String.valueOf(ygs3));
-            myDb.ygsAddScore(date, examName, String.valueOf(ygsFenN), "YGS4", String.valueOf(ygs4));
-            myDb.ygsAddScore(date, examName, "0", "YGS5", String.valueOf(ygs5));
-            myDb.ygsAddScore(date, examName, "0", "YGS6", String.valueOf(ygs6));
+//            myDb.ygsAddScore(date, examName, String.valueOf(ygsTrN), "YGS1", String.valueOf(ygs1));
+//            myDb.ygsAddScore(date, examName, String.valueOf(ygsSosN), "YGS2", String.valueOf(ygs2));
+//            myDb.ygsAddScore(date, examName, String.valueOf(ygsMatN), "YGS3", String.valueOf(ygs3));
+//            myDb.ygsAddScore(date, examName, String.valueOf(ygsFenN), "YGS4", String.valueOf(ygs4));
+//            myDb.ygsAddScore(date, examName, "0", "YGS5", String.valueOf(ygs5));
+//            myDb.ygsAddScore(date, examName, "0", "YGS6", String.valueOf(ygs6));
+
+        YgsScore ygsScore1 = new YgsScore();
+        ygsScore1.setsDate(date);
+        ygsScore1.setsExamName(examName);
+        ygsScore1.setsMarks(ygsTrN);
+        ygsScore1.setsScoreType("YGS1");
+        ygsScore1.setsScore(ygs1);
+
+        YgsScore ygsScore2 = new YgsScore();
+        ygsScore2.setsDate(date);
+        ygsScore2.setsExamName(examName);
+        ygsScore2.setsMarks(ygsSosN);
+        ygsScore2.setsScoreType("YGS2");
+        ygsScore2.setsScore(ygs2);
+
+        YgsScore ygsScore3 = new YgsScore();
+        ygsScore3.setsDate(date);
+        ygsScore3.setsExamName(examName);
+        ygsScore3.setsMarks(ygsMatN);
+        ygsScore3.setsScoreType("YGS3");
+        ygsScore3.setsScore(ygs3);
+
+        YgsScore ygsScore4 = new YgsScore();
+        ygsScore4.setsDate(date);
+        ygsScore4.setsExamName(examName);
+        ygsScore4.setsMarks(ygsFenN);
+        ygsScore4.setsScoreType("YGS4");
+        ygsScore4.setsScore(ygs4);
+
+        YgsScore ygsScore5 = new YgsScore();
+        ygsScore5.setsDate(date);
+        ygsScore5.setsExamName(examName);
+        ygsScore5.setsMarks(0.0);
+        ygsScore5.setsScoreType("YGS5");
+        ygsScore5.setsScore(ygs5);
+
+        YgsScore ygsScore6 = new YgsScore();
+        ygsScore6.setsDate(date);
+        ygsScore6.setsExamName(examName);
+        ygsScore6.setsMarks(0.0);
+        ygsScore6.setsScoreType("YGS6");
+        ygsScore6.setsScore(ygs6);
+
+        myDb.ygsAddScore(ygsScore1);
+        myDb.ygsAddScore(ygsScore2);
+        myDb.ygsAddScore(ygsScore3);
+        myDb.ygsAddScore(ygsScore4);
+        myDb.ygsAddScore(ygsScore5);
+        myDb.ygsAddScore(ygsScore6);
 
         String errorMessage = "YGS puanı kaydedildi.";
         Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
@@ -827,18 +879,18 @@ public class MainActivity extends AppCompatActivity {
             ygsFenD = 0;
             ygsFenY = 0;
             ygsFenN = 0;
-            etYgsTrD.setText("");
-            etYgsTrY.setText("");
-            etYgsTrN.setText("");
-            etYgsSosD.setText("");
-            etYgsSosY.setText("");
-            etYgsSosN.setText("");
-            etYgsMatD.setText("");
-            etYgsMatY.setText("");
-            etYgsMatN.setText("");
-            etYgsFenD.setText("");
-            etYgsFenY.setText("");
-            etYgsFenN.setText("");
+            setNullText(etYgsTrD);
+            setNullText(etYgsTrY);
+            setNullText(etYgsTrN);
+            setNullText(etYgsSosD);
+            setNullText(etYgsSosY);
+            setNullText(etYgsSosN);
+            setNullText(etYgsMatD);
+            setNullText(etYgsMatY);
+            setNullText(etYgsMatN);
+            setNullText(etYgsFenD);
+            setNullText(etYgsFenY);
+            setNullText(etYgsFenN);
             tToplamD.setText("");
             tToplamY.setText("");
             tToplamN.setText("");
@@ -930,5 +982,8 @@ public class MainActivity extends AppCompatActivity {
     {
         Intent i = new Intent(MainActivity.this, YgsMyScores.class);
         startActivity(i);
+    }
+    public void setNullText(EditText et){
+        et.setText("");
     }
 }
