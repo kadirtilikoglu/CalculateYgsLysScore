@@ -12,7 +12,7 @@
         app:showAsAction="always"
         android:icon="@drawable/button_save"/>
     <item
-        android:id="@+id/abLysMyScores"
+        android:id="@+id/abMyScores"
         android:title="YGS-LYS Puanlarim"
         app:showAsAction="always"
         android:icon="@drawable/button_myscores"/>

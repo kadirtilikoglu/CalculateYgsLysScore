@@ -49,7 +49,7 @@
                         <TextView
                             android:id="@+id/tLysMat"
                             style="@style/lysDersler"
-                            android:text="@string/mat"
+                            android:text="@string/math"
                             android:textColor="@color/lys1" />
 
                         <EditText
@@ -88,7 +88,7 @@
                         <TextView
                             android:id="@+id/tLysGeo"
                             style="@style/lysDersler"
-                            android:text="@string/geo"
+                            android:text="@string/geometry"
                             android:textColor="@color/lys1" />
 
                         <EditText
@@ -152,7 +152,7 @@
                         <TextView
                             android:id="@+id/tLysFizik"
                             style="@style/lysDersler"
-                            android:text="@string/fizik"
+                            android:text="@string/physics"
                             android:textColor="@color/lys2" />
 
                         <EditText
@@ -191,7 +191,7 @@
                         <TextView
                             android:id="@+id/tLysKimya"
                             style="@style/lysDersler"
-                            android:text="@string/kimya"
+                            android:text="@string/chemistry"
                             android:textColor="@color/lys2" />
 
                         <EditText
@@ -230,7 +230,7 @@
                         <TextView
                             android:id="@+id/tLysBiyo"
                             style="@style/lysDersler"
-                            android:text="@string/biyo"
+                            android:text="@string/biology"
                             android:textColor="@color/lys2" />
 
                         <EditText
@@ -294,7 +294,7 @@
                         <TextView
                             android:id="@+id/tLysEde"
                             style="@style/lysDersler"
-                            android:text="@string/ede"
+                            android:text="@string/literature"
                             android:textColor="@color/lys3" />
 
                         <EditText
@@ -333,7 +333,7 @@
                         <TextView
                             android:id="@+id/tLysCog1"
                             style="@style/lysDersler"
-                            android:text="@string/cog1"
+                            android:text="@string/geography1"
                             android:textColor="@color/lys3" />
 
                         <EditText
@@ -397,7 +397,7 @@
                         <TextView
                             android:id="@+id/tLysTarih"
                             style="@style/lysDersler"
-                            android:text="@string/tarih"
+                            android:text="@string/history"
                             android:textColor="@color/lys4" />
 
                         <EditText
@@ -436,7 +436,7 @@
                         <TextView
                             android:id="@+id/tLysCog2"
                             style="@style/lysDersler"
-                            android:text="@string/cog2"
+                            android:text="@string/geography2"
                             android:textColor="@color/lys4" />
 
                         <EditText
@@ -475,7 +475,7 @@
                         <TextView
                             android:id="@+id/tLysFel"
                             style="@style/lysDersler"
-                            android:text="@string/fel"
+                            android:text="@string/philosophy_religion"
                             android:textColor="@color/lys4" />
 
                         <EditText
@@ -533,7 +533,7 @@
                     <TextView
                         android:id="@+id/tLysYdil"
                         style="@style/lysDersler"
-                        android:text="@string/ydil"
+                        android:text="@string/foreign_language"
                         android:textColor="@color/lys5" />
 
                     <EditText

@@ -23,7 +23,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/dogru</item>
+        <item name="android:hint">@string/correct</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
@@ -40,7 +40,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/yanlis</item>
+        <item name="android:hint">@string/incorrect</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
@@ -57,7 +57,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/net</item>
+        <item name="android:hint">@string/mark</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
@@ -84,7 +84,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/dogru</item>
+        <item name="android:hint">@string/correct</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">11sp</item>
@@ -95,7 +95,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/yanlis</item>
+        <item name="android:hint">@string/incorrect</item>
         <item name="android:gravity">center</item>
         <item name="android:textColorHint">@color/ygs</item>
         <item name="android:typeface">serif</item>
@@ -106,7 +106,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/net</item>
+        <item name="android:hint">@string/mark</item>
         <item name="android:gravity">center</item>
         <item name="android:textColorHint">@color/ygs</item>
         <item name="android:typeface">serif</item>
@@ -168,7 +168,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/dogru</item>
+        <item name="android:hint">@string/correct</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
@@ -182,7 +182,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/yanlis</item>
+        <item name="android:hint">@string/incorrect</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
@@ -196,7 +196,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/net</item>
+        <item name="android:hint">@string/mark</item>
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
@@ -204,6 +204,14 @@
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="exp_child_textview">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
 </resources>

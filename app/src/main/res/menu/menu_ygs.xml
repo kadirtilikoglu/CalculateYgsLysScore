@@ -16,7 +16,7 @@
         app:showAsAction="always"
         android:icon="@drawable/button_save"/>
     <item
-        android:id="@+id/abYgsMyScores"
+        android:id="@+id/abMyScores"
         android:title="YGS Puanlarim"
         app:showAsAction="always"
         android:icon="@drawable/button_myscores"/>

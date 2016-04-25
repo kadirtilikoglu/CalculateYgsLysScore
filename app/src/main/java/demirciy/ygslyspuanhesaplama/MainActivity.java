@@ -4,6 +4,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -19,7 +20,9 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 import demirciy.ygslyspuanhesaplama.model.YgsScore;
@@ -49,8 +52,12 @@ public class MainActivity extends AppCompatActivity {
 
     //puanlarımda puanlarını güzel bi şekilde göster ki ss alınabilsin
 
-    //Listview örnek yap- SONRA CUSTOM LISTVView yap - sonra expandable listview yap
+    //doğru sayısını girince neti hesaplıyor sonra yanlışı gir tekrar hesaplıyor ama yanlış sayısını
+    //silince yeniden hesaplamıyor.
 
+    //Expandable listview için databasedeki verileri bir listeye at öyle kullan
+
+    //22.04.2016 list e eklediğin verileri exp listview de yazdır.
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -71,10 +78,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.abSave:
                 ygsAlertDialog();
                 break;
-            case R.id.abYgsMyScores:
-                goYgsMyScores();
+            case R.id.abMyScores:
+                goMyScores();
                 break;
             case R.id.abWhatisYgsLys:
+                getAllScoresFromDb();
                 break;
             case R.id.abAbout:
                 break;
@@ -88,7 +96,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getSupportActionBar().setTitle("");
         Log.i(LOG_TAG, "App started.");
 
         etYgsTrD = (EditText) findViewById(R.id.etYgsTrD);
@@ -756,10 +763,7 @@ public class MainActivity extends AppCompatActivity {
             myDb.ygsUpdateMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
         }
-        Log.d(LOG_TAG, "Türkçe: " + ygsTrD + "-" + ygsTrY + "-" + ygsTrN +
-                "\nSosyal: " + ygsSosD + "-" + ygsTrY + "-" + ygsSosN +
-                "\nMatematik: " + ygsMatD + "-" + ygsMatY + "-" + ygsMatN +
-                "\nFen: " + ygsFenD + "-" + ygsFenY + "-" + ygsFenN);
+
         Log.d(LOG_TAG, "Ygs marks added into database.");
     }
 
@@ -799,67 +803,25 @@ public class MainActivity extends AppCompatActivity {
     public void ygsAddScoreDatabase() {
         Log.d(LOG_TAG, "Ygs scores are adding into database.");
 
-//            myDb.ygsAddScore(date, examName, String.valueOf(ygsTrN), "YGS1", String.valueOf(ygs1));
-//            myDb.ygsAddScore(date, examName, String.valueOf(ygsSosN), "YGS2", String.valueOf(ygs2));
-//            myDb.ygsAddScore(date, examName, String.valueOf(ygsMatN), "YGS3", String.valueOf(ygs3));
-//            myDb.ygsAddScore(date, examName, String.valueOf(ygsFenN), "YGS4", String.valueOf(ygs4));
-//            myDb.ygsAddScore(date, examName, "0", "YGS5", String.valueOf(ygs5));
-//            myDb.ygsAddScore(date, examName, "0", "YGS6", String.valueOf(ygs6));
+        AllScores allScores = new AllScores();
 
-        YgsScore ygsScore1 = new YgsScore();
-        ygsScore1.setsDate(date);
-        ygsScore1.setsExamName(examName);
-        ygsScore1.setsMarks(ygsTrN);
-        ygsScore1.setsScoreType("YGS1");
-        ygsScore1.setsScore(ygs1);
+        allScores.setExamName(examName);
+        allScores.setExamDate(date);
+        allScores.setTrMark(ygsTrN);
+        allScores.setSocialMark(ygsSosN);
+        allScores.setMath1Mark(ygsMatN);
+        allScores.setScienceMark(ygsFenN);
+        allScores.setYgs1(ygs1);
+        allScores.setYgs2(ygs2);
+        allScores.setYgs3(ygs3);
+        allScores.setYgs4(ygs4);
+        allScores.setYgs5(ygs5);
+        allScores.setYgs6(ygs6);
 
-        YgsScore ygsScore2 = new YgsScore();
-        ygsScore2.setsDate(date);
-        ygsScore2.setsExamName(examName);
-        ygsScore2.setsMarks(ygsSosN);
-        ygsScore2.setsScoreType("YGS2");
-        ygsScore2.setsScore(ygs2);
+        myDb.addAllScore(allScores);
 
-        YgsScore ygsScore3 = new YgsScore();
-        ygsScore3.setsDate(date);
-        ygsScore3.setsExamName(examName);
-        ygsScore3.setsMarks(ygsMatN);
-        ygsScore3.setsScoreType("YGS3");
-        ygsScore3.setsScore(ygs3);
-
-        YgsScore ygsScore4 = new YgsScore();
-        ygsScore4.setsDate(date);
-        ygsScore4.setsExamName(examName);
-        ygsScore4.setsMarks(ygsFenN);
-        ygsScore4.setsScoreType("YGS4");
-        ygsScore4.setsScore(ygs4);
-
-        YgsScore ygsScore5 = new YgsScore();
-        ygsScore5.setsDate(date);
-        ygsScore5.setsExamName(examName);
-        ygsScore5.setsMarks(0.0);
-        ygsScore5.setsScoreType("YGS5");
-        ygsScore5.setsScore(ygs5);
-
-        YgsScore ygsScore6 = new YgsScore();
-        ygsScore6.setsDate(date);
-        ygsScore6.setsExamName(examName);
-        ygsScore6.setsMarks(0.0);
-        ygsScore6.setsScoreType("YGS6");
-        ygsScore6.setsScore(ygs6);
-
-        myDb.ygsAddScore(ygsScore1);
-        myDb.ygsAddScore(ygsScore2);
-        myDb.ygsAddScore(ygsScore3);
-        myDb.ygsAddScore(ygsScore4);
-        myDb.ygsAddScore(ygsScore5);
-        myDb.ygsAddScore(ygsScore6);
-
-        String errorMessage = "YGS puanı kaydedildi.";
-        Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-
-        Log.d(LOG_TAG, "YGS1: " + ygs1 + "\nYGS2: " + ygs2 + "\nYGS3: " + ygs3 + "\nYGS4: " + ygs4
-                + "\nYGS5: " + ygs5 + "\nYGS6: " + ygs6);
+        String infoMessage = "YGS puanı kaydedildi.";
+        Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
 
         Log.d(LOG_TAG, "Ygs scores added into database.");
     }
@@ -978,12 +940,78 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public void goYgsMyScores()
-    {
-        Intent i = new Intent(MainActivity.this, YgsMyScores.class);
+    public void goMyScores() {
+        Intent i = new Intent(MainActivity.this, MyScores.class);
         startActivity(i);
     }
-    public void setNullText(EditText et){
+
+    public void setNullText(EditText et) {
         et.setText("");
     }
+
+    public void getAllScoresFromDb() {
+        Cursor res = myDb.getAllScores();
+
+        String[] Headers = new String[10];
+        String[] Datas = new String[66];
+
+        int h = 0, d = 0;
+
+        while (res.moveToNext()) {
+
+            Headers[h] = res.getString(0);
+            Headers[h + 1] = res.getString(1);
+
+            Datas[d] = res.getString(2);
+            Datas[d + 1] = res.getString(3);
+            Datas[d + 2] = res.getString(4);
+            Datas[d + 3] = res.getString(5);
+            Datas[d + 4] = res.getString(6);
+            Datas[d + 5] = res.getString(7);
+            Datas[d + 6] = res.getString(8);
+            Datas[d + 7] = res.getString(9);
+            Datas[d + 8] = res.getString(10);
+            Datas[d + 9] = res.getString(11);
+            Datas[d + 10] = res.getString(12);
+            Datas[d + 11] = res.getString(13);
+            Datas[d + 12] = res.getString(14);
+            Datas[d + 13] = res.getString(15);
+            Datas[d + 14] = res.getString(16);
+            Datas[d + 15] = res.getString(17);
+            Datas[d + 16] = res.getString(18);
+            Datas[d + 17] = res.getString(19);
+            Datas[d + 18] = res.getString(20);
+            Datas[d + 19] = res.getString(21);
+            Datas[d + 20] = res.getString(22);
+            Datas[d + 21] = res.getString(23);
+            Datas[d + 22] = res.getString(24);
+            Datas[d + 23] = res.getString(25);
+            Datas[d + 24] = res.getString(26);
+            Datas[d + 25] = res.getString(27);
+            Datas[d + 26] = res.getString(28);
+            Datas[d + 27] = res.getString(29);
+            Datas[d + 28] = res.getString(30);
+            Datas[d + 29] = res.getString(31);
+            Datas[d + 30] = res.getString(32);
+            Datas[d + 31] = res.getString(33);
+            Datas[d + 32] = res.getString(34);
+
+            h = h + 2;
+            d = d + 33;
+        }
+
+        MyScores myScores = new MyScores();
+        myScores.process(Headers, Datas);
+
+        myDb.close();
+
+/*
+        List<String> expDatas = new ArrayList<String>();
+
+        for (String data : expScoreDatas) {
+            expDatas.add(data);
+        }
+*/
+    }
+
 }

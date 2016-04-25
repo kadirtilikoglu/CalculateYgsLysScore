@@ -38,7 +38,7 @@
                 <TextView
                     android:id="@+id/tTurkce"
                     style="@style/ygsDersler"
-                    android:text="@string/tr" />
+                    android:text="@string/turkish" />
 
                 <EditText
                     android:id="@+id/etYgsTrD"
@@ -62,7 +62,7 @@
                 <TextView
                     android:id="@+id/tSos"
                     style="@style/ygsDersler"
-                    android:text="@string/sos" />
+                    android:text="@string/social" />
 
                 <EditText
                     android:id="@+id/etYgsSosD"
@@ -86,7 +86,7 @@
                 <TextView
                     android:id="@+id/tMat"
                     style="@style/ygsDersler"
-                    android:text="@string/mat" />
+                    android:text="@string/math" />
 
                 <EditText
                     android:id="@+id/etYgsMatD"
@@ -110,7 +110,7 @@
                 <TextView
                     android:id="@+id/tFen"
                     style="@style/ygsDersler"
-                    android:text="@string/fen" />
+                    android:text="@string/science" />
 
                 <EditText
                     android:id="@+id/etYgsFenD"
@@ -135,7 +135,7 @@
                 <TextView
                     android:id="@+id/tToplam"
                     style="@style/ygsToplam"
-                    android:text="@string/toplam" />
+                    android:text="@string/total" />
 
                 <TextView
                     android:id="@+id/tToplamD"

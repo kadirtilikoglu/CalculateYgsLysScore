@@ -13,6 +13,8 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 
+import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
+
 public class Lys extends AppCompatActivity {
 
     public EditText etLysMatD, etLysMatY, etLysMatN, etLysGeoD, etLysGeoY,
@@ -56,7 +58,7 @@ public class Lys extends AppCompatActivity {
             case R.id.abSave:
 //                ygsAlertDialog();
                 break;
-            case R.id.abLysMyScores:
+            case R.id.abMyScores:
                 break;
             case R.id.abWhatisYgsLys:
                 break;
