@@ -50,7 +50,7 @@
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="exam_name">Deneme Adı</string>
-    <string name="exam_date">Tarih</string>
+    <string name="exam_date">Deneme Tarihi</string>
     <string name="turkish_mark">Tr Net</string>
     <string name="social_mark">Sosyal Net</string>
     <string name="math_mark">Mat Net</string>
@@ -71,16 +71,65 @@
     <string name="geography2_mark">Cog2 Net</string>
     <string name="philosophy_religion_mark">Fel/Din Net</string>
     <string name="foreign_language_mark">Y.Dil Net</string>
-    <string name="mf1_score">MF1 Puan</string>
-    <string name="mf2_score">MF2 Puan</string>
-    <string name="mf3_score">MF3 Puan</string>
-    <string name="mf4_score">MF4 Puan</string>
-    <string name="tm1_score">TM1 Puan</string>
-    <string name="tm2_score">TM2 Puan</string>
-    <string name="tm3_score">TM3 Puan</string>
-    <string name="ts1_score">TS1 Puan</string>
-    <string name="ts2_score">TS2 Puan</string>
+    <string name="mf1_score">Mf1 Puan</string>
+    <string name="mf2_score">Mf2 Puan</string>
+    <string name="mf3_score">Mf3 Puan</string>
+    <string name="mf4_score">Mf4 Puan</string>
+    <string name="tm1_score">Tm1 Puan</string>
+    <string name="tm2_score">Tm2 Puan</string>
+    <string name="tm3_score">Tm3 Puan</string>
+    <string name="ts1_score">Ts1 Puan</string>
+    <string name="ts2_score">Ts2 Puan</string>
     <string name="lang1_score">Dil1 Puan</string>
     <string name="lang2_score">Dil2 Puan</string>
     <string name="lang3_score">Dil3 Puan</string>
+
+    <string name="describe_ygs_lys">"Ygs-Lys her yıl ÖSYM tarafından yapılan 2 kademeli üniversiteye"
+" giriş sınavıdır."</string>
+    <string name="describe_ygs">
+"Ygs
+
+Bütün adayların girmesi zorunludur. Türkçe, Sosyal, Matematik ve Fen'den 40'ar, toplam 160 soru vardır."
+" Ygs'de baraj geçilirse 2 yıllık bir bölüme Lys'ye girmeden başvurulabilir. 2 yıllık eğitimden"
+" sonra DGS'ye girilip 2 yıl okunmuş olan bölümün 4 yıllık karşılığına geçiş yapılabilir."
+    </string>
+    <string name="describe_lys">
+"Lys
+
+        6 farklı oturumda gerçekleşir.
+Lys1 - Matematik(50 soru), Geometri(30)
+Lys2 - Fizik(30), Kimya(30), Biyoloji(30)
+Lys3 - Edebiyat(56), Coğrafya1(24)
+Lys4 - Tarih(44), Coğrafya2(14), Felsefe-Din(32)
+Lys5 - Yabancı Dil(80)
+""Mf puanı için Lys1 ve Lys2, Tm puanı için"
+" Lys1 ve Lys3, Ts puanı için Lys3 ve Lys4'e girmek zorunludur. 2'den fazla lys oturumuna girilebilir."
+" Böylece alan dışından da tercih yapılabilir."
+    </string>
+
+    <string name="about_content1">
+        Ygs - Lys Puan Hesaplama
+    </string>
+    <string name="about_content2">
+        Sürüm 1.0
+    </string>
+    <string name="about_content3">
+        Yusuf Demirci
+    </string>
+    <string name="about_content4">
+        Uygulama ile ilgili tavsiye ve hata bildirimleriniz için lütfen iletişime geçiniz.
+    </string>
+    <string name="about_content5">
+        demirciy94@gmail.com
+    </string>
+    <string name="about_content6">
+        Uygulamanın kod içeriği için
+    </string>
+    <string name="about_content7">
+        github.com/demirciy
+    </string>
+    <string name="about_content8">
+        Hiçbir hakkı saklı değildir. Uygulamayı istediğiniz gibi geliştirebilirsiniz."
+    </string>
+
 </resources>

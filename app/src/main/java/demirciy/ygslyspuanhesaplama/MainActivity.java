@@ -82,9 +82,10 @@ public class MainActivity extends AppCompatActivity {
                 goMyScores();
                 break;
             case R.id.abWhatisYgsLys:
-                getAllScoresFromDb();
+                goWhatisYgsLys();
                 break;
             case R.id.abAbout:
+                goAbout();
                 break;
         }
 
@@ -95,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
 
         Log.i(LOG_TAG, "App started.");
 
@@ -1012,6 +1015,18 @@ public class MainActivity extends AppCompatActivity {
             expDatas.add(data);
         }
 */
+    }
+
+    public void goWhatisYgsLys()
+    {
+        Intent i = new Intent(this, WhatIsYgsLys.class);
+        startActivity(i);
+    }
+
+    public void goAbout()
+    {
+        Intent i = new Intent(this, About.class);
+        startActivity(i);
     }
 
 }

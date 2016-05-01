@@ -5,7 +5,8 @@
     <item
         android:id="@+id/abLys"
         android:title="Lys"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
     <item
         android:id="@+id/abClear"
         android:title="Temizle"

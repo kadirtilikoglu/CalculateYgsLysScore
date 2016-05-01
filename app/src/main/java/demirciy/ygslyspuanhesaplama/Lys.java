@@ -1,5 +1,6 @@
 package demirciy.ygslyspuanhesaplama;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,8 @@ public class Lys extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
+        Intent i = new Intent(this, MainActivity.class);
+
         switch (item.getItemId()) {
             case R.id.abClear:
                 lysClear();
@@ -61,8 +64,13 @@ public class Lys extends AppCompatActivity {
             case R.id.abMyScores:
                 break;
             case R.id.abWhatisYgsLys:
+                goWhatisYgsLys2();
                 break;
             case R.id.abAbout:
+                goAbout2();
+                break;
+            case R.id.home:
+                startActivity(i);
                 break;
         }
 
@@ -73,6 +81,8 @@ public class Lys extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lys);
+
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etLysMatD = (EditText) findViewById(R.id.etLysMatD);
         etLysMatY = (EditText) findViewById(R.id.etLysMatY);
@@ -1620,6 +1630,18 @@ public class Lys extends AppCompatActivity {
     public void questionErrorMessage() {
         String errorMessage = "Soru sayısından fazla doğru ve yanlış sayısı girdiniz.";
         Toast.makeText(Lys.this, errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    public void goWhatisYgsLys2()
+    {
+        Intent i = new Intent(this, WhatIsYgsLys2.class);
+        startActivity(i);
+    }
+
+    public void goAbout2()
+    {
+        Intent i = new Intent(this, About2.class);
+        startActivity(i);
     }
 
 }

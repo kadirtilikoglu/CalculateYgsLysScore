@@ -10,7 +10,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".MainActivity"
-            android:label="YGS">
+            android:label="Ygs">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -19,8 +19,45 @@
         </activity>
         <activity
             android:name=".Lys"
-            android:label="LYS" />
-        <activity android:name=".MyScores"></activity>
+            android:label="Lys"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demirciy.Lys" />
+        </activity>
+        <activity android:name=".MyScores" />
+        <activity
+            android:name=".WhatIsYgsLys"
+            android:label="Ygs-Lys Nedir?"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demirciy.WhatisYgsLys" />
+        </activity>
+        <activity
+            android:name=".About"
+            android:label="Hakkında"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demirciy.About" />
+        </activity>
+        <activity
+            android:name=".WhatIsYgsLys2"
+            android:label="Ygs-Lys Nedir?"
+            android:parentActivityName=".Lys">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demirciy.WhatisYgsLys2" />
+        </activity>
+        <activity
+            android:name=".About2"
+            android:label="Hakkında"
+            android:parentActivityName=".Lys">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demirciy.About2" />
+        </activity>
     </application>
 
 </manifest>
