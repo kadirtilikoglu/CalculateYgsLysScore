@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expTr"
+            android:text="@string/turkish_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expSocial"
+            android:text="@string/social_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expMath1"
+            android:text="@string/math_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expScience"
+            android:text="@string/science_mark"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expYgs1"
+            android:text="@string/ygs1_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expYgs2"
+            android:text="@string/ygs2_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expYgs3"
+            android:text="@string/ygs3_score"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expYgs4"
+            android:text="@string/ygs4_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expYgs5"
+            android:text="@string/ygs5_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expYgs6"
+            android:text="@string/ygs6_score"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expMath2"
+            android:text="@string/math_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expGeo"
+            android:text="@string/geometry_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expPhy"
+            android:text="@string/physics_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expChe"
+            android:text="@string/chemistry_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expBio"
+            android:text="@string/biology_mark"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expLite"
+            android:text="@string/literature_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expGeog1"
+            android:text="@string/geography1_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expHis"
+            android:text="@string/history_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expGeog2"
+            android:text="@string/geography2_mark"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expPhi"
+            android:text="@string/philosophy_religion_mark"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expForeign"
+            android:text="@string/foreign_language_mark"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expMf1"
+            android:text="@string/mf1_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expMf2"
+            android:text="@string/mf2_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expMf3"
+            android:text="@string/mf3_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expMf4"
+            android:text="@string/mf4_score"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expTm1"
+            android:text="@string/tm1_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expTm2"
+            android:text="@string/tm2_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expTm3"
+            android:text="@string/tm3_score"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expTs1"
+            android:text="@string/ts1_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expTs2"
+            android:text="@string/ts2_score"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expLang1"
+            android:text="@string/lang1_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expLang2"
+            android:text="@string/lang2_score"/>
+        <TextView
+            style="@style/exp_child_textview"
+            android:id="@+id/expLang3"
+            android:text="@string/lang3_score"/>
+    </LinearLayout>
+</LinearLayout>

@@ -97,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         Log.i(LOG_TAG, "App started.");
 
         etYgsTrD = (EditText) findViewById(R.id.etYgsTrD);
@@ -130,6 +128,7 @@ public class MainActivity extends AppCompatActivity {
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
             }
 
             @Override
@@ -657,180 +656,215 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     public void ygsPrintSum() {
-        boolean trD = etYgsTrD.getText().toString().equals("");
-        boolean trY = etYgsTrY.getText().toString().equals("");
-        boolean trN = etYgsTrN.getText().toString().equals("");
-        boolean sosD = etYgsSosD.getText().toString().equals("");
-        boolean sosY = etYgsSosY.getText().toString().equals("");
-        boolean sosN = etYgsSosN.getText().toString().equals("");
-        boolean matD = etYgsMatD.getText().toString().equals("");
-        boolean matY = etYgsMatY.getText().toString().equals("");
-        boolean matN = etYgsMatN.getText().toString().equals("");
-        boolean fenD = etYgsFenD.getText().toString().equals("");
-        boolean fenY = etYgsFenY.getText().toString().equals("");
-        boolean fenN = etYgsFenN.getText().toString().equals("");
 
-        if (trD)
-            ygsTrD = 0;
-        else
-            ygsTrD = Double.parseDouble(etYgsTrD.getText().toString());
-        if (trY)
-            ygsTrY = 0;
-        else
-            ygsTrY = Double.parseDouble(etYgsTrY.getText().toString());
-        if (trN)
-            ygsTrN = 0;
-        else
-            ygsTrN = Double.parseDouble(etYgsTrN.getText().toString().replace(',', '.'));
+        Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printing.");
 
-        if (sosD)
-            ygsSosD = 0;
-        else
-            ygsSosD = Double.parseDouble(etYgsSosD.getText().toString());
-        if (sosY)
-            ygsSosY = 0;
-        else
-            ygsSosY = Double.parseDouble(etYgsSosY.getText().toString());
-        if (sosN)
-            ygsSosN = 0;
-        else
-            ygsSosN = Double.parseDouble(etYgsSosN.getText().toString().replace(',', '.'));
+        try {
 
-        if (matD)
-            ygsMatD = 0;
-        else
-            ygsMatD = Double.parseDouble(etYgsMatD.getText().toString());
-        if (matY)
-            ygsMatY = 0;
-        else
-            ygsMatY = Double.parseDouble(etYgsMatY.getText().toString());
-        if (matN)
-            ygsMatN = 0;
-        else
-            ygsMatN = Double.parseDouble(etYgsMatN.getText().toString().replace(',', '.'));
+            boolean trD = etYgsTrD.getText().toString().equals("");
+            boolean trY = etYgsTrY.getText().toString().equals("");
+            boolean trN = etYgsTrN.getText().toString().equals("");
+            boolean sosD = etYgsSosD.getText().toString().equals("");
+            boolean sosY = etYgsSosY.getText().toString().equals("");
+            boolean sosN = etYgsSosN.getText().toString().equals("");
+            boolean matD = etYgsMatD.getText().toString().equals("");
+            boolean matY = etYgsMatY.getText().toString().equals("");
+            boolean matN = etYgsMatN.getText().toString().equals("");
+            boolean fenD = etYgsFenD.getText().toString().equals("");
+            boolean fenY = etYgsFenY.getText().toString().equals("");
+            boolean fenN = etYgsFenN.getText().toString().equals("");
 
-        if (fenD)
-            ygsFenD = 0;
-        else
-            ygsFenD = Double.parseDouble(etYgsFenD.getText().toString());
-        if (fenY)
-            ygsFenY = 0;
-        else
-            ygsFenY = Double.parseDouble(etYgsFenY.getText().toString());
-        if (fenN)
-            ygsFenN = 0;
-        else
-            ygsFenN = Double.parseDouble(etYgsFenN.getText().toString().replace(',', '.'));
+            if (trD)
+                ygsTrD = 0;
+            else
+                ygsTrD = Double.parseDouble(etYgsTrD.getText().toString());
+            if (trY)
+                ygsTrY = 0;
+            else
+                ygsTrY = Double.parseDouble(etYgsTrY.getText().toString());
+            if (trN)
+                ygsTrN = 0;
+            else
+                ygsTrN = Double.parseDouble(etYgsTrN.getText().toString().replace(',', '.'));
 
-        tToplamD.setText(format.format(ygsTrD + ygsSosD + ygsMatD + ygsFenD));
-        tToplamY.setText(format.format(ygsTrY + ygsSosY + ygsMatY + ygsFenY));
-        tToplamN.setText(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN));
+            if (sosD)
+                ygsSosD = 0;
+            else
+                ygsSosD = Double.parseDouble(etYgsSosD.getText().toString());
+            if (sosY)
+                ygsSosY = 0;
+            else
+                ygsSosY = Double.parseDouble(etYgsSosY.getText().toString());
+            if (sosN)
+                ygsSosN = 0;
+            else
+                ygsSosN = Double.parseDouble(etYgsSosN.getText().toString().replace(',', '.'));
+
+            if (matD)
+                ygsMatD = 0;
+            else
+                ygsMatD = Double.parseDouble(etYgsMatD.getText().toString());
+            if (matY)
+                ygsMatY = 0;
+            else
+                ygsMatY = Double.parseDouble(etYgsMatY.getText().toString());
+            if (matN)
+                ygsMatN = 0;
+            else
+                ygsMatN = Double.parseDouble(etYgsMatN.getText().toString().replace(',', '.'));
+
+            if (fenD)
+                ygsFenD = 0;
+            else
+                ygsFenD = Double.parseDouble(etYgsFenD.getText().toString());
+            if (fenY)
+                ygsFenY = 0;
+            else
+                ygsFenY = Double.parseDouble(etYgsFenY.getText().toString());
+            if (fenN)
+                ygsFenN = 0;
+            else
+                ygsFenN = Double.parseDouble(etYgsFenN.getText().toString().replace(',', '.'));
+
+            tToplamD.setText(format.format(ygsTrD + ygsSosD + ygsMatD + ygsFenD));
+            tToplamY.setText(format.format(ygsTrY + ygsSosY + ygsMatY + ygsFenY));
+            tToplamN.setText(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN));
+
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+        }
+
+        Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printed.");
+
     }
 
     public void ygsShowScore() {
-        YgsCalculateScoreType Ygs1 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
-        ygs1 = Ygs1.getYgs1();
-        tYgs1.setText(String.format("Ygs-1 : %.2f", ygs1));
-        YgsCalculateScoreType Ygs2 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
-        ygs2 = Ygs2.getYgs2();
-        tYgs2.setText(String.format("Ygs-2 : %.2f", ygs2));
-        YgsCalculateScoreType Ygs3 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
-        ygs3 = Ygs3.getYgs3();
-        tYgs3.setText(String.format("Ygs-3 : %.2f", ygs3));
-        YgsCalculateScoreType Ygs4 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
-        ygs4 = Ygs4.getYgs4();
-        tYgs4.setText(String.format("Ygs-4 : %.2f", ygs4));
-        YgsCalculateScoreType Ygs5 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
-        ygs5 = Ygs5.getYgs5();
-        tYgs5.setText(String.format("Ygs-5 : %.2f", ygs5));
-        YgsCalculateScoreType Ygs6 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
-        ygs6 = Ygs6.getYgs6();
-        tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
+        Log.d(LOG_TAG, "Ygs / Scores calculating.");
+
+        try {
+            YgsCalculateScoreType Ygs1 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+            ygs1 = Ygs1.getYgs1();
+            tYgs1.setText(String.format("Ygs-1 : %.2f", ygs1));
+            YgsCalculateScoreType Ygs2 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+            ygs2 = Ygs2.getYgs2();
+            tYgs2.setText(String.format("Ygs-2 : %.2f", ygs2));
+            YgsCalculateScoreType Ygs3 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+            ygs3 = Ygs3.getYgs3();
+            tYgs3.setText(String.format("Ygs-3 : %.2f", ygs3));
+            YgsCalculateScoreType Ygs4 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+            ygs4 = Ygs4.getYgs4();
+            tYgs4.setText(String.format("Ygs-4 : %.2f", ygs4));
+            YgsCalculateScoreType Ygs5 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+            ygs5 = Ygs5.getYgs5();
+            tYgs5.setText(String.format("Ygs-5 : %.2f", ygs5));
+            YgsCalculateScoreType Ygs6 = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+            ygs6 = Ygs6.getYgs6();
+            tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+        }
+        Log.d(LOG_TAG, "Ygs / Scores calculated.");
     }
 
     public void ygsAddMarkDatabase() {
-        Log.d(LOG_TAG, "Ygs marks are adding into database.");
+        Log.d(LOG_TAG, "Ygs / Marks are adding into database.");
 
-        Cursor res = myDb.ygsGetMark();
-        if (res.getCount() == 0) {
-            myDb.ygsAddMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
-            myDb.ygsAddMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
-            myDb.ygsAddMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
-            myDb.ygsAddMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
+        try {
+            Cursor res = myDb.ygsGetMark();
+            if (res.getCount() == 0) {
+                myDb.ygsAddMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
+                myDb.ygsAddMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
+                myDb.ygsAddMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
+                myDb.ygsAddMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
-        } else {
-            myDb.ygsUpdateMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
-            myDb.ygsUpdateMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
-            myDb.ygsUpdateMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
-            myDb.ygsUpdateMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
+            } else {
+                myDb.ygsUpdateMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
+                myDb.ygsUpdateMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
+                myDb.ygsUpdateMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
+                myDb.ygsUpdateMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
+            }
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
         }
 
-        Log.d(LOG_TAG, "Ygs marks added into database.");
+        Log.d(LOG_TAG, "Ygs / Marks added into database.");
     }
 
     public void ygsAlertDialog() {
 
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-        LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.alertdialog_ygs_add_score_name, null);
-        dialogBuilder.setView(dialogView);
+        Log.d(LOG_TAG, "Ygs / Saving exam alert dialog starting.");
 
-        final EditText etYgsExamName = (EditText) dialogView.findViewById(R.id.etYgsExamName);
-        dialogBuilder.setTitle("YGS puan kaydet");
-        dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak denemesi");
-        dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                boolean isNull = etYgsExamName.getText().toString().equals("");
-                if (isNull) {
-                    date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-                    examName = "Adsız";
-                    ygsAddScoreDatabase();
-                } else {
-                    date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-                    examName = etYgsExamName.getText().toString();
-                    ygsAddScoreDatabase();
+        try {
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+            LayoutInflater inflater = this.getLayoutInflater();
+            final View dialogView = inflater.inflate(R.layout.alertdialog_ygs_add_score_name, null);
+            dialogBuilder.setView(dialogView);
+
+            final EditText etYgsExamName = (EditText) dialogView.findViewById(R.id.etYgsExamName);
+            dialogBuilder.setTitle("YGS puan kaydet");
+            dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak denemesi");
+            dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    boolean isNull = etYgsExamName.getText().toString().equals("");
+                    if (isNull) {
+                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+                        examName = "Adsız";
+                        ygsAddScoreDatabase();
+                    } else {
+                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+                        examName = etYgsExamName.getText().toString();
+                        ygsAddScoreDatabase();
+                    }
                 }
-            }
-        });
-        dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                dialog.cancel();
-            }
-        });
-        AlertDialog b = dialogBuilder.create();
-        b.show();
+            });
+            dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog b = dialogBuilder.create();
+            b.show();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+        }
+        Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
     }
 
     public void ygsAddScoreDatabase() {
-        Log.d(LOG_TAG, "Ygs scores are adding into database.");
+        Log.d(LOG_TAG, "Ygs / Scores are adding into database.");
 
-        AllScores allScores = new AllScores();
+        try {
+            AllScores allScores = new AllScores();
 
-        allScores.setExamName(examName);
-        allScores.setExamDate(date);
-        allScores.setTrMark(ygsTrN);
-        allScores.setSocialMark(ygsSosN);
-        allScores.setMath1Mark(ygsMatN);
-        allScores.setScienceMark(ygsFenN);
-        allScores.setYgs1(ygs1);
-        allScores.setYgs2(ygs2);
-        allScores.setYgs3(ygs3);
-        allScores.setYgs4(ygs4);
-        allScores.setYgs5(ygs5);
-        allScores.setYgs6(ygs6);
+            allScores.setExamName(examName);
+            allScores.setExamDate(date);
+            allScores.setTrMark(ygsTrN);
+            allScores.setSocialMark(ygsSosN);
+            allScores.setMath1Mark(ygsMatN);
+            allScores.setScienceMark(ygsFenN);
+            allScores.setYgs1(ygs1);
+            allScores.setYgs2(ygs2);
+            allScores.setYgs3(ygs3);
+            allScores.setYgs4(ygs4);
+            allScores.setYgs5(ygs5);
+            allScores.setYgs6(ygs6);
 
-        myDb.addAllScore(allScores);
+            myDb.addAllScore(allScores);
 
-        String infoMessage = "YGS puanı kaydedildi.";
-        Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
+            String infoMessage = "YGS puanı kaydedildi.";
+            Toast.makeText(MainActivity.this, infoMessage, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(LOG_TAG, e.getMessage());
+        }
 
-        Log.d(LOG_TAG, "Ygs scores added into database.");
+        Log.d(LOG_TAG, "Ygs / Scores added into database.");
     }
 
     public void ygsClear() {
-        Log.d(LOG_TAG, "Pressed clear button.");
+        Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
         try {
             ygsTrD = 0;
             ygsTrY = 0;
@@ -844,18 +878,18 @@ public class MainActivity extends AppCompatActivity {
             ygsFenD = 0;
             ygsFenY = 0;
             ygsFenN = 0;
-            setNullText(etYgsTrD);
-            setNullText(etYgsTrY);
-            setNullText(etYgsTrN);
-            setNullText(etYgsSosD);
-            setNullText(etYgsSosY);
-            setNullText(etYgsSosN);
-            setNullText(etYgsMatD);
-            setNullText(etYgsMatY);
-            setNullText(etYgsMatN);
-            setNullText(etYgsFenD);
-            setNullText(etYgsFenY);
-            setNullText(etYgsFenN);
+            etYgsTrD.setText("");
+            etYgsTrY.setText("");
+            etYgsTrN.setText("");
+            etYgsSosD.setText("");
+            etYgsSosY.setText("");
+            etYgsSosN.setText("");
+            etYgsMatD.setText("");
+            etYgsMatY.setText("");
+            etYgsMatN.setText("");
+            etYgsFenD.setText("");
+            etYgsFenY.setText("");
+            etYgsFenN.setText("");
             tToplamD.setText("");
             tToplamY.setText("");
             tToplamN.setText("");
@@ -869,7 +903,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e(LOG_TAG, e.getMessage());
         }
 
-        Log.d(LOG_TAG, "Clear is done.");
+        Log.d(LOG_TAG, "Ygs / Numbers cleaned.");
     }
 
     public void goLys() {
@@ -877,11 +911,8 @@ public class MainActivity extends AppCompatActivity {
         if (ygs1 < 180 && ygs2 < 180 && ygs3 < 180 && ygs4 < 180 && ygs5 < 180 && ygs6 < 180) {
             String errorMessage = "180 barajını geçemediniz. Lys'ye giremezsiniz.";
             Toast.makeText(MainActivity.this, errorMessage, Toast.LENGTH_SHORT).show();
-
-            startActivity(i);
-        } else {
-            startActivity(i);
         }
+        startActivity(i);
     }
 
     public void questionErrorMessage() {
@@ -890,6 +921,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void previousInfo() {
+        Log.d(LOG_TAG, "Ygs / Previous datas bringing.");
+
         try {
             Cursor res = myDb.ygsGetMark();
 
@@ -938,18 +971,15 @@ public class MainActivity extends AppCompatActivity {
             ygsShowScore();
             ygsPrintSum();
         } catch (Exception e) {
-
+            Log.e(LOG_TAG, e.getMessage());
         }
 
+        Log.d(LOG_TAG, "Ygs / Previous datas brought.");
     }
 
     public void goMyScores() {
         Intent i = new Intent(MainActivity.this, MyScores.class);
         startActivity(i);
-    }
-
-    public void setNullText(EditText et) {
-        et.setText("");
     }
 
     public void getAllScoresFromDb() {
@@ -1017,14 +1047,12 @@ public class MainActivity extends AppCompatActivity {
 */
     }
 
-    public void goWhatisYgsLys()
-    {
+    public void goWhatisYgsLys() {
         Intent i = new Intent(this, WhatIsYgsLys.class);
         startActivity(i);
     }
 
-    public void goAbout()
-    {
+    public void goAbout() {
         Intent i = new Intent(this, About.class);
         startActivity(i);
     }

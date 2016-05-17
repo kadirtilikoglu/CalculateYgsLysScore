@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
@@ -1527,104 +1528,121 @@ public class Lys extends AppCompatActivity {
 
     public void lysShowScore() {
 
-        Cursor res = myDb.ygsGetMark();
+        Log.d(LOG_TAG, "Lys / Scores calculating.");
+        try
+        {
+            Cursor res = myDb.ygsGetMark();
 
-        String[] marks = new String[4];
-        int m = 0;
+            String[] marks = new String[4];
+            int m = 0;
 
-        while (res.moveToNext()) {
-            marks[m] = res.getString(3);
-            m++;
+            while (res.moveToNext()) {
+                marks[m] = res.getString(3);
+                m++;
+            }
+
+            LysCalculateScoreType lys = new LysCalculateScoreType(Double.parseDouble(marks[0]), Double.parseDouble(marks[1]),
+                    Double.parseDouble(marks[2]), Double.parseDouble(marks[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
+                    lysBiyoN, lysEdeN, lysCog1N, lysTarihN, lysCog2N, lysFelN, lysYdilN);
+            tMf1.setText(String.format("MF-1 : %.2f", lys.getMF1() + OBP));
+            tMf2.setText(String.format("MF-2 : %.2f", lys.getMF2() + OBP));
+            tMf3.setText(String.format("MF-3 : %.2f", lys.getMF3() + OBP));
+            tMf4.setText(String.format("MF-4 : %.2f", lys.getMF4() + OBP));
+            tTm1.setText(String.format("TM-1 : %.2f", lys.getTM1() + OBP));
+            tTm2.setText(String.format("TM-2 : %.2f", lys.getTM2() + OBP));
+            tTm3.setText(String.format("TM-3 : %.2f", lys.getTM3() + OBP));
+            tTs1.setText(String.format("TS-1 : %.2f", lys.getTS1() + OBP));
+            tTs2.setText(String.format("TS-2 : %.2f", lys.getTS2() + OBP));
+            tYdil1.setText(String.format("Dil-1 : %.2f", lys.getDil1() + OBP));
+            tYdil2.setText(String.format("Dil-2 : %.2f", lys.getDil2() + OBP));
+            tYdil3.setText(String.format("Dil-3 : %.2f", lys.getDil3() + OBP));
         }
-
-        LysCalculateScoreType lys = new LysCalculateScoreType(Double.parseDouble(marks[0]), Double.parseDouble(marks[1]),
-                Double.parseDouble(marks[2]), Double.parseDouble(marks[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
-                lysBiyoN, lysEdeN, lysCog1N, lysTarihN, lysCog2N, lysFelN, lysYdilN);
-        tMf1.setText(String.format("MF-1 : %.2f", lys.getMF1() + OBP));
-        tMf2.setText(String.format("MF-2 : %.2f", lys.getMF2() + OBP));
-        tMf3.setText(String.format("MF-3 : %.2f", lys.getMF3() + OBP));
-        tMf4.setText(String.format("MF-4 : %.2f", lys.getMF4() + OBP));
-        tTm1.setText(String.format("TM-1 : %.2f", lys.getTM1() + OBP));
-        tTm2.setText(String.format("TM-2 : %.2f", lys.getTM2() + OBP));
-        tTm3.setText(String.format("TM-3 : %.2f", lys.getTM3() + OBP));
-        tTs1.setText(String.format("TS-1 : %.2f", lys.getTS1() + OBP));
-        tTs2.setText(String.format("TS-2 : %.2f", lys.getTS2() + OBP));
-        tYdil1.setText(String.format("Dil-1 : %.2f", lys.getDil1() + OBP));
-        tYdil2.setText(String.format("Dil-2 : %.2f", lys.getDil2() + OBP));
-        tYdil3.setText(String.format("Dil-3 : %.2f", lys.getDil3() + OBP));
+        catch(Exception e)
+        {
+            Log.e(LOG_TAG, e.getMessage());
+        }
+        Log.d(LOG_TAG, "Lys / Scores calculating.");
     }
 
     public void lysClear() {
-        lysMatD = 0;
-        lysMatY = 0;
-        lysMatN = 0;
-        lysGeoD = 0;
-        lysGeoY = 0;
-        lysGeoN = 0;
-        lysFizikD = 0;
-        lysFizikY = 0;
-        lysFizikN = 0;
-        lysKimyaD = 0;
-        lysKimyaY = 0;
-        lysKimyaN = 0;
-        lysBiyoD = 0;
-        lysBiyoY = 0;
-        lysBiyoN = 0;
-        lysEdeD = 0;
-        lysEdeY = 0;
-        lysEdeN = 0;
-        lysCog1D = 0;
-        lysCog1Y = 0;
-        lysCog1N = 0;
-        lysTarihD = 0;
-        lysTarihY = 0;
-        lysTarihN = 0;
-        lysCog2D = 0;
-        lysCog2Y = 0;
-        lysCog2N = 0;
-        lysFelD = 0;
-        lysFelY = 0;
-        lysFelN = 0;
-        lysYdilD = 0;
-        lysYdilY = 0;
-        lysYdilN = 0;
-        OBP = 0;
-        etLysMatD.setText("");
-        etLysMatY.setText("");
-        etLysMatN.setText("");
-        etLysGeoD.setText("");
-        etLysGeoY.setText("");
-        etLysGeoN.setText("");
-        etLysFizikD.setText("");
-        etLysFizikY.setText("");
-        etLysFizikN.setText("");
-        etLysKimyaD.setText("");
-        etLysKimyaY.setText("");
-        etLysKimyaN.setText("");
-        etLysBiyoD.setText("");
-        etLysBiyoY.setText("");
-        etLysBiyoN.setText("");
-        etLysEdeD.setText("");
-        etLysEdeY.setText("");
-        etLysEdeN.setText("");
-        etLysCog1D.setText("");
-        etLysCog1Y.setText("");
-        etLysCog1N.setText("");
-        etLysTarihD.setText("");
-        etLysTarihY.setText("");
-        etLysTarihN.setText("");
-        etLysCog2D.setText("");
-        etLysCog2Y.setText("");
-        etLysCog2N.setText("");
-        etLysFelD.setText("");
-        etLysFelY.setText("");
-        etLysFelN.setText("");
-        etLysYdilD.setText("");
-        etLysYdilY.setText("");
-        etLysYdilN.setText("");
-        etDiploma.setText("");
+        Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
+        try{
+            lysMatD = 0;
+            lysMatY = 0;
+            lysMatN = 0;
+            lysGeoD = 0;
+            lysGeoY = 0;
+            lysGeoN = 0;
+            lysFizikD = 0;
+            lysFizikY = 0;
+            lysFizikN = 0;
+            lysKimyaD = 0;
+            lysKimyaY = 0;
+            lysKimyaN = 0;
+            lysBiyoD = 0;
+            lysBiyoY = 0;
+            lysBiyoN = 0;
+            lysEdeD = 0;
+            lysEdeY = 0;
+            lysEdeN = 0;
+            lysCog1D = 0;
+            lysCog1Y = 0;
+            lysCog1N = 0;
+            lysTarihD = 0;
+            lysTarihY = 0;
+            lysTarihN = 0;
+            lysCog2D = 0;
+            lysCog2Y = 0;
+            lysCog2N = 0;
+            lysFelD = 0;
+            lysFelY = 0;
+            lysFelN = 0;
+            lysYdilD = 0;
+            lysYdilY = 0;
+            lysYdilN = 0;
+            OBP = 0;
+            etLysMatD.setText("");
+            etLysMatY.setText("");
+            etLysMatN.setText("");
+            etLysGeoD.setText("");
+            etLysGeoY.setText("");
+            etLysGeoN.setText("");
+            etLysFizikD.setText("");
+            etLysFizikY.setText("");
+            etLysFizikN.setText("");
+            etLysKimyaD.setText("");
+            etLysKimyaY.setText("");
+            etLysKimyaN.setText("");
+            etLysBiyoD.setText("");
+            etLysBiyoY.setText("");
+            etLysBiyoN.setText("");
+            etLysEdeD.setText("");
+            etLysEdeY.setText("");
+            etLysEdeN.setText("");
+            etLysCog1D.setText("");
+            etLysCog1Y.setText("");
+            etLysCog1N.setText("");
+            etLysTarihD.setText("");
+            etLysTarihY.setText("");
+            etLysTarihN.setText("");
+            etLysCog2D.setText("");
+            etLysCog2Y.setText("");
+            etLysCog2N.setText("");
+            etLysFelD.setText("");
+            etLysFelY.setText("");
+            etLysFelN.setText("");
+            etLysYdilD.setText("");
+            etLysYdilY.setText("");
+            etLysYdilN.setText("");
+            etDiploma.setText("");
 
-        lysShowScore();
+            lysShowScore();
+        }
+        catch (Exception e)
+        {
+            Log.e(LOG_TAG, e.getMessage());
+        }
+        Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
     }
 
     public void questionErrorMessage() {
