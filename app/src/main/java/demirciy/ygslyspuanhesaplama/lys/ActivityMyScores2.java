@@ -20,7 +20,7 @@ import java.util.List;
 import demirciy.ygslyspuanhesaplama.adapter.AdapterExpListView;
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
-import demirciy.ygslyspuanhesaplama.ygs.ActivityMain;
+import demirciy.ygslyspuanhesaplama.ygs.ActivityYgs;
 
 public class ActivityMyScores2 extends AppCompatActivity {
 
@@ -135,7 +135,7 @@ public class ActivityMyScores2 extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(this, ActivityMain.class);
+        Intent i = new Intent(this, ActivityYgs.class);
 
         switch (item.getItemId()) {
             case R.id.home:

@@ -481,8 +481,6 @@
                         <EditText
                             android:id="@+id/etLysFelD"
                             style="@style/etLysD"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
                             android:textColor="@color/lys4"
                             android:textColorHint="@color/lys4" />
@@ -490,8 +488,6 @@
                         <EditText
                             android:id="@+id/etLysFelY"
                             style="@style/etLysY"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
                             android:textColor="@color/lys4"
                             android:textColorHint="@color/lys4" />
@@ -499,8 +495,6 @@
                         <EditText
                             android:id="@+id/etLysFelN"
                             style="@style/etLysN"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
                             android:textColor="@color/lys4"
                             android:textColorHint="@color/lys4" />
@@ -539,8 +533,6 @@
                     <EditText
                         android:id="@+id/etLysYdilD"
                         style="@style/etLysD"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:backgroundTint="@color/lys5"
                         android:textColor="@color/lys5"
                         android:textColorHint="@color/lys5" />
@@ -548,8 +540,6 @@
                     <EditText
                         android:id="@+id/etLysYdilY"
                         style="@style/etLysY"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:backgroundTint="@color/lys5"
                         android:textColor="@color/lys5"
                         android:textColorHint="@color/lys5" />
@@ -557,8 +547,6 @@
                     <EditText
                         android:id="@+id/etLysYdilN"
                         style="@style/etLysN"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
                         android:backgroundTint="@color/lys5"
                         android:textColor="@color/lys5"
                         android:textColorHint="@color/lys5" />
@@ -602,7 +590,7 @@
                         android:textColor="@color/obp"
                         android:typeface="serif"
                         android:textStyle="bold"
-                        android:textSize="16sp"/>
+                        android:textSize="13sp"/>
 
                 </LinearLayout>
             </RelativeLayout>

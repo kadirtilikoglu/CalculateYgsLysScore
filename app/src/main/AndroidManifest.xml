@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".ygs.ActivityMain"
+            android:name=".ygs.ActivityYgs"
             android:label="Ygs">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,7 +21,7 @@
         <activity
             android:name=".lys.ActivityLys"
             android:label="Lys"
-            android:parentActivityName=".ygs.ActivityMain">
+            android:parentActivityName=".ygs.ActivityYgs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.Lys" />
@@ -30,7 +30,7 @@
         <activity
             android:name=".ygs.ActivityMyScores"
             android:label="Denemelerim"
-            android:parentActivityName=".ygs.ActivityMain" />
+            android:parentActivityName=".ygs.ActivityYgs" />
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="com.demirciy.MyScores" />
@@ -38,7 +38,7 @@
         <activity
             android:name=".ygs.ActivityWhatIsYgsLys"
             android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".ygs.ActivityMain">
+            android:parentActivityName=".ygs.ActivityYgs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.WhatisYgsLys" />
@@ -47,7 +47,7 @@
         <activity
             android:name=".ygs.ActivityAbout"
             android:label="Hakkında"
-            android:parentActivityName=".ygs.ActivityMain">
+            android:parentActivityName=".ygs.ActivityYgs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.About" />
