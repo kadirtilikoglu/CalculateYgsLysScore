@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/background"
 
-    tools:context="demirciy.ygslyspuanhesaplama.MainActivity">
+    tools:context=".ygs.ActivityMain">
 
     <LinearLayout
         android:layout_width="match_parent"

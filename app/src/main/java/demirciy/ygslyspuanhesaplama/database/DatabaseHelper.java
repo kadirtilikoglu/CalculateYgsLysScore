@@ -5,16 +5,16 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.widget.ExpandableListView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
-import demirciy.ygslyspuanhesaplama.AllScores;
-import demirciy.ygslyspuanhesaplama.model.YgsScore;
+import demirciy.ygslyspuanhesaplama.model.AllScores;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "YgsLysDatabase.db";
+
     public static final String TABLE_NAME = "YgsMarks";
     public static final String COL_11 = "LESSON";
     public static final String COL_12 = "CORRECT";
@@ -58,6 +58,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_54 = "LANG2";
     public static final String COL_55 = "LANG3";
 
+    public static final String TABLE_NAME3 = "YGSDatasForLYS ";
+    public static final String COL_56 = "TR_MARK";
+    public static final String COL_57 = "SOCIAL_MARK";
+    public static final String COL_58 = "MATH1_MARK";
+    public static final String COL_59 = "SCIENCE_MARK";
+    public static final String COL_60 = "YGS1";
+    public static final String COL_61 = "YGS2";
+    public static final String COL_62 = "YGS3";
+    public static final String COL_63 = "YGS4";
+    public static final String COL_64 = "YGS5";
+    public static final String COL_65 = "YGS6";
+
+    private ArrayList<String> Headers;
+    private HashMap<String, List<String>> Datas;
+
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
     }
@@ -74,12 +89,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "GEOG1_MARK INTEGER, HISTORY_MARK INTEGER, GEOG2_MARK INTEGER, PHI_MARK INTEGER, " +
                 "FOREIGN_MARK INTEGER, MF1 INTEGER, MF2 INTEGER, MF3 INTEGER, MF4 INTEGER, TM1 INTEGER, " +
                 "TM2 INTEGER, TM3 INTEGER, TS1 INTEGER, TS2 INTEGER, LANG1 INTEGER, LANG2 INTEGER, LANG3 INTEGER)");
+        db.execSQL("create table " + TABLE_NAME3
+                + "(TR_MARK INTEGER, SOCIAL_MARK INTEGER, MATH1_MARK INTEGER, SCIENCE_MARK INTEGER," +
+                "YGS1 INTEGER, YGS2 INTEGER, YGS3 INTEGER, YGS4 INTEGER, YGS5 INTEGER, YGS6 INTEGER)");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
         db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME2);
+        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME3);
         onCreate(db);
     }
 
@@ -110,6 +129,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_14, mark);
 
         db.update(TABLE_NAME, contentValues, "LESSON = ?", new String[]{lesson});
+
         return true;
     }
 
@@ -117,6 +137,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor ygsGetMark() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
+
         return res;
     }
 
@@ -168,32 +189,103 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-    public Cursor getAllScores() {
+    public ArrayList<String> getAllHeadersFromDb() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
 
-        return res;
-/*
-        expScoreData = new String[35];
+        Headers = new ArrayList<>();
 
-        int i = 0, c = 0;
+        while (res.moveToNext()) {
 
-        try {
-
-            while (res.moveToNext()) {
-
-                expScoreData[i] = res.getString(c);
-                i++;
-                c++;
-            }
-
-        } catch (Exception e) {
+            Headers.add(res.getString(0) + " / " + res.getString(1));
 
         }
 
-        return expScoreData;*/
-
+        return Headers;
     }
+
+    public HashMap<String, List<String>> getAllDatasFromDb() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
+
+        Datas = new HashMap<>();
+
+        int b = 0;
+        while (res.moveToNext()) {
+            ArrayList<String> Child = new ArrayList<>();
+            Child.add(res.getString(2));
+            Child.add(res.getString(3));
+            Child.add(res.getString(4));
+            Child.add(res.getString(5));
+            Child.add(res.getString(6));
+            Child.add(res.getString(7));
+            Child.add(res.getString(8));
+            Child.add(res.getString(9));
+            Child.add(res.getString(10));
+            Child.add(res.getString(11));
+            Child.add(res.getString(12));
+            Child.add(res.getString(13));
+            Child.add(res.getString(14));
+            Child.add(res.getString(15));
+            Child.add(res.getString(16));
+            Child.add(res.getString(17));
+            Child.add(res.getString(18));
+            Child.add(res.getString(19));
+            Child.add(res.getString(20));
+            Child.add(res.getString(21));
+            Child.add(res.getString(22));
+            Child.add(res.getString(23));
+            Child.add(res.getString(24));
+            Child.add(res.getString(25));
+            Child.add(res.getString(26));
+            Child.add(res.getString(27));
+            Child.add(res.getString(28));
+            Child.add(res.getString(29));
+            Child.add(res.getString(30));
+            Child.add(res.getString(31));
+            Child.add(res.getString(32));
+            Child.add(res.getString(33));
+            Child.add(res.getString(34));
+
+            Datas.put(Headers.get(b), Child);
+            b++;
+
+        }
+
+        return Datas;
+    }
+
+    public void deleteDatas(int position) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        String examName;
+
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
+
+        res.moveToPosition(position);
+
+        examName = res.getString(0);
+
+        db.delete(TABLE_NAME2, "EXAM_NAME = ?", new String[]{examName});
+    }
+
+    public void renameDatas(int position, String newExamName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        String oldExamName;
+
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
+
+        res.moveToPosition(position);
+
+        oldExamName = res.getString(0);
+
+        contentValues.put(COL_21, newExamName);
+
+        db.update(TABLE_NAME2, contentValues, "EXAM_NAME = ?", new String[]{oldExamName});
+    }
+
 
     /*
     public boolean updateAllScore(String date, String examName, String marks, String scoreType, String score) {
@@ -210,39 +302,53 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     */
 
-
-
-  /*
-    public List<YgsScore> getAllScore() {
-
-        List<YgsScore> list = new ArrayList<YgsScore>();
+    public boolean addYgsDatasForLys(AllScores allScores) {
         SQLiteDatabase db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery("select * from " + TABLE_NAME2, null);
-        if (cursor.moveToFirst()) {
-            do {
-                YgsScore ygsScore = new YgsScore();
-                ygsScore.setID(cursor.getDouble(0));
-                ygsScore.setDate(cursor.getString(1));
-                ygsScore.setExamName(cursor.getString(2));
-                ygsScore.setMarks(cursor.getDouble(3));
-                ygsScore.setScoreType(cursor.getString(4));
-                ygsScore.setScore(cursor.getDouble(5));
-                list.add(ygsScore);
-            } while (cursor.moveToNext());
-        }
-        return list;
-    }
-    */  //expandable listview için verileri böyle bir liste atıp exp listview e göndericeksin
+        ContentValues contentValues = new ContentValues();
 
-    public int getRowCountScore() {
-        String countQuery = "SELECT * FROM" + TABLE_NAME2;
-        SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(countQuery, null);
-        int rowCount = cursor.getCount();
-        db.close();
-        cursor.close();
-        return rowCount;
+        contentValues.put(COL_56, allScores.getTrMark());
+        contentValues.put(COL_57, allScores.getSocialMark());
+        contentValues.put(COL_58, allScores.getMath1Mark());
+        contentValues.put(COL_59, allScores.getScienceMark());
+        contentValues.put(COL_60, allScores.getYgs1());
+        contentValues.put(COL_61, allScores.getYgs2());
+        contentValues.put(COL_62, allScores.getYgs3());
+        contentValues.put(COL_63, allScores.getYgs4());
+        contentValues.put(COL_64, allScores.getYgs5());
+        contentValues.put(COL_65, allScores.getYgs6());
+
+        long result = db.insert(TABLE_NAME3, null, contentValues);
+
+        if (result == -1)
+            return false;
+        else
+            return true;
     }
 
+    public boolean updateYgsDatasForLys(AllScores allScores) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
 
+        contentValues.put(COL_56, allScores.getTrMark());
+        contentValues.put(COL_57, allScores.getSocialMark());
+        contentValues.put(COL_58, allScores.getMath1Mark());
+        contentValues.put(COL_59, allScores.getScienceMark());
+        contentValues.put(COL_60, allScores.getYgs1());
+        contentValues.put(COL_61, allScores.getYgs2());
+        contentValues.put(COL_62, allScores.getYgs3());
+        contentValues.put(COL_63, allScores.getYgs4());
+        contentValues.put(COL_64, allScores.getYgs5());
+        contentValues.put(COL_65, allScores.getYgs6());
+
+        db.update(TABLE_NAME3, contentValues, null, null);
+
+        return true;
+    }
+
+    public Cursor getYgsDatasForLys() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME3, null);
+
+        return res;
+    }
 }

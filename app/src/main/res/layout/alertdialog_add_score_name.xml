@@ -6,8 +6,9 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/etYgsExamName"
+        android:id="@+id/etExamName"
         android:inputType="text"
-        android:textColor="@color/siyah" />
+        android:textColor="@color/siyah"
+        android:maxLength="13"/>
 
 </LinearLayout>

@@ -1,4 +1,4 @@
-package demirciy.ygslyspuanhesaplama;
+package demirciy.ygslyspuanhesaplama.model;
 
 public class CalculateMark {
 

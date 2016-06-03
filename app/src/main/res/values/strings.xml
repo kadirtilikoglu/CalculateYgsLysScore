@@ -132,4 +132,9 @@ Lys5 - Yabancı Dil(80)
         Hiçbir hakkı saklı değildir. Uygulamayı istediğiniz gibi geliştirebilirsiniz."
     </string>
 
+    <string-array name="long_click_dialog">
+        <item>"Sil"</item>
+        <item>"Yeniden Adlandır"</item>
+    </string-array>
+
 </resources>

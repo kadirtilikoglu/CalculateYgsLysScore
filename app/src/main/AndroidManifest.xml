@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".ygs.ActivityMain"
             android:label="Ygs">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,46 +17,67 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".Lys"
+            android:name=".lys.ActivityLys"
             android:label="Lys"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ygs.ActivityMain">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.Lys" />
         </activity>
-        <activity android:name=".MyScores" />
+
         <activity
-            android:name=".WhatIsYgsLys"
+            android:name=".ygs.ActivityMyScores"
+            android:label="Denemelerim"
+            android:parentActivityName=".ygs.ActivityMain" />
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="com.demirciy.MyScores" />
+
+        <activity
+            android:name=".ygs.ActivityWhatIsYgsLys"
             android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ygs.ActivityMain">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.WhatisYgsLys" />
         </activity>
+
         <activity
-            android:name=".About"
+            android:name=".ygs.ActivityAbout"
             android:label="Hakkında"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".ygs.ActivityMain">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.About" />
         </activity>
+
         <activity
-            android:name=".WhatIsYgsLys2"
+            android:name=".lys.ActivityWhatIsYgsLys2"
             android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".Lys">
+            android:parentActivityName=".lys.ActivityLys">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.WhatisYgsLys2" />
         </activity>
+
         <activity
-            android:name=".About2"
+            android:name=".lys.ActivityAbout2"
             android:label="Hakkında"
-            android:parentActivityName=".Lys">
+            android:parentActivityName=".lys.ActivityLys">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.demirciy.About2" />
+        </activity>
+
+        <activity
+            android:name=".lys.ActivityMyScores2"
+            android:label="Denemelerim"
+            android:parentActivityName=".lys.ActivityLys">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.demirciy.MyScores2" />
         </activity>
     </application>
 
