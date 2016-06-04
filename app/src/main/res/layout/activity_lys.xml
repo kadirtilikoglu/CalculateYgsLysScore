@@ -560,7 +560,7 @@
                 android:layout_marginTop="8sp"
                 android:layout_marginLeft="2sp"
                 android:layout_marginRight="2sp"
-                android:layout_marginBottom="2sp">
+                android:layout_marginBottom="4sp">
 
                 <LinearLayout
                     android:id="@+id/llOBP"
@@ -604,7 +604,7 @@
             android:layout_marginTop="16sp"
             android:layout_marginLeft="2sp"
             android:layout_marginRight="2sp"
-            android:layout_marginBottom="2sp">
+            android:layout_marginBottom="4sp">
 
             <LinearLayout
                 android:id="@+id/llMF12"

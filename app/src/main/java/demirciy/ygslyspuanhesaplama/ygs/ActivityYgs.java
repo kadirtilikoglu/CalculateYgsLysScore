@@ -28,8 +28,6 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.YgsCalculateScoreType;
 
-//multiscreen support
-
 public class ActivityYgs extends AppCompatActivity {
 
     private EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
