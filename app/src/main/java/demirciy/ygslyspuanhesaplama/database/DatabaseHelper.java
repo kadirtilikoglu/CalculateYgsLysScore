@@ -286,22 +286,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_NAME2, contentValues, "EXAM_NAME = ?", new String[]{oldExamName});
     }
 
-
-    /*
-    public boolean updateAllScore(String date, String examName, String marks, String scoreType, String score) {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues contentValues = new ContentValues();
-        contentValues.put(COL_21, date);
-        contentValues.put(COL_22, examName);
-        contentValues.put(COL_23, marks);
-        contentValues.put(COL_24, scoreType);
-        contentValues.put(COL_25, score);
-
-        db.update(TABLE_NAME2, contentValues, "EXAM_NAME = ?", new String[]{examName});
-        return true;
-    }
-    */
-
     public boolean addYgsDatasForLys(AllScores allScores) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
