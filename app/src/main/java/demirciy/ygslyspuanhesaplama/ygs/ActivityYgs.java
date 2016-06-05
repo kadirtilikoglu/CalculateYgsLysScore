@@ -716,7 +716,8 @@ public class ActivityYgs extends AppCompatActivity {
             tToplamN.setText(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN));
 
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Printing sum failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
         Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printed.");
@@ -740,7 +741,8 @@ public class ActivityYgs extends AppCompatActivity {
             ygs6 = Ygs.getYgs6();
             tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Showing score failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Ygs / Scores calculated.");
     }
@@ -765,7 +767,8 @@ public class ActivityYgs extends AppCompatActivity {
 
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Adding marks to database failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
         Log.d(LOG_TAG, "Ygs / Marks added into database.");
@@ -806,7 +809,8 @@ public class ActivityYgs extends AppCompatActivity {
             AlertDialog b = dialogBuilder.create();
             b.show();
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
     }
@@ -835,7 +839,8 @@ public class ActivityYgs extends AppCompatActivity {
             String infoMessage = "Ygs puanı kaydedildi.";
             Toast.makeText(ActivityYgs.this, infoMessage, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Adding score to database failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
         Log.d(LOG_TAG, "Ygs / Scores added into database.");
@@ -878,7 +883,8 @@ public class ActivityYgs extends AppCompatActivity {
             tYgs5.setText(R.string.ygs5);
             tYgs6.setText(R.string.ygs6);
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Cleaning numbers failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
         Log.d(LOG_TAG, "Ygs / Numbers cleaned.");
@@ -887,7 +893,7 @@ public class ActivityYgs extends AppCompatActivity {
     public void goLys() {
         Intent i = new Intent(ActivityYgs.this, ActivityLys.class);
         if (ygs1 < 180 && ygs2 < 180 && ygs3 < 180 && ygs4 < 180 && ygs5 < 180 && ygs6 < 180) {
-            String errorMessage = "180 barajını geçemediniz. ActivityLys'ye giremezsiniz.";
+            String errorMessage = "180 barajını geçemediniz. Lys'ye giremezsiniz.";
             Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
         }
 
@@ -953,14 +959,15 @@ public class ActivityYgs extends AppCompatActivity {
             ygsShowScore();
             ygsPrintSum();
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Bringing previous info failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
         Log.d(LOG_TAG, "Ygs / Previous datas brought.");
     }
 
     public void ygsDatasForLys() {
-        Log.d(LOG_TAG, "Ygs datas for ActivityLys are adding into database.");
+        Log.d(LOG_TAG, "Ygs datas are adding into database for Lys.");
 
         try {
             Cursor res = myDb.getYgsDatasForLys();
@@ -998,10 +1005,11 @@ public class ActivityYgs extends AppCompatActivity {
 
             }
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Adding ygs datas into database for lys failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
-        Log.d(LOG_TAG, "Ygs datas for ActivityLys added into database.");
+        Log.d(LOG_TAG, "Ygs datas added into database for Lys.");
     }
 
     public void goMyScores() {

@@ -180,6 +180,20 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="etLysDNormal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:hint">@string/correct</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <style name="etLysY">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
@@ -194,6 +208,20 @@
         <item name="android:textSize">13sp</item>
     </style>
 
+    <style name="etLysYNormal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:hint">@string/incorrect</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+    </style>
+
     <style name="etLysN">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
@@ -206,6 +234,20 @@
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">13sp</item>
+    </style>
+
+    <style name="etLysNNormal">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">0.2</item>
+        <item name="android:hint">@string/mark</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
     </style>
 
     <style name="exp_child_textview">

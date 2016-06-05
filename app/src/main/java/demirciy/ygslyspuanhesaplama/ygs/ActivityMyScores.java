@@ -32,7 +32,7 @@ public class ActivityMyScores extends AppCompatActivity {
 
     AlertDialog b, a;
 
-    String examName, newExamName;
+    String examName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

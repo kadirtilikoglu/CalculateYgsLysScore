@@ -74,7 +74,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private HashMap<String, List<String>> Datas;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 1);
+        super(context, DATABASE_NAME, null, 2);
     }
 
     @Override
