@@ -1402,7 +1402,7 @@ public class ActivityLys extends AppCompatActivity {
                     boolean ydilY = etLysYdilY.getText().toString().equals("");
                     if (ydilY) {
                         lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
-                        if (lysYdilD > 40) {
+                        if (lysYdilD > 80) {
                             etLysYdilD.setText("");
                             etLysYdilN.setText("");
                             questionErrorMessage();
@@ -1413,7 +1413,7 @@ public class ActivityLys extends AppCompatActivity {
                     } else {
                         lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
                         lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                        if (lysYdilD + lysYdilY > 40) {
+                        if (lysYdilD + lysYdilY > 80) {
                             etLysYdilD.setText("");
                             etLysYdilY.setText("");
                             etLysYdilN.setText("");
@@ -1449,7 +1449,7 @@ public class ActivityLys extends AppCompatActivity {
 
                     if (ydilD) {
                         lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                        if (lysYdilY > 40) {
+                        if (lysYdilY > 80) {
                             etLysYdilY.setText("");
                             etLysYdilN.setText("");
                             questionErrorMessage();
@@ -1462,7 +1462,7 @@ public class ActivityLys extends AppCompatActivity {
                     } else {
                         lysYdilD = Double.parseDouble(etLysYdilD.getText().toString());
                         lysYdilY = Double.parseDouble(etLysYdilY.getText().toString());
-                        if (lysYdilD + lysYdilY > 40) {
+                        if (lysYdilD + lysYdilY > 80) {
                             etLysYdilD.setText("");
                             etLysYdilY.setText("");
                             etLysYdilN.setText("");
@@ -1495,7 +1495,7 @@ public class ActivityLys extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 try {
                     lysYdilN = Double.parseDouble(etLysYdilN.getText().toString());
-                    if (lysYdilN > 40) {
+                    if (lysYdilN > 80) {
                         etLysYdilN.setText("");
                         questionErrorMessage();
                     }
@@ -1519,19 +1519,23 @@ public class ActivityLys extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                boolean obp = etDiploma.getText().toString().equals("");
-                if (obp) {
-                    OBP = 0;
-                } else {
-                    OBP = Double.parseDouble(etDiploma.getText().toString());
-                    OBP = (OBP * 5) * 0.12;
+                try {
+                    boolean obp = etDiploma.getText().toString().equals("");
+                    if (obp) {
+                        OBP = 0;
+                    } else {
+                        OBP = Double.parseDouble(etDiploma.getText().toString());
+                        OBP = (OBP * 5) * 0.12;
+                    }
+
+                } catch (Exception e) {
+
                 }
             }
 
             @Override
             public void afterTextChanged(Editable s) {
                 lysShowScore();
-
             }
         });
 
