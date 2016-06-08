@@ -21,10 +21,10 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import demirciy.ygslyspuanhesaplama.model.AllScores;
-import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
+import demirciy.ygslyspuanhesaplama.model.AllScores;
+import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.LysCalculateScoreType;
 import demirciy.ygslyspuanhesaplama.ygs.ActivityYgs;
 
@@ -1527,6 +1527,7 @@ public class ActivityLys extends AppCompatActivity {
                         OBP = Double.parseDouble(etDiploma.getText().toString());
                         OBP = (OBP * 5) * 0.12;
                     }
+
                 } catch (Exception e) {
 
                 }
@@ -1535,7 +1536,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 lysShowScore();
-
             }
         });
 
@@ -1583,7 +1583,8 @@ public class ActivityLys extends AppCompatActivity {
             dil3 = lys.getDil3();
             tYdil3.setText(String.format("Dil-3 : %.2f", dil3 + OBP));
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Calculating lys score failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Lys / Scores calculating.");
     }
@@ -1662,7 +1663,8 @@ public class ActivityLys extends AppCompatActivity {
 
             lysShowScore();
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Cleaning numbers failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
     }
@@ -1717,7 +1719,8 @@ public class ActivityLys extends AppCompatActivity {
             AlertDialog b = dialogBuilder.create();
             b.show();
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Lys / Saving exam alert dialog started.");
     }
@@ -1786,10 +1789,11 @@ public class ActivityLys extends AppCompatActivity {
 
             myDb.addAllScore(allScores);
 
-            String infoMessage = "Ygs-Lys ham puan kaydedildi.";
+            String infoMessage = "Ygs-Lys puanı kaydedildi.";
             Toast.makeText(ActivityLys.this, infoMessage, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            Log.e(LOG_TAG, e.getMessage());
+            String msg = (e.getMessage() == null) ? "Adding lys scores into database failed!" : e.getMessage();
+            Log.e(LOG_TAG, msg);
         }
 
         Log.d(LOG_TAG, "Lys / Scores added into database.");

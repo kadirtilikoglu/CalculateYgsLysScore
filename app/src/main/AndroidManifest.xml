@@ -1,84 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="demirciy.ygslyspuanhesaplama">
+    package="demirciy.ygslyspuanhesaplama" >
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         <activity
             android:name=".ygs.ActivityYgs"
-            android:label="Ygs">
-            <intent-filter>
+            android:label="Ygs" >
+            <intent-filter android:label="@string/app_name" >
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".lys.ActivityLys"
             android:label="Lys"
-            android:parentActivityName=".ygs.ActivityYgs">
+            android:parentActivityName=".ygs.ActivityYgs" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demirciy.Lys" />
+                android:value="lys.ActivityLys" />
         </activity>
-
         <activity
             android:name=".ygs.ActivityMyScores"
             android:label="Denemelerim"
             android:parentActivityName=".ygs.ActivityYgs" />
+
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="com.demirciy.MyScores" />
+            android:value="ygs.ActivityMyScores" />
 
         <activity
             android:name=".ygs.ActivityWhatIsYgsLys"
             android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".ygs.ActivityYgs">
+            android:parentActivityName=".ygs.ActivityYgs" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demirciy.WhatisYgsLys" />
+                android:value=".ygs.ActivityWhatIsYgsLys" />
         </activity>
-
         <activity
             android:name=".ygs.ActivityAbout"
             android:label="Hakkında"
-            android:parentActivityName=".ygs.ActivityYgs">
+            android:parentActivityName=".ygs.ActivityYgs" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demirciy.About" />
+                android:value=".ygs.ActivityAbout" />
         </activity>
-
         <activity
             android:name=".lys.ActivityWhatIsYgsLys2"
             android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".lys.ActivityLys">
+            android:parentActivityName=".lys.ActivityLys" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demirciy.WhatisYgsLys2" />
+                android:value=".lys.ActivityWhatIsYgsLys2" />
         </activity>
-
         <activity
             android:name=".lys.ActivityAbout2"
             android:label="Hakkında"
-            android:parentActivityName=".lys.ActivityLys">
+            android:parentActivityName=".lys.ActivityLys" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demirciy.About2" />
+                android:value=".lys.ActivityAbout2" />
         </activity>
-
         <activity
             android:name=".lys.ActivityMyScores2"
             android:label="Denemelerim"
-            android:parentActivityName=".lys.ActivityLys">
+            android:parentActivityName=".lys.ActivityLys" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.demirciy.MyScores2" />
+                android:value=".lys.ActivityMyScores2" />
         </activity>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>

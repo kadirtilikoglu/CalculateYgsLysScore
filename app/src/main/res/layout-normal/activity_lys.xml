@@ -54,7 +54,7 @@
 
                         <EditText
                             android:id="@+id/etLysMatD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys1"
@@ -63,7 +63,7 @@
 
                         <EditText
                             android:id="@+id/etLysMatY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys1"
@@ -72,7 +72,7 @@
 
                         <EditText
                             android:id="@+id/etLysMatN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys1"
@@ -93,7 +93,7 @@
 
                         <EditText
                             android:id="@+id/etLysGeoD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys1"
@@ -102,7 +102,7 @@
 
                         <EditText
                             android:id="@+id/etLysGeoY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys1"
@@ -111,7 +111,7 @@
 
                         <EditText
                             android:id="@+id/etLysGeoN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys1"
@@ -157,7 +157,7 @@
 
                         <EditText
                             android:id="@+id/etLysFizikD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -166,7 +166,7 @@
 
                         <EditText
                             android:id="@+id/etLysFizikY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -175,7 +175,7 @@
 
                         <EditText
                             android:id="@+id/etLysFizikN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -196,7 +196,7 @@
 
                         <EditText
                             android:id="@+id/etLysKimyaD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -205,7 +205,7 @@
 
                         <EditText
                             android:id="@+id/etLysKimyaY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -214,7 +214,7 @@
 
                         <EditText
                             android:id="@+id/etLysKimyaN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -235,7 +235,7 @@
 
                         <EditText
                             android:id="@+id/etLysBiyoD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -244,7 +244,7 @@
 
                         <EditText
                             android:id="@+id/etLysBiyoY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -253,7 +253,7 @@
 
                         <EditText
                             android:id="@+id/etLysBiyoN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys2"
@@ -299,7 +299,7 @@
 
                         <EditText
                             android:id="@+id/etLysEdeD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys3"
@@ -308,7 +308,7 @@
 
                         <EditText
                             android:id="@+id/etLysEdeY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys3"
@@ -317,7 +317,7 @@
 
                         <EditText
                             android:id="@+id/etLysEdeN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys3"
@@ -338,7 +338,7 @@
 
                         <EditText
                             android:id="@+id/etLysCog1D"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys3"
@@ -347,7 +347,7 @@
 
                         <EditText
                             android:id="@+id/etLysCog1Y"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys3"
@@ -356,7 +356,7 @@
 
                         <EditText
                             android:id="@+id/etLysCog1N"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys3"
@@ -402,7 +402,7 @@
 
                         <EditText
                             android:id="@+id/etLysTarihD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
@@ -411,7 +411,7 @@
 
                         <EditText
                             android:id="@+id/etLysTarihY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
@@ -420,7 +420,7 @@
 
                         <EditText
                             android:id="@+id/etLysTarihN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
@@ -441,7 +441,7 @@
 
                         <EditText
                             android:id="@+id/etLysCog2D"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
@@ -450,7 +450,7 @@
 
                         <EditText
                             android:id="@+id/etLysCog2Y"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
@@ -459,7 +459,7 @@
 
                         <EditText
                             android:id="@+id/etLysCog2N"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:backgroundTint="@color/lys4"
@@ -480,21 +480,21 @@
 
                         <EditText
                             android:id="@+id/etLysFelD"
-                            style="@style/etLysD"
+                            style="@style/etLysDNormal"
                             android:backgroundTint="@color/lys4"
                             android:textColor="@color/lys4"
                             android:textColorHint="@color/lys4" />
 
                         <EditText
                             android:id="@+id/etLysFelY"
-                            style="@style/etLysY"
+                            style="@style/etLysYNormal"
                             android:backgroundTint="@color/lys4"
                             android:textColor="@color/lys4"
                             android:textColorHint="@color/lys4" />
 
                         <EditText
                             android:id="@+id/etLysFelN"
-                            style="@style/etLysN"
+                            style="@style/etLysNNormal"
                             android:backgroundTint="@color/lys4"
                             android:textColor="@color/lys4"
                             android:textColorHint="@color/lys4" />
@@ -532,21 +532,21 @@
 
                     <EditText
                         android:id="@+id/etLysYdilD"
-                        style="@style/etLysD"
+                        style="@style/etLysDNormal"
                         android:backgroundTint="@color/lys5"
                         android:textColor="@color/lys5"
                         android:textColorHint="@color/lys5" />
 
                     <EditText
                         android:id="@+id/etLysYdilY"
-                        style="@style/etLysY"
+                        style="@style/etLysYNormal"
                         android:backgroundTint="@color/lys5"
                         android:textColor="@color/lys5"
                         android:textColorHint="@color/lys5" />
 
                     <EditText
                         android:id="@+id/etLysYdilN"
-                        style="@style/etLysN"
+                        style="@style/etLysNNormal"
                         android:backgroundTint="@color/lys5"
                         android:textColor="@color/lys5"
                         android:textColorHint="@color/lys5" />
