@@ -28,6 +28,11 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.YgsCalculateScoreType;
 
+//AYNI ADA SAHİP DENEMELERDE UYARI MESAJI GÖSTER
+//KAYDEDİLEN DENEMELERİ GÖSTERİRKEN PUANLARI DAHA GÜZEL GÖSTER. Uİ GELİŞTİR
+//TABLETLER İÇİN TASARLA
+//2016-2017 GİRİŞ PUANLARINI YENİ BİR TABLODA EKLE VE YENİ BİR ACTİVİTY DE GÖSTER
+
 public class ActivityYgs extends AppCompatActivity {
 
     private EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
