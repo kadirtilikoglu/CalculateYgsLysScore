@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import demirciy.ygslyspuanhesaplama.R;
@@ -721,7 +722,7 @@ public class ActivityYgs extends AppCompatActivity {
             tToplamN.setText(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN));
 
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Printing sum failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Printing sum failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
 
@@ -746,7 +747,7 @@ public class ActivityYgs extends AppCompatActivity {
             ygs6 = Ygs.getYgs6();
             tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Showing score failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Showing score failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Ygs / Scores calculated.");
@@ -772,7 +773,7 @@ public class ActivityYgs extends AppCompatActivity {
 
             }
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Adding marks to database failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Adding marks to database failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
 
@@ -798,11 +799,21 @@ public class ActivityYgs extends AppCompatActivity {
                     if (isNull) {
                         date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
                         examName = "Adsız";
-                        ygsAddScoreDatabase();
+                        if (findSameExamName() == 0) {
+                            ygsAddScoreDatabase();
+                        }
+                        else{
+                            ygsAlertDialog();
+                        }
                     } else {
                         date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
                         examName = etExamName.getText().toString();
-                        ygsAddScoreDatabase();
+                        if (findSameExamName() == 0) {
+                            ygsAddScoreDatabase();
+                        }
+                        else{
+                            ygsAlertDialog();
+                        }
                     }
                 }
             });
@@ -814,10 +825,29 @@ public class ActivityYgs extends AppCompatActivity {
             AlertDialog b = dialogBuilder.create();
             b.show();
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
+    }
+
+    private int findSameExamName() {
+        int value = 0;
+
+        ArrayList<String> Headers;
+        Headers = myDb.getAllHeadersFromDb();
+        for (int i = 0; i < Headers.size(); i++) {
+            if (Headers.get(i).contains(examName)) {
+                examNameErrorMessage();
+                value = 1;
+            }
+        }
+        return value;
+    }
+
+    private void examNameErrorMessage() {
+        String errorMessage = "Bu isme ait başka bir sınav adı mevcuttur.";
+        Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     public void ygsAddScoreDatabase() {
@@ -844,7 +874,7 @@ public class ActivityYgs extends AppCompatActivity {
             String infoMessage = "Ygs puanı kaydedildi.";
             Toast.makeText(ActivityYgs.this, infoMessage, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Adding score to database failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Adding score to database failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
 
@@ -888,7 +918,7 @@ public class ActivityYgs extends AppCompatActivity {
             tYgs5.setText(R.string.ygs5);
             tYgs6.setText(R.string.ygs6);
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Cleaning numbers failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Cleaning numbers failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
 
@@ -964,7 +994,7 @@ public class ActivityYgs extends AppCompatActivity {
             ygsShowScore();
             ygsPrintSum();
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Bringing previous info failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Bringing previous info failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
 
@@ -1010,7 +1040,7 @@ public class ActivityYgs extends AppCompatActivity {
 
             }
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Adding ygs datas into database for lys failed!" :e.getMessage();
+            String msg = (e.getMessage() == null) ? "Adding ygs datas into database for lys failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
 
