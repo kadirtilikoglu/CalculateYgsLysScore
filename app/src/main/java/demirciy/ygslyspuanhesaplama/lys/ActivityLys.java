@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 import demirciy.ygslyspuanhesaplama.R;
@@ -1703,11 +1704,20 @@ public class ActivityLys extends AppCompatActivity {
                     if (isNull) {
                         date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
                         examName = "Adsız";
-                        lysAddScoreDatabase();
+                        if (findSameExamName() == 0) {
+                            lysAddScoreDatabase();
+                        } else {
+                            lysAlertDialog();
+                        }
+
                     } else {
                         date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
                         examName = etExamName.getText().toString();
-                        lysAddScoreDatabase();
+                        if (findSameExamName() == 0) {
+                            lysAddScoreDatabase();
+                        } else {
+                            lysAlertDialog();
+                        }
                     }
                 }
             });
@@ -1723,6 +1733,25 @@ public class ActivityLys extends AppCompatActivity {
             Log.e(LOG_TAG, msg);
         }
         Log.d(LOG_TAG, "Lys / Saving exam alert dialog started.");
+    }
+
+    private int findSameExamName() {
+        int value = 0;
+
+        ArrayList<String> Headers;
+        Headers = myDb.getAllHeadersFromDb();
+        for (int i = 0; i < Headers.size(); i++) {
+            if (Headers.get(i).contains(examName)) {
+                examNameErrorMessage();
+                value = 1;
+            }
+        }
+        return value;
+    }
+
+    private void examNameErrorMessage() {
+        String errorMessage = "Bu isme ait başka bir sınav adı mevcuttur.";
+        Toast.makeText(ActivityLys.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
     public void lysAddScoreDatabase() {
