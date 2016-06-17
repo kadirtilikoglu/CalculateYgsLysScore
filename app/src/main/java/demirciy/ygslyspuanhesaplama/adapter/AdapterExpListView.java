@@ -143,15 +143,15 @@ public class AdapterExpListView extends BaseExpandableListAdapter {
         expYgs4.setText(String.valueOf("Ygs4: " + getChild(groupPosition, childPosition + 7)));
         expYgs5.setText(String.valueOf("Ygs5: " + getChild(groupPosition, childPosition + 8)));
         expYgs6.setText(String.valueOf("Ygs6: " + getChild(groupPosition, childPosition + 9)));
-        expMath2.setText(String.valueOf("Matematik-2: " + getChild(groupPosition, childPosition + 10)));
+        expMath2.setText(String.valueOf("Matematik2: " + getChild(groupPosition, childPosition + 10)));
         expGeo.setText(String.valueOf("Geometri: " + getChild(groupPosition, childPosition + 11)));
         expPhy.setText(String.valueOf("Fizik: " + getChild(groupPosition, childPosition + 12)));
         expChe.setText(String.valueOf("Kimya: " + getChild(groupPosition, childPosition + 13)));
         expBio.setText(String.valueOf("Biyoloji: " + getChild(groupPosition, childPosition + 14)));
         expLite.setText(String.valueOf("Edebiyat: " + getChild(groupPosition, childPosition + 15)));
-        expGeog1.setText(String.valueOf("Coğrafya-1: " + getChild(groupPosition, childPosition + 16)));
+        expGeog1.setText(String.valueOf("Coğrafya1: " + getChild(groupPosition, childPosition + 16)));
         expHis.setText(String.valueOf("Tarih: " + getChild(groupPosition, childPosition + 17)));
-        expGeog2.setText(String.valueOf("Coğrafya-2: " + getChild(groupPosition, childPosition + 18)));
+        expGeog2.setText(String.valueOf("Coğrafya2: " + getChild(groupPosition, childPosition + 18)));
         expPhi.setText(String.valueOf("Felsefe/Din: " + getChild(groupPosition, childPosition + 19)));
         expForeign.setText(String.valueOf("Yabancı Dil: " + getChild(groupPosition, childPosition + 20)));
         expMf1.setText(String.valueOf("Mf1: " + getChild(groupPosition, childPosition + 21)));

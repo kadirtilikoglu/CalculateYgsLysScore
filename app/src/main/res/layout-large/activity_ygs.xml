@@ -37,20 +37,20 @@
 
                 <TextView
                     android:id="@+id/tTurkce"
-                    style="@style/ygsDersler"
+                    style="@style/ygsDerslerLarge"
                     android:text="@string/turkish" />
 
                 <EditText
                     android:id="@+id/etYgsTrD"
-                    style="@style/etYgsD" />
+                    style="@style/etYgsDLarge" />
 
                 <EditText
                     android:id="@+id/etYgsTrY"
-                    style="@style/etYgsY" />
+                    style="@style/etYgsYLarge" />
 
                 <EditText
                     android:id="@+id/etYgsTrN"
-                    style="@style/etYgsN" />
+                    style="@style/etYgsNLarge" />
             </LinearLayout>
 
             <LinearLayout
@@ -61,20 +61,20 @@
 
                 <TextView
                     android:id="@+id/tSos"
-                    style="@style/ygsDersler"
+                    style="@style/ygsDerslerLarge"
                     android:text="@string/social" />
 
                 <EditText
                     android:id="@+id/etYgsSosD"
-                    style="@style/etYgsD" />
+                    style="@style/etYgsDLarge" />
 
                 <EditText
                     android:id="@+id/etYgsSosY"
-                    style="@style/etYgsY" />
+                    style="@style/etYgsYLarge" />
 
                 <EditText
                     android:id="@+id/etYgsSosN"
-                    style="@style/etYgsN" />
+                    style="@style/etYgsNLarge" />
             </LinearLayout>
 
             <LinearLayout
@@ -85,20 +85,20 @@
 
                 <TextView
                     android:id="@+id/tMat"
-                    style="@style/ygsDersler"
+                    style="@style/ygsDerslerLarge"
                     android:text="@string/math" />
 
                 <EditText
                     android:id="@+id/etYgsMatD"
-                    style="@style/etYgsD" />
+                    style="@style/etYgsDLarge" />
 
                 <EditText
                     android:id="@+id/etYgsMatY"
-                    style="@style/etYgsY" />
+                    style="@style/etYgsYLarge" />
 
                 <EditText
                     android:id="@+id/etYgsMatN"
-                    style="@style/etYgsN" />
+                    style="@style/etYgsNLarge" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,20 +109,20 @@
 
                 <TextView
                     android:id="@+id/tFen"
-                    style="@style/ygsDersler"
+                    style="@style/ygsDerslerLarge"
                     android:text="@string/science" />
 
                 <EditText
                     android:id="@+id/etYgsFenD"
-                    style="@style/etYgsD" />
+                    style="@style/etYgsDLarge" />
 
                 <EditText
                     android:id="@+id/etYgsFenY"
-                    style="@style/etYgsY" />
+                    style="@style/etYgsYLarge" />
 
                 <EditText
                     android:id="@+id/etYgsFenN"
-                    style="@style/etYgsN" />
+                    style="@style/etYgsNLarge" />
             </LinearLayout>
 
             <LinearLayout
@@ -134,20 +134,20 @@
 
                 <TextView
                     android:id="@+id/tToplam"
-                    style="@style/ygsToplam"
+                    style="@style/ygsToplamLarge"
                     android:text="@string/total" />
 
                 <TextView
                     android:id="@+id/tToplamD"
-                    style="@style/ygsToplamD" />
+                    style="@style/ygsToplamDLarge" />
 
                 <TextView
                     android:id="@+id/tToplamY"
-                    style="@style/ygsToplamY" />
+                    style="@style/ygsToplamYLarge" />
 
                 <TextView
                     android:id="@+id/tToplamN"
-                    style="@style/ygsToplamN" />
+                    style="@style/ygsToplamNLarge" />
             </LinearLayout>
 
         </RelativeLayout>
@@ -174,13 +174,13 @@
 
                 <TextView
                     android:id="@+id/tYgs1"
-                    style="@style/ygsPuanTurleri"
+                    style="@style/ygsPuanTurleriLarge"
                     android:text="@string/ygs1"
                     android:textColor="@color/mf" />
 
                 <TextView
                     android:id="@+id/tYgs2"
-                    style="@style/ygsPuanTurleri"
+                    style="@style/ygsPuanTurleriLarge"
                     android:text="@string/ygs2"
                     android:textColor="@color/mf" />
             </LinearLayout>
@@ -194,13 +194,13 @@
 
                 <TextView
                     android:id="@+id/tYgs3"
-                    style="@style/ygsPuanTurleri"
+                    style="@style/ygsPuanTurleriLarge"
                     android:text="@string/ygs3"
                     android:textColor="@color/ts" />
 
                 <TextView
                     android:id="@+id/tYgs4"
-                    style="@style/ygsPuanTurleri"
+                    style="@style/ygsPuanTurleriLarge"
                     android:text="@string/ygs4"
                     android:textColor="@color/ts" />
             </LinearLayout>
@@ -214,13 +214,13 @@
 
                 <TextView
                     android:id="@+id/tYgs5"
-                    style="@style/ygsPuanTurleri"
+                    style="@style/ygsPuanTurleriLarge"
                     android:text="@string/ygs5"
                     android:textColor="@color/tm" />
 
                 <TextView
                     android:id="@+id/tYgs6"
-                    style="@style/ygsPuanTurleri"
+                    style="@style/ygsPuanTurleriLarge"
                     android:text="@string/ygs6"
                     android:textColor="@color/tm" />
             </LinearLayout>

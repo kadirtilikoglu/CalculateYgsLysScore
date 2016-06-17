@@ -8,224 +8,260 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin">
 
-    <LinearLayout
-        style="@style/expll"
-        android:orientation="vertical">
+    <RelativeLayout style="@style/exprl">
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expTr"
+            style="@style/exp_child_textview_large"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="95sp"
+            android:text="@string/turkish_mark" />
 
-            <TextView
-                android:id="@+id/expTr"
-                style="@style/exp_child_textview"
-                android:text="@string/turkish_mark" />
+        <TextView
+            android:id="@+id/expSocial"
+            style="@style/exp_child_textview_large"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="95sp"
+            android:text="@string/social_mark" />
 
-            <TextView
-                android:id="@+id/expSocial"
-                style="@style/exp_child_textview"
-                android:text="@string/social_mark" />
+        <TextView
+            android:id="@+id/expMath1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expTr"
+            android:layout_below="@+id/expTr"
+            android:text="@string/math_mark" />
 
-            <TextView
-                android:id="@+id/expMath1"
-                style="@style/exp_child_textview"
-                android:text="@string/math_mark" />
+        <TextView
+            android:id="@+id/expScience"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expSocial"
+            android:layout_below="@+id/expSocial"
+            android:text="@string/science_mark" />
 
-            <TextView
-                android:id="@+id/expScience"
-                style="@style/exp_child_textview"
-                android:text="@string/science_mark" />
-        </LinearLayout>
+        <View
+            android:id="@+id/view1"
+            style="@style/Divider"
+            android:layout_below="@+id/expScience"
+            android:layout_marginBottom="2sp"
+            android:layout_marginTop="2sp" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expYgs1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/view1"
+            android:layout_marginStart="20sp"
+            android:text="@string/ygs1_score" />
 
-            <TextView
-                android:id="@+id/expYgs1"
-                style="@style/exp_child_textview"
-                android:text="@string/ygs1_score" />
+        <TextView
+            android:id="@+id/expYgs2"
+            style="@style/exp_child_textview_large"
+            android:layout_below="@+id/view1"
+            android:layout_centerHorizontal="true"
+            android:text="@string/ygs2_score" />
 
-            <TextView
-                android:id="@+id/expYgs2"
-                style="@style/exp_child_textview"
-                android:text="@string/ygs2_score" />
+        <TextView
+            android:id="@+id/expYgs3"
+            style="@style/exp_child_textview_large"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@+id/view1"
+            android:layout_marginEnd="20sp"
+            android:text="@string/ygs3_score" />
 
-            <TextView
-                android:id="@+id/expYgs3"
-                style="@style/exp_child_textview"
-                android:text="@string/ygs3_score" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/expYgs4"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs1"
+            android:layout_below="@+id/expYgs1"
+            android:text="@string/ygs4_score" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expYgs5"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs2"
+            android:layout_below="@+id/expYgs2"
+            android:text="@string/ygs5_score" />
 
-            <TextView
-                android:id="@+id/expYgs4"
-                style="@style/exp_child_textview"
-                android:text="@string/ygs4_score" />
+        <TextView
+            android:id="@+id/expYgs6"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs3"
+            android:layout_below="@+id/expYgs3"
+            android:text="@string/ygs6_score" />
 
-            <TextView
-                android:id="@+id/expYgs5"
-                style="@style/exp_child_textview"
-                android:text="@string/ygs5_score" />
+        <View
+            android:id="@+id/view2"
+            style="@style/Divider"
+            android:layout_below="@+id/expYgs6"
+            android:layout_marginBottom="4sp"
+            android:layout_marginTop="4sp" />
 
-            <TextView
-                android:id="@+id/expYgs6"
-                style="@style/exp_child_textview"
-                android:text="@string/ygs6_score" />
-        </LinearLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/expMath2"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expTr"
+            android:layout_below="@+id/view2"
+            android:text="@string/math_mark2" />
 
-    <LinearLayout
-        style="@style/expll"
-        android:orientation="vertical"
-        android:layout_marginTop="8sp">
+        <TextView
+            android:id="@+id/expGeo"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expSocial"
+            android:layout_below="@+id/view2"
+            android:text="@string/geometry_mark" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expPhy"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs1"
+            android:layout_below="@+id/expMath2"
+            android:text="@string/physics_mark" />
 
-            <TextView
-                android:id="@+id/expMath2"
-                style="@style/exp_child_textview"
-                android:text="@string/math_mark" />
+        <TextView
+            android:id="@+id/expChe"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs2"
+            android:layout_below="@+id/expMath2"
+            android:text="@string/chemistry_mark" />
 
-            <TextView
-                android:id="@+id/expGeo"
-                style="@style/exp_child_textview"
-                android:text="@string/geometry_mark" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/expBio"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs3"
+            android:layout_below="@+id/expMath2"
+            android:text="@string/biology_mark" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expLite"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expTr"
+            android:layout_below="@+id/expPhy"
+            android:text="@string/literature_mark" />
 
-            <TextView
-                android:id="@+id/expPhy"
-                style="@style/exp_child_textview"
-                android:text="@string/physics_mark" />
+        <TextView
+            android:id="@+id/expGeog1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expSocial"
+            android:layout_below="@+id/expPhy"
+            android:text="@string/geography1_mark" />
 
-            <TextView
-                android:id="@+id/expChe"
-                style="@style/exp_child_textview"
-                android:text="@string/chemistry_mark" />
+        <TextView
+            android:id="@+id/expHis"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs1"
+            android:layout_below="@+id/expLite"
+            android:text="@string/history_mark" />
 
-            <TextView
-                android:id="@+id/expBio"
-                style="@style/exp_child_textview"
-                android:text="@string/biology_mark" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/expGeog2"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs2"
+            android:layout_below="@+id/expLite"
+            android:text="@string/geography2_mark" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expPhi"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs3"
+            android:layout_below="@+id/expLite"
+            android:text="@string/philosophy_religion_mark" />
 
-            <TextView
-                android:id="@+id/expLite"
-                style="@style/exp_child_textview"
-                android:text="@string/literature_mark" />
+        <TextView
+            android:id="@+id/expForeign"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs2"
+            android:layout_below="@+id/expGeog2"
+            android:text="@string/foreign_language_mark" />
 
-            <TextView
-                android:id="@+id/expGeog1"
-                style="@style/exp_child_textview"
-                android:text="@string/geography1_mark" />
-        </LinearLayout>
+        <View
+            android:id="@+id/view3"
+            style="@style/Divider"
+            android:layout_below="@+id/expForeign"
+            android:layout_marginBottom="2sp"
+            android:layout_marginTop="2sp" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expMf1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expTr"
+            android:layout_below="@+id/view3"
+            android:text="@string/mf1_score" />
 
-            <TextView
-                android:id="@+id/expHis"
-                style="@style/exp_child_textview"
-                android:text="@string/history_mark" />
+        <TextView
+            android:id="@+id/expMf2"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expSocial"
+            android:layout_below="@+id/view3"
+            android:text="@string/mf2_score" />
 
-            <TextView
-                android:id="@+id/expGeog2"
-                style="@style/exp_child_textview"
-                android:text="@string/geography2_mark" />
+        <TextView
+            android:id="@+id/expMf3"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expTr"
+            android:layout_below="@+id/expMf2"
+            android:text="@string/mf3_score" />
 
-            <TextView
-                android:id="@+id/expPhi"
-                style="@style/exp_child_textview"
-                android:text="@string/philosophy_religion_mark" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/expMf4"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expSocial"
+            android:layout_below="@+id/expMf2"
+            android:text="@string/mf4_score" />
 
-        <LinearLayout style="@style/expll">
+        <TextView
+            android:id="@+id/expTm1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs1"
+            android:layout_below="@+id/expMf3"
+            android:text="@string/tm1_score" />
 
-            <TextView
-                android:id="@+id/expForeign"
-                style="@style/exp_child_textview"
-                android:text="@string/foreign_language_mark" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/expTm2"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs2"
+            android:layout_below="@+id/expMf3"
+            android:text="@string/tm2_score" />
 
-        <LinearLayout
-            style="@style/expll"
-            android:layout_marginTop="4sp">
+        <TextView
+            android:id="@+id/expTm3"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs3"
+            android:layout_below="@+id/expMf3"
+            android:text="@string/tm3_score" />
 
-            <TextView
-                android:id="@+id/expMf1"
-                style="@style/exp_child_textview"
-                android:text="@string/mf1_score" />
+        <TextView
+            android:id="@+id/expTs1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expTr"
+            android:layout_below="@+id/expTm1"
+            android:text="@string/ts1_score" />
 
-            <TextView
-                android:id="@+id/expMf2"
-                style="@style/exp_child_textview"
-                android:text="@string/mf2_score" />
-        </LinearLayout>
+        <TextView
+            android:id="@+id/expTs2"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expSocial"
+            android:layout_below="@+id/expTm1"
+            android:text="@string/ts2_score" />
 
-        <LinearLayout
-            style="@style/expll">
+        <TextView
+            android:id="@+id/expLang1"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs1"
+            android:layout_below="@+id/expTs1"
+            android:text="@string/lang1_score" />
 
-            <TextView
-                android:id="@+id/expMf3"
-                style="@style/exp_child_textview"
-                android:text="@string/mf3_score" />
+        <TextView
+            android:id="@+id/expLang2"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs2"
+            android:layout_below="@+id/expTs1"
+            android:text="@string/lang2_score" />
 
-            <TextView
-                android:id="@+id/expMf4"
-                style="@style/exp_child_textview"
-                android:text="@string/mf4_score" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/expll">
-
-            <TextView
-                android:id="@+id/expTm1"
-                style="@style/exp_child_textview"
-                android:text="@string/tm1_score" />
-
-            <TextView
-                android:id="@+id/expTm2"
-                style="@style/exp_child_textview"
-                android:text="@string/tm2_score" />
-
-            <TextView
-                android:id="@+id/expTm3"
-                style="@style/exp_child_textview"
-                android:text="@string/tm3_score" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/expll">
-
-            <TextView
-                android:id="@+id/expTs1"
-                style="@style/exp_child_textview"
-                android:text="@string/ts1_score" />
-
-            <TextView
-                android:id="@+id/expTs2"
-                style="@style/exp_child_textview"
-                android:text="@string/ts2_score" />
-        </LinearLayout>
-
-        <LinearLayout
-            style="@style/expll">
-
-            <TextView
-                android:id="@+id/expLang1"
-                style="@style/exp_child_textview"
-                android:text="@string/lang1_score" />
-
-            <TextView
-                android:id="@+id/expLang2"
-                style="@style/exp_child_textview"
-                android:text="@string/lang2_score" />
-
-            <TextView
-                android:id="@+id/expLang3"
-                style="@style/exp_child_textview"
-                android:text="@string/lang3_score" />
-        </LinearLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/expLang3"
+            style="@style/exp_child_textview_large"
+            android:layout_alignStart="@+id/expYgs3"
+            android:layout_below="@+id/expTs1"
+            android:text="@string/lang3_score" />
+    </RelativeLayout>
 </LinearLayout>
