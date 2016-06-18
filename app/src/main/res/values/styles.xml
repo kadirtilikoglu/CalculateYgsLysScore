@@ -174,7 +174,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="etLysY">
@@ -188,7 +188,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="etLysN">
@@ -202,7 +202,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="tObp">
@@ -248,7 +248,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">13sp</item>
+        <item name="android:textSize">12sp</item>
     </style>
 
     <style name="exprl">

@@ -14,14 +14,14 @@
             android:id="@+id/expTr"
             style="@style/exp_child_textview_xlarge"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="250sp"
+            android:layout_marginStart="100sp"
             android:text="@string/turkish_mark" />
 
         <TextView
             android:id="@+id/expSocial"
             style="@style/exp_child_textview_xlarge"
             android:layout_alignParentEnd="true"
-            android:layout_marginEnd="250sp"
+            android:layout_marginEnd="100sp"
             android:text="@string/social_mark" />
 
         <TextView
@@ -51,7 +51,7 @@
             android:layout_alignParentStart="true"
             android:layout_below="@+id/view1"
             android:text="@string/ygs1_score"
-            android:layout_marginStart="150sp"/>
+            android:layout_marginStart="75sp"/>
 
         <TextView
             android:id="@+id/expYgs2"
@@ -66,7 +66,7 @@
             android:layout_alignParentEnd="true"
             android:layout_below="@+id/view1"
             android:text="@string/ygs3_score"
-            android:layout_marginEnd="150sp"/>
+            android:layout_marginEnd="75sp"/>
 
         <TextView
             android:id="@+id/expYgs4"
