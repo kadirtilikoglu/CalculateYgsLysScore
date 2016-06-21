@@ -1,27 +1,26 @@
 package demirciy.ygslyspuanhesaplama.lys;
 
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ExpandableListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import demirciy.ygslyspuanhesaplama.adapter.AdapterExpListView;
 import demirciy.ygslyspuanhesaplama.R;
+import demirciy.ygslyspuanhesaplama.adapter.AdapterExpListView;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
-import demirciy.ygslyspuanhesaplama.ygs.ActivityYgs;
 
+//activity lys tarafından gelince bu activity açılır
 public class ActivityMyScores2 extends AppCompatActivity {
 
     ExpandableListView expMyScores;
@@ -33,7 +32,7 @@ public class ActivityMyScores2 extends AppCompatActivity {
 
     AlertDialog b, a;
 
-    String examName, newExamName;
+    String examName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +41,15 @@ public class ActivityMyScores2 extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         myDb = new DatabaseHelper(this);
 
         expMyScores = (ExpandableListView) findViewById(R.id.expMyScores);
 
+        //parent ve child itemlar veri tabanından çekilip arraylist lere atılır
         Headers = myDb.getAllHeadersFromDb();
         Datas = myDb.getAllDatasFromDb();
 
+        //veritabanından çekilen parent ve child item ları adapter e gönderir
         AdapterExpListView adapterExpListView = new AdapterExpListView(this, Headers, Datas);
         expMyScores.setAdapter(adapterExpListView);
 
@@ -66,7 +66,6 @@ public class ActivityMyScores2 extends AppCompatActivity {
                 return false;
             }
         });
-
     }
 
     public void dialog(final int position) {
@@ -115,18 +114,33 @@ public class ActivityMyScores2 extends AppCompatActivity {
                 boolean isNull = etExamName.getText().toString().equals("");
                 if (isNull) {
                     examName = "Adsız";
-                    myDb.renameDatas(position, examName);
+                    if (findSameExamName() == 0) {
+                        myDb.renameDatas(position, examName);
+
+                        //değişiklikleri göstermek için activity i sonlandırıyor
+                        finish();
+                        //activity yeniden başlatılıyor
+                        startActivity(getIntent());
+                    } else {
+                        alertDialog(position);
+                    }
+
                 } else {
                     examName = etExamName.getText().toString();
-                    myDb.renameDatas(position, examName);
+                    if (findSameExamName() == 0) {
+                        myDb.renameDatas(position, examName);
+                        finish();
+                        startActivity(getIntent());
+                    } else {
+                        alertDialog(position);
+                    }
                 }
-                finish();
-                startActivity(getIntent());
             }
         });
         dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
                 dialog.cancel();
+                b.cancel();
             }
         });
 
@@ -134,17 +148,22 @@ public class ActivityMyScores2 extends AppCompatActivity {
         a.show();
     }
 
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(this, ActivityYgs.class);
+    private int findSameExamName() {
+        int value = 0;
 
-        switch (item.getItemId()) {
-            case R.id.home:
-                startActivity(i);
-                break;
+        ArrayList<String> Headers;
+        Headers = myDb.getAllHeadersFromDb2();
+        for (int i = 0; i < Headers.size(); i++) {
+            if (Headers.get(i).equals(examName)) {
+                examNameErrorMessage();
+                value = 1;
+            }
         }
-
-        return super.onOptionsItemSelected(item);
-
+        return value;
     }
 
+    private void examNameErrorMessage() {
+        String errorMessage = "Bu isme ait başka bir sınav adı mevcuttur.";
+        Toast.makeText(ActivityMyScores2.this, errorMessage, Toast.LENGTH_SHORT).show();
+    }
 }

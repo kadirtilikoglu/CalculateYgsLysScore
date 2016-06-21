@@ -1,7 +1,9 @@
 package demirciy.ygslyspuanhesaplama.model;
 
+//değişkenler bu class yardımıyla bir nesneye atılır
+//veritabanı class ı da bu nesneye erişir ve nesneyi kullanarak verileri çeker
+//çektiği verileri veritabanındaki gerekli tabloya ekler
 public class AllScores {
-
     private String examName = " ", examDate = " ";
     private Double trMark = 0.0, socialMark = 0.0, math1Mark = 0.0, scienceMark = 0.0, ygs1 = 0.0, ygs2 = 0.0,
             ygs3 = 0.0, ygs4 = 0.0, ygs5 = 0.0, ygs6 = 0.0, math2Mark = 0.0, geoMark = 0.0, phyMark = 0.0, cheMark = 0.0,

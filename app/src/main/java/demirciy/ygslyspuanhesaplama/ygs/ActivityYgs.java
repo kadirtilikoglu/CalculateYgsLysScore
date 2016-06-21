@@ -29,9 +29,7 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.YgsCalculateScoreType;
 
-//TABLETLER İÇİN TASARLA
-//2016-2017 GİRİŞ PUANLARI AÇIKLANINCA PUANLARI YENİ BİR TABLODA EKLE VE YENİ BİR ACTİVİTY DE GÖSTER
-
+//ilk açılan activtiy budur. ygs puanını hesaplar
 public class ActivityYgs extends AppCompatActivity {
 
     private EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
@@ -50,16 +48,17 @@ public class ActivityYgs extends AppCompatActivity {
 
     final String LOG_TAG = "LogCat outputs -->";
 
+    //veritabanının class ına erişmek için tanımlandı
     DatabaseHelper myDb;
 
-    //showing action bar
+    //action bar çağrılıyor
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_ygs, menu);
         return true;
     }
 
-    //selecting options action bar items
+    //action bar daki itemlerin tıklanma olayları
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
@@ -118,9 +117,11 @@ public class ActivityYgs extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
-        //bringing datas before closing app
+        //app den çıkmadan önceki ygs netlerini otomatik getiriyor
         previousInfo();
 
+        //textwatcher yapısı başlangıç
+        //textwatcher: edittext e girilen değerlere anında tepki verir
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -278,7 +279,6 @@ public class ActivityYgs extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 ygsPrintSum();
                 ygsShowScore();
                 ygsAddMarkDatabase();
@@ -411,7 +411,6 @@ public class ActivityYgs extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 ygsPrintSum();
                 ygsShowScore();
                 ygsAddMarkDatabase();
@@ -544,7 +543,6 @@ public class ActivityYgs extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
                 ygsPrintSum();
                 ygsShowScore();
                 ygsAddMarkDatabase();
@@ -634,9 +632,10 @@ public class ActivityYgs extends AppCompatActivity {
                 ygsAddMarkDatabase();
             }
         });
-
+        //textwatcher yapısı son
     }
 
+    //her dersin doğru, yanlış ve net sayılarını alıp topluyor ve toplamını yazdırıyor
     public void ygsPrintSum() {
 
         Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printing.");
@@ -727,6 +726,7 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printed.");
     }
 
+    //netleri YgsCalculateScoreType class ına gönderip ygs puan türlerini hesaplıyor
     public void ygsShowScore() {
         Log.d(LOG_TAG, "Ygs / Scores calculating.");
 
@@ -751,18 +751,22 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Scores calculated.");
     }
 
-    //adding marks database to show marks after start app
+    //ygs derslerinin doğru, yanlış ve net sayılarını veritabanına kaydediyor.
+    //bir sonraki açılışta previousInfo() metodu kullanılarak bu ygs verileri geri getiriliyor
     public void ygsAddMarkDatabase() {
         Log.d(LOG_TAG, "Ygs / Marks are adding into database.");
 
         try {
             Cursor res = myDb.ygsGetMark();
+
+            //eğer dönen değer 0 ise bu tablo ilk defa oluşturulup değerler atılıyor
             if (res.getCount() == 0) {
                 myDb.ygsAddMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
                 myDb.ygsAddMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
                 myDb.ygsAddMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
                 myDb.ygsAddMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
+                //dönen değer 0 değilse tablo daha önce oluşturulmuş demektir. tablo güncelleniyor
             } else {
                 myDb.ygsUpdateMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
                 myDb.ygsUpdateMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
@@ -778,13 +782,17 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Marks added into database.");
     }
 
+    //action bar da kaydet butonuna basınca ygs puanını kaydetmek için bu metod tetikleniyor ve bir alertdialog açılıyor
+    //alertdialog da denemenin adı soruluyor eğer boş girilirse otomatikman denemenin adı adsız oluyor
+    //kaydet butonuna basınca girilen ad ve o anki tarih alınıp veri tabanına gönderiliyor
     public void ygsAlertDialog() {
-
         Log.d(LOG_TAG, "Ygs / Saving exam alert dialog starting.");
 
         try {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
+
+            //alertdialog custom olduğu için layout dosyası çağırılıyor
             final View dialogView = inflater.inflate(R.layout.alertdialog_add_score_name, null);
             dialogBuilder.setView(dialogView);
 
@@ -799,8 +807,7 @@ public class ActivityYgs extends AppCompatActivity {
                         examName = "Adsız";
                         if (findSameExamName() == 0) {
                             ygsAddScoreDatabase();
-                        }
-                        else{
+                        } else {
                             ygsAlertDialog();
                         }
                     } else {
@@ -808,8 +815,7 @@ public class ActivityYgs extends AppCompatActivity {
                         examName = etExamName.getText().toString();
                         if (findSameExamName() == 0) {
                             ygsAddScoreDatabase();
-                        }
-                        else{
+                        } else {
                             ygsAlertDialog();
                         }
                     }
@@ -829,13 +835,14 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
     }
 
+    //eğer girilen deneme adı daha önce veritabanına kaydedilmişse 1 değeri, değilse 0 değeri döndürülüyor
     private int findSameExamName() {
         int value = 0;
 
         ArrayList<String> Headers;
-        Headers = myDb.getAllHeadersFromDb();
+        Headers = myDb.getAllHeadersFromDb2();
         for (int i = 0; i < Headers.size(); i++) {
-            if (Headers.get(i).contains(examName)) {
+            if (Headers.get(i).equals(examName)) {
                 examNameErrorMessage();
                 value = 1;
             }
@@ -848,6 +855,9 @@ public class ActivityYgs extends AppCompatActivity {
         Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
+    //kaydedilmek istenen net ve puanlar allscores nesnesi oluşturulup içine atılıyor
+    //myDb.addAllScore(allScores); metoduyla değerler veritabanı classına nesne içinde gönderiliyor
+    //veritabanındaki addAllScore() metodu da bu verilere nesne yardımıyla erişip veritabanı tablosuna ekliyor
     public void ygsAddScoreDatabase() {
         Log.d(LOG_TAG, "Ygs / Scores are adding into database.");
 
@@ -879,6 +889,7 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Scores added into database.");
     }
 
+    //hesaplanan değerler temizlenir
     public void ygsClear() {
         Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
         try {
@@ -923,6 +934,7 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Numbers cleaned.");
     }
 
+    //acitivityLys ye gider
     public void goLys() {
         Intent i = new Intent(ActivityYgs.this, ActivityLys.class);
         if (ygs1 < 180 && ygs2 < 180 && ygs3 < 180 && ygs4 < 180 && ygs5 < 180 && ygs6 < 180) {
@@ -930,7 +942,9 @@ public class ActivityYgs extends AppCompatActivity {
             Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
         }
 
-        //saves ygs datas to calculate lys score
+        //lys puanı hesaplanırken ygs netleri de kullanılıyor
+        //bu metod lys activity sine gitmeden kaybolmasın diye girilen ygs netlerini veritabanına kaydediyor
+        //daha sonra lys puanı hesaplanırken bu netler veri tabanından çekilip hesaba katılıyor
         ygsDatasForLys();
 
         startActivity(i);
@@ -941,6 +955,7 @@ public class ActivityYgs extends AppCompatActivity {
         Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
+    //son girilen ygs netlerini getirir
     public void previousInfo() {
         Log.d(LOG_TAG, "Ygs / Previous datas bringing.");
 
@@ -999,11 +1014,14 @@ public class ActivityYgs extends AppCompatActivity {
         Log.d(LOG_TAG, "Ygs / Previous datas brought.");
     }
 
+    //lys activity sine geçmeden ygs netlerini veritabanına kaydediyor
     public void ygsDatasForLys() {
         Log.d(LOG_TAG, "Ygs datas are adding into database for Lys.");
 
         try {
             Cursor res = myDb.getYgsDatasForLys();
+
+            //0 dönerse tablo yeni oluşturuluyor
             if (res.getCount() == 0) {
                 AllScores allScores = new AllScores();
 
@@ -1020,6 +1038,7 @@ public class ActivityYgs extends AppCompatActivity {
 
                 myDb.addYgsDatasForLys(allScores);
 
+                //dönmezse tablo var demektir. tablo güncelleniyor
             } else {
                 AllScores allScores = new AllScores();
 

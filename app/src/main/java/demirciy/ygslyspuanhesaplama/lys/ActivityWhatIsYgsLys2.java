@@ -1,12 +1,9 @@
 package demirciy.ygslyspuanhesaplama.lys;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
 
 import demirciy.ygslyspuanhesaplama.R;
-import demirciy.ygslyspuanhesaplama.lys.ActivityLys;
 
 public class ActivityWhatIsYgsLys2 extends AppCompatActivity {
 
@@ -15,22 +12,9 @@ public class ActivityWhatIsYgsLys2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_what_is_ygs_lys2);
 
+        //action bar daki geri dön butonunu gösterir
+        //bu butonun çalışması için manifest dosyasında parent activity tanımlaması yapılmak zorundadır
+        //butonun çalışması için tıklanma olayı konulmak zorunda değildir
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
-
-    public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i = new Intent(this, ActivityLys.class);
-
-        switch (item.getItemId())
-        {
-            case R.id.home:
-                startActivity(i);
-                break;
-        }
-
-        return super.onOptionsItemSelected(item);
-
-    }
-
 }

@@ -61,10 +61,9 @@ public class ActivityLys extends AppCompatActivity {
         return true;
     }
 
+    //action bar daki butonların tıklanma olayları
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        Intent i = new Intent(this, ActivityYgs.class);
 
         switch (item.getItemId()) {
             case R.id.abClear:
@@ -82,9 +81,6 @@ public class ActivityLys extends AppCompatActivity {
             case R.id.abAbout:
                 goAbout2();
                 break;
-            case R.id.home:
-                startActivity(i);
-                break;
         }
 
         return super.onOptionsItemSelected(item);
@@ -95,6 +91,7 @@ public class ActivityLys extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lys);
 
+        //action bar da ki geri butonunu gösterir
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         etLysMatD = (EditText) findViewById(R.id.etLysMatD);
@@ -146,8 +143,11 @@ public class ActivityLys extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
+        //ygs de girilen netleri veri tabanından alır. lys puanlarını hesaplar
+        //hesaplanan lys puanlarını gösterir
         lysShowScore();
 
+        //textwatcher başlangıç
         etLysMatD.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -1539,11 +1539,11 @@ public class ActivityLys extends AppCompatActivity {
                 lysShowScore();
             }
         });
-
+        //textwatcher son
     }
 
+    //lys puanlarını hesaplayıp ekrana yazdırır
     public void lysShowScore() {
-
         Log.d(LOG_TAG, "Lys / Scores calculating.");
         try {
             Cursor res = myDb.ygsGetMark();
@@ -1551,11 +1551,14 @@ public class ActivityLys extends AppCompatActivity {
             String[] marks = new String[4];
             int m = 0;
 
+            //ilk olarak lys ye geçerken ygs de girilen netleri alır. çünkü lys puanı hesaplanırken ygs netleri de kullanılır
             while (res.moveToNext()) {
                 marks[m] = res.getString(3);
                 m++;
             }
 
+            //alınan ygs netleriyle beraber mevcut lys netleri lys puanlarını hesaplamak için
+            //LysCalculateScoreType class ına gönderilir ve puanlar getter metodlarıyla çekilir
             LysCalculateScoreType lys = new LysCalculateScoreType(Double.parseDouble(marks[0]), Double.parseDouble(marks[1]),
                     Double.parseDouble(marks[2]), Double.parseDouble(marks[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
                     lysBiyoN, lysEdeN, lysCog1N, lysTarihN, lysCog2N, lysFelN, lysYdilN);
@@ -1590,6 +1593,7 @@ public class ActivityLys extends AppCompatActivity {
         Log.d(LOG_TAG, "Lys / Scores calculating.");
     }
 
+    //ekrandaki lys bilgileri temizlenir
     public void lysClear() {
         Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
         try {
@@ -1685,8 +1689,8 @@ public class ActivityLys extends AppCompatActivity {
         startActivity(i);
     }
 
+    //lys puanını kaydetmek için bu alertdialog başlatılır
     public void lysAlertDialog() {
-
         Log.d(LOG_TAG, "Lys / Saving exam alert dialog starting.");
 
         try {
@@ -1709,7 +1713,6 @@ public class ActivityLys extends AppCompatActivity {
                         } else {
                             lysAlertDialog();
                         }
-
                     } else {
                         date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
                         examName = etExamName.getText().toString();
@@ -1735,13 +1738,14 @@ public class ActivityLys extends AppCompatActivity {
         Log.d(LOG_TAG, "Lys / Saving exam alert dialog started.");
     }
 
+    //girilen deneme adının daha önce girilip girilmediğini kontrol eder
     private int findSameExamName() {
         int value = 0;
 
         ArrayList<String> Headers;
-        Headers = myDb.getAllHeadersFromDb();
+        Headers = myDb.getAllHeadersFromDb2();
         for (int i = 0; i < Headers.size(); i++) {
-            if (Headers.get(i).contains(examName)) {
+            if (Headers.get(i).equals(examName)) {
                 examNameErrorMessage();
                 value = 1;
             }
@@ -1754,6 +1758,7 @@ public class ActivityLys extends AppCompatActivity {
         Toast.makeText(ActivityLys.this, errorMessage, Toast.LENGTH_SHORT).show();
     }
 
+    //ygs net ve puanları, lys net ve puanlarını veritabanına kaydeder
     public void lysAddScoreDatabase() {
         Log.d(LOG_TAG, "Lys / Scores are adding into database.");
 
@@ -1761,9 +1766,9 @@ public class ActivityLys extends AppCompatActivity {
                 ygs4 = 0, ygs5 = 0, ygs6 = 0;
 
         try {
-
             Cursor res = myDb.getYgsDatasForLys();
 
+            //önce ygs net ve puanları veri tabanından çekilir
             while (res.moveToNext()) {
                 ygsTrN = res.getDouble(0);
                 ygsSosN = res.getDouble(1);
@@ -1775,11 +1780,14 @@ public class ActivityLys extends AppCompatActivity {
                 ygs4 = res.getDouble(7);
                 ygs5 = res.getDouble(8);
                 ygs6 = res.getDouble(9);
-
             }
 
+            //sonra yeni AllScores nesnesi oluşturulur
             AllScores allScores = new AllScores();
 
+            //denemeyle ilgili bütün veriler bu nesneye atılır
+            //daha sonra veritabanının içindeki addAllScore() metodu verileri bu nesne yardımıyla çekip
+            //veritabanındaki gerekli tabloya ekler
             allScores.setExamName(examName);
             allScores.setExamDate(date);
             allScores.setTrMark(ygsTrN);
@@ -1832,5 +1840,4 @@ public class ActivityLys extends AppCompatActivity {
         Intent i = new Intent(this, ActivityMyScores2.class);
         startActivity(i);
     }
-
 }

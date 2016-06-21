@@ -12,15 +12,20 @@ import java.util.List;
 
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 
+//bu class ile sqlite işlemleri yapılır
+//veri tabanındaki tablolara ekleme çıkarma yapılır
 public class DatabaseHelper extends SQLiteOpenHelper {
+    //veri tabanının adı
     public static final String DATABASE_NAME = "YgsLysDatabase.db";
 
+    //ygs doğru, yanlış ve netlerini kaydeden ilk tablo
     public static final String TABLE_NAME = "YgsMarks";
     public static final String COL_11 = "LESSON";
     public static final String COL_12 = "CORRECT";
     public static final String COL_13 = "INCORRECT";
     public static final String COL_14 = "MARK";
 
+    //bütün net ve puanların kaydedildiği tablo
     public static final String TABLE_NAME2 = "AllScores";
     public static final String COL_21 = "EXAM_NAME";
     public static final String COL_22 = "EXAM_DATE";
@@ -58,6 +63,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_54 = "LANG2";
     public static final String COL_55 = "LANG3";
 
+    //lys activity sine geçerken ygs net ve puanları kaybolmasın diye oluşturulan tablo
     public static final String TABLE_NAME3 = "YGSDatasForLYS ";
     public static final String COL_56 = "TR_MARK";
     public static final String COL_57 = "SOCIAL_MARK";
@@ -74,9 +80,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private HashMap<String, List<String>> Datas;
 
     public DatabaseHelper(Context context) {
-        super(context, DATABASE_NAME, null, 3);
+        //en sağdaki parametre veritabanınızın sürümüdür
+        //uygulamanız ilk yayınlandığı zaman 1 dir
+        //uygulamanızı her güncellemek istediğinizde 1 arttırmak zorundasınız
+        //arttırmazsanız veri tabanı işlemlerinde hata verir
+        super(context, DATABASE_NAME, null, 4);
     }
 
+    //tabloları oluşturur
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table " + TABLE_NAME
@@ -94,21 +105,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "YGS1 INTEGER, YGS2 INTEGER, YGS3 INTEGER, YGS4 INTEGER, YGS5 INTEGER, YGS6 INTEGER)");
     }
 
+    //bir tabloda herhangi bir veriyi güncellerken eğer tablo mevcutsa tabloyu siler ve güncellenmiş halini tekrar oluşturur
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME2);
-        db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME3);
-        onCreate(db);
+        try {
+            db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME);
+            db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME2);
+            db.execSQL("DROP TABLE IF EXIST " + TABLE_NAME3);
+            onCreate(db);
+        } catch (Exception e) {
+        }
     }
 
+    //ygs doğru, yanlış ve net lerini veritabanına ekler
     public boolean ygsAddMark(String lesson, String correct, String incorrect, String mark) {
+        //veritabanında işlem yapmak için veritabanı erişimini sağlar
         SQLiteDatabase db = this.getWritableDatabase();
+        //girilecek içerikleri veri tabanına eklemek için kullanılır. bir nevi arabulucu
         ContentValues contentValues = new ContentValues();
 
+        //1. satır 1. sütuna lesson değerini ekler
         contentValues.put(COL_11, lesson);
+        //1. satır 2. sütuna correct değerini ekler
         contentValues.put(COL_12, correct);
+        //1. satır 3. sütuna incorrect değerini ekler
         contentValues.put(COL_13, incorrect);
+        //1. satır 4. sütuna mark değerini ekler
         contentValues.put(COL_14, mark);
 
         long result = db.insert(TABLE_NAME, null, contentValues);
@@ -119,32 +141,41 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
-
+    //ygs doğru, yanlış ve net lerini eğer tablo varsa üstüne günceller
     public boolean ygsUpdateMark(String lesson, String correct, String incorrect, String mark) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
+
         contentValues.put(COL_11, lesson);
         contentValues.put(COL_12, correct);
         contentValues.put(COL_13, incorrect);
         contentValues.put(COL_14, mark);
 
+        //veriyi update etmek için lesson değişkenini kullanır
+        //örneğin türkçe, 25, 4, 24 değerleri sırasıyla ders adı, correct, incorrect ve mark tır
+        //lesson değişkenini yani türkçe stringini kullanarak tabloda türkçe kelimesini arar
+        //bulduğu satırda diğer değerleri günceller
         db.update(TABLE_NAME, contentValues, "LESSON = ?", new String[]{lesson});
 
         return true;
     }
 
-
+    //ygs netlerini tablodan çeker
+    //bu metod sadece cursor u döndürür
     public Cursor ygsGetMark() {
         SQLiteDatabase db = this.getWritableDatabase();
+        //1. tablodan curson döndürür
         Cursor res = db.rawQuery("select * from " + TABLE_NAME, null);
 
         return res;
     }
 
+    //deneme adı ve tarihiyle beraber denemeyi veri tabanına kaydeder
     public boolean addAllScore(AllScores allScores) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
+        //allScores nesneyi yardımıyla getter metodlarını kullanarak verileri alır ve put ile tabloya ekler
         contentValues.put(COL_21, allScores.getExamName());
         contentValues.put(COL_22, allScores.getExamDate());
         contentValues.put(COL_23, allScores.getTrMark());
@@ -189,6 +220,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    //expandable listview deki başlıklar için tablodan sınav adı ve tarihini çeker
     public ArrayList<String> getAllHeadersFromDb() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
@@ -196,14 +228,31 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Headers = new ArrayList<>();
 
         while (res.moveToNext()) {
-
+            //0 veriyi ilk sütundan çeker, 1 ise 2. sütundan
+            //0 sınav adıdır, 1 ise sınav tarihi
+            //bu 2 stringi birleştirip headers arraylist ine atar
             Headers.add(res.getString(0) + " / " + res.getString(1));
-
         }
 
         return Headers;
     }
 
+    //tablodan sadece sınav adını çeker
+    public ArrayList<String> getAllHeadersFromDb2() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
+
+        Headers = new ArrayList<>();
+
+        while (res.moveToNext()) {
+            //ilk sütun için 0 ı kullanır yani sınav adını çeker
+            Headers.add(res.getString(0));
+        }
+
+        return Headers;
+    }
+
+    //expandable listview deki child(net ve puanlar) ları çekip parentlara(sınav adı ve tarihleri) atar
     public HashMap<String, List<String>> getAllDatasFromDb() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
@@ -247,14 +296,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             Child.add(res.getString(33));
             Child.add(res.getString(34));
 
+            //hashmap ile veriler bir başlık altında toplanılır
+            //hashmap datas(deneme1, deneme2)
+            //datas(deneme1, deneme1 deki bütün net ve puanlar)
+            //datas(deneme2, deneme2 deki bütün net ve puanlar)
             Datas.put(Headers.get(b), Child);
             b++;
-
         }
 
         return Datas;
     }
 
+    //deneme siler
     public void deleteDatas(int position) {
         SQLiteDatabase db = this.getWritableDatabase();
 
@@ -262,13 +315,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
 
+        //silmek istediğimiz denemenin expandable listviewdeki pozisyonuna göre cursor o pozisyona gider
         res.moveToPosition(position);
 
+        //o pozisyondaki string değeri yani deneme adı alınır
         examName = res.getString(0);
 
+        //silinmek istenen denemeyi adına göre aratıp siler
+        //deneme adı benzersiz olmalıdır yoksa aynı ada sahip bütün denemeleri siler
         db.delete(TABLE_NAME2, "EXAM_NAME = ?", new String[]{examName});
     }
 
+    //denemeyi yeniden adlandırır
     public void renameDatas(int position, String newExamName) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -277,15 +335,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         Cursor res = db.rawQuery("select * from " + TABLE_NAME2, null);
 
+        //silmek istediğimiz denemenin expandable listviewdeki pozisyonuna göre cursor o pozisyona gider
         res.moveToPosition(position);
 
+        //o pozisyondaki string değeri yani deneme adı alınır
         oldExamName = res.getString(0);
 
+        //yeni deneme adı eski deneme adının yerine yazılır
         contentValues.put(COL_21, newExamName);
 
         db.update(TABLE_NAME2, contentValues, "EXAM_NAME = ?", new String[]{oldExamName});
     }
 
+    //lys ye geçerken ygs netleri kaybolmasın diye veri tabanına ekler
     public boolean addYgsDatasForLys(AllScores allScores) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -309,6 +371,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return true;
     }
 
+    //eğer tablo varsa ygs netlerini varolan netlerin üstüne yazar
     public boolean updateYgsDatasForLys(AllScores allScores) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -329,6 +392,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    //sadece cursor u döndürür
     public Cursor getYgsDatasForLys() {
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor res = db.rawQuery("select * from " + TABLE_NAME3, null);

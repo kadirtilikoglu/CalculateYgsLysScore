@@ -19,8 +19,9 @@ import demirciy.ygslyspuanhesaplama.R;
  * Time     : 14:29
  * Email    : codeproject.g@gmail.com
  **/
-public class AdapterExpListView extends BaseExpandableListAdapter {
 
+//expandable listview in adaptörü
+public class AdapterExpListView extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader;
     private HashMap<String, List<String>> _listDataChild;
@@ -31,32 +32,38 @@ public class AdapterExpListView extends BaseExpandableListAdapter {
         this._listDataHeader = _listDataHeader;
     }
 
+    //grup(başlık) sayısını döndürür
     @Override
     public int getGroupCount() {
         return this._listDataHeader.size();
     }
 
+    //expandable listview in child yapısı custom olduğu için 1 değerini kullandım
     @Override
     public int getChildrenCount(int groupPosition) {
         return 1;
     }
 
+    //başlığı döndürür
     @Override
     public Object getGroup(int groupPosition) {
         return this._listDataHeader.get(groupPosition);
     }
 
+    //child ı döndürür
     @Override
     public Object getChild(int groupPosition, int childPosition) {
         return this._listDataChild.get(this._listDataHeader.get(groupPosition))
                 .get(childPosition);
     }
 
+    //başlığın sıra numarasını döndürür
     @Override
     public long getGroupId(int groupPosition) {
         return groupPosition;
     }
 
+    //child ın sırasını döndürür
     @Override
     public long getChildId(int groupPosition, int childPosition) {
         return childPosition;
@@ -67,13 +74,15 @@ public class AdapterExpListView extends BaseExpandableListAdapter {
         return false;
     }
 
+    //başlıkları yazdırır
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
-
         String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+            //parent(başlık) layoutu custom olduğu için tanımlamak gerekli
             convertView = infalInflater.inflate(R.layout.exp_parent_layout, null);
 
         }
@@ -85,9 +94,9 @@ public class AdapterExpListView extends BaseExpandableListAdapter {
         return convertView;
     }
 
+    //child ları yazdırır
     @Override
     public View getChildView(int groupPosition, int childPosition, boolean isLastChild, View convertView, ViewGroup parent) {
-
         TextView expTr, expSocial, expMath1, expScience, expYgs1, expYgs2, expYgs3, expYgs4,
                 expYgs5, expYgs6, expMath2, expGeo, expPhy, expChe, expBio, expLite, expGeog1,
                 expHis, expGeog2, expPhi, expForeign, expMf1, expMf2, expMf3, expMf4, expTm1,
@@ -174,5 +183,4 @@ public class AdapterExpListView extends BaseExpandableListAdapter {
     public boolean isChildSelectable(int groupPosition, int childPosition) {
         return true;
     }
-
 }

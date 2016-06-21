@@ -2,8 +2,8 @@ package demirciy.ygslyspuanhesaplama.model;
 
 import demirciy.ygslyspuanhesaplama.lys.ActivityLys;
 
+//lys puan türlerini hesaplar
 public class LysCalculateScoreType extends ActivityLys {
-
     private double ygsTr, ygsSos, ygsMat, ygsFen, lysMat, lysGeo, lysFizik, lysKimya, lysBiyo,
             lysEde, lysCog1, lysTarih, lysCog2, lysFel, lysYdil;
 
