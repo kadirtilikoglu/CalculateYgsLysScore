@@ -2,7 +2,7 @@
     <img src="https://lh3.googleusercontent.com/LUQ59O_mu6hk2FM_w78nQ9G7ENXkah4crQB0EIUQlbty9hvWsOkoxN98a7f3lNM63ccX=w300-rw" alt="Google Street View" height="240" width="240"/>
 </p>
 #Ygs Lys Puan Hesaplama 2016
-YGS LYS puan hesaplama uygulaması. 
+<a href="url">https://play.google.com/store/apps/details?id=demirciy.ygslyspuanhesaplama</a>
 
 <div>
   <img src="https://lh3.googleusercontent.com/VCBoU6HCW9gSja96z_8RxTkirmaHKrH0K73qVIn-naYoiN0BA69lxYOniZmABXMql6Y=h310-rw"></a>
