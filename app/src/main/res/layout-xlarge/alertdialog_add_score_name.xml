@@ -8,7 +8,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/etExamName"
         android:inputType="text"
-        android:textColor="@color/siyah"
+        android:textColor="@color/black"
         android:maxLength="13"/>
 
 </LinearLayout>

@@ -7,10 +7,11 @@
     <color name="background">#d9d9d9</color>
     <color name="butonText">#353535</color>
 
-    <color name="beyaz">#ffffff</color>
-    <color name="siyah">#000000</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
 
-    <color name="ygs">#2c3e50</color>
+    <color name="blueMidnight">#ee2c3e50</color>
+    <color name="redDark">#da7c2121</color>
 
     <color name="mf">#388E3C</color>
     <color name="tm">#8d3eae</color>

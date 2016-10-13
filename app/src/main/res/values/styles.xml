@@ -15,88 +15,67 @@
     </style>
 
     <!--Normal-->
-    <style name="ygsDersler">
-        <item name="android:layout_width">80sp</item>
-        <item name="android:layout_height">match_parent</item>
+    <style name="layout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="ygsClasses">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">16sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:layout_alignParentStart">true</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_weight">0.8</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="etYgsD">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/correct</item>
-        <item name="android:gravity">center</item>
+    <style name="edittextLayout">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">16sp</item>
+    </style>
+
+    <style name="edittext">
+        <item name="android:layout_width">50sp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="etYgsY">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/incorrect</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
+        <item name="android:textSize">12sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:maxLength">5</item>
-        <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
-        <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
     </style>
 
-    <style name="etYgsN">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/mark</item>
-        <item name="android:gravity">center</item>
-        <item name="android:maxLength">5</item>
-        <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
-        <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
-    <style name="ygsToplam">
+    <style name="ygsSum">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">12sp</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_weight">0.5</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
     </style>
 
-    <style name="ygsToplamD">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="ygsSumOthers">
+        <item name="android:layout_width">50sp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/correct</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">11sp</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
     </style>
 
     <style name="ygsToplamY">
@@ -105,7 +84,7 @@
         <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/incorrect</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">11sp</item>
     </style>
@@ -116,19 +95,20 @@
         <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/mark</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">11sp</item>
     </style>
 
-    <style name="ygsPuanTurleri">
+    <style name="ygsScoreTypes">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/redDark</item>
     </style>
 
     <style name="lysDersler">
@@ -280,7 +260,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
     </style>
 
     <style name="aboutTContext">
@@ -289,7 +269,7 @@
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
     </style>
 
     <style name="wiylText">
@@ -297,7 +277,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">14sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:gravity">center</item>
     </style>
     <!--Normal-->
@@ -307,7 +287,7 @@
         <item name="android:layout_width">80sp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">24sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_weight">0.8</item>
@@ -323,11 +303,11 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">21sp</item>
     </style>
@@ -340,11 +320,11 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">21sp</item>
     </style>
@@ -357,11 +337,11 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">21sp</item>
     </style>
@@ -372,7 +352,7 @@
         <item name="android:textSize">18sp</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_weight">0.5</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
     </style>
 
@@ -384,7 +364,7 @@
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">17.5sp</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
     </style>
 
     <style name="ygsToplamYLarge">
@@ -393,7 +373,7 @@
         <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/incorrect</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">17sp</item>
     </style>
@@ -404,7 +384,7 @@
         <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/mark</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">17sp</item>
     </style>
@@ -537,7 +517,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">27sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
     </style>
 
     <style name="aboutTContextLarge">
@@ -546,7 +526,7 @@
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">21sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
     </style>
 
     <style name="wiylTextLarge">
@@ -554,7 +534,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">21sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:gravity">center</item>
     </style>
     <!--Large-->
@@ -564,7 +544,7 @@
         <item name="android:layout_width">80sp</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">32sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:layout_weight">0.8</item>
@@ -580,11 +560,11 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
     </style>
@@ -597,11 +577,11 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
     </style>
@@ -614,11 +594,11 @@
         <item name="android:gravity">center</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/ygs</item>
+        <item name="android:backgroundTint">@color/blueMidnight</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">28sp</item>
     </style>
@@ -629,7 +609,7 @@
         <item name="android:textSize">24sp</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_weight">0.5</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
     </style>
 
@@ -641,7 +621,7 @@
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">22sp</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
     </style>
 
     <style name="ygsToplamYXLarge">
@@ -650,7 +630,7 @@
         <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/incorrect</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">22sp</item>
     </style>
@@ -661,7 +641,7 @@
         <item name="android:layout_weight">0.2</item>
         <item name="android:hint">@string/mark</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColorHint">@color/ygs</item>
+        <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">22sp</item>
     </style>
@@ -793,7 +773,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">36sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
     </style>
 
     <style name="aboutTContextXLarge">
@@ -802,7 +782,7 @@
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
     </style>
 
     <style name="wiylTextXLarge">
@@ -810,7 +790,7 @@
         <item name="android:layout_height">match_parent</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">28sp</item>
-        <item name="android:textColor">@color/ygs</item>
+        <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:gravity">center</item>
     </style>
     <!--XLarge-->

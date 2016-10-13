@@ -14,9 +14,9 @@
     <string name="lys4">Lys4</string>
     <string name="lys5">Lys5</string>
 
-    <string name="correct">Doğru</string>
-    <string name="incorrect">Yanlış</string>
-    <string name="mark">"   Net   "</string>
+    <string name="correct">doğru</string>
+    <string name="incorrect">yanlış</string>
+    <string name="mark">net</string>
     <string name="total">Toplam</string>
     <string name="turkish">Türkçe</string>
     <string name="social">Sosyal</string>
@@ -41,12 +41,14 @@
     <string name="diploma">"Diploma Notu(50-100)"</string>
 
     <string name="save">Kaydet</string>
+    <string name="cancel">İptal</string>
     <string name="share">Paylaş</string>
     <string name="my_scores">Puanlarım</string>
     <string name="about_ygs_lys">Ygs Lys Nedir?</string>
     <string name="about">Hakkında</string>
 
     <string name="lys_warning">"Dikkat! Lys'ye girebilmeniz için 180 puan ve üstü almanız gerekiyor."</string>
+    <string name="toastInvalidName">"Geçerli bir sınav adı giriniz."</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="exam_name">Deneme Adı</string>

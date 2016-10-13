@@ -1,37 +1,34 @@
 package demirciy.ygslyspuanhesaplama.ygs;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 import demirciy.ygslyspuanhesaplama.R;
+import demirciy.ygslyspuanhesaplama.base.ActivityBase;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 import demirciy.ygslyspuanhesaplama.lys.ActivityLys;
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.YgsCalculateScoreType;
+import demirciy.ygslyspuanhesaplama.util.AlertDialog;
 
-//ilk açılan activtiy budur. ygs puanını hesaplar
-public class ActivityYgs extends AppCompatActivity {
+public class ActivityYgs extends ActivityBase {
 
+    final String LOG_TAG = "ActivityYgs.class : ";
+    public double ygsTrN, ygsSosN, ygsMatN, ygsFenN;
+    DecimalFormat format = new DecimalFormat("#.##");
+    DatabaseHelper myDb;
     private EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
             etYgsSosN, etYgsMatD, etYgsMatY, etYgsMatN, etYgsFenD,
             etYgsFenY, etYgsFenN;
@@ -39,17 +36,8 @@ public class ActivityYgs extends AppCompatActivity {
             tYgs3, tYgs4, tYgs5, tYgs6;
     private double ygsTrD, ygsTrY, ygsSosD, ygsSosY, ygsMatD,
             ygsMatY, ygsFenD, ygsFenY;
-    public double ygsTrN, ygsSosN, ygsMatN, ygsFenN;
     private double ygs1, ygs2, ygs3, ygs4, ygs5, ygs6;
-
     private String examName, date;
-
-    DecimalFormat format = new DecimalFormat("#.##");
-
-    final String LOG_TAG = "LogCat outputs -->";
-
-    //veritabanının class ına erişmek için tanımlandı
-    DatabaseHelper myDb;
 
     //action bar çağrılıyor
     @Override
@@ -90,8 +78,6 @@ public class ActivityYgs extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ygs);
-
-        Log.i(LOG_TAG, "App started.");
 
         etYgsTrD = (EditText) findViewById(R.id.etYgsTrD);
         etYgsTrY = (EditText) findViewById(R.id.etYgsTrY);
@@ -638,8 +624,6 @@ public class ActivityYgs extends AppCompatActivity {
     //her dersin doğru, yanlış ve net sayılarını alıp topluyor ve toplamını yazdırıyor
     public void ygsPrintSum() {
 
-        Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printing.");
-
         try {
             boolean trD = etYgsTrD.getText().toString().equals("");
             boolean trY = etYgsTrY.getText().toString().equals("");
@@ -719,153 +703,139 @@ public class ActivityYgs extends AppCompatActivity {
             tToplamN.setText(format.format(ygsTrN + ygsSosN + ygsMatN + ygsFenN));
 
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Printing sum failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
-        }
 
-        Log.d(LOG_TAG, "Ygs / Total Correct, Incorrect, Mark printed.");
+            e.printStackTrace();
+        }
     }
 
-    //netleri YgsCalculateScoreType class ına gönderip ygs puan türlerini hesaplıyor
     public void ygsShowScore() {
-        Log.d(LOG_TAG, "Ygs / Scores calculating.");
 
         try {
             YgsCalculateScoreType Ygs = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
+
             ygs1 = Ygs.getYgs1();
             tYgs1.setText(String.format("Ygs-1 : %.2f", ygs1));
+
             ygs2 = Ygs.getYgs2();
             tYgs2.setText(String.format("Ygs-2 : %.2f", ygs2));
+
             ygs3 = Ygs.getYgs3();
             tYgs3.setText(String.format("Ygs-3 : %.2f", ygs3));
+
             ygs4 = Ygs.getYgs4();
             tYgs4.setText(String.format("Ygs-4 : %.2f", ygs4));
+
             ygs5 = Ygs.getYgs5();
             tYgs5.setText(String.format("Ygs-5 : %.2f", ygs5));
+
             ygs6 = Ygs.getYgs6();
             tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
+
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Showing score failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
+            e.printStackTrace();
         }
-        Log.d(LOG_TAG, "Ygs / Scores calculated.");
     }
 
-    //ygs derslerinin doğru, yanlış ve net sayılarını veritabanına kaydediyor.
-    //bir sonraki açılışta previousInfo() metodu kullanılarak bu ygs verileri geri getiriliyor
     public void ygsAddMarkDatabase() {
-        Log.d(LOG_TAG, "Ygs / Marks are adding into database.");
 
         try {
             Cursor res = myDb.ygsGetMark();
 
-            //eğer dönen değer 0 ise bu tablo ilk defa oluşturulup değerler atılıyor
             if (res.getCount() == 0) {
+
                 myDb.ygsAddMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
                 myDb.ygsAddMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
                 myDb.ygsAddMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
                 myDb.ygsAddMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
-                //dönen değer 0 değilse tablo daha önce oluşturulmuş demektir. tablo güncelleniyor
+                Log.d(LOG_TAG, "Ygs / Marks added into database.");
+
             } else {
+
                 myDb.ygsUpdateMark("Türkçe", String.valueOf(ygsTrD), String.valueOf(ygsTrY), String.valueOf(ygsTrN));
                 myDb.ygsUpdateMark("Sosyal", String.valueOf(ygsSosD), String.valueOf(ygsSosY), String.valueOf(ygsSosN));
                 myDb.ygsUpdateMark("Matematik", String.valueOf(ygsMatD), String.valueOf(ygsMatY), String.valueOf(ygsMatN));
                 myDb.ygsUpdateMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
+                Log.d(LOG_TAG, "Ygs / Marks updated into database.");
+
             }
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Adding marks to database failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
+            e.printStackTrace();
         }
-
-        Log.d(LOG_TAG, "Ygs / Marks added into database.");
     }
 
-    //action bar da kaydet butonuna basınca ygs puanını kaydetmek için bu metod tetikleniyor ve bir alertdialog açılıyor
-    //alertdialog da denemenin adı soruluyor eğer boş girilirse otomatikman denemenin adı adsız oluyor
-    //kaydet butonuna basınca girilen ad ve o anki tarih alınıp veri tabanına gönderiliyor
     public void ygsAlertDialog() {
-        Log.d(LOG_TAG, "Ygs / Saving exam alert dialog starting.");
 
-        try {
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-            LayoutInflater inflater = this.getLayoutInflater();
+        AlertDialog dialog = new AlertDialog(this, "Ygs puan kaydet", "Sınav adı giriniz");
+        dialog.setFrom(AlertDialog.From.Ygs);
+        boolean isSuccess = dialog.build();
 
-            //alertdialog custom olduğu için layout dosyası çağırılıyor
-            final View dialogView = inflater.inflate(R.layout.alertdialog_add_score_name, null);
-            dialogBuilder.setView(dialogView);
+        if (isSuccess) {
 
-            final EditText etExamName = (EditText) dialogView.findViewById(R.id.etExamName);
-            dialogBuilder.setTitle("Ygs puan kaydet");
-            dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak Ygs denemesi");
-            dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    boolean isNull = etExamName.getText().toString().equals("");
-                    if (isNull) {
-                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-                        examName = "Adsız";
-                        if (findSameExamName() == 0) {
-                            ygsAddScoreDatabase();
-                        } else {
-                            ygsAlertDialog();
-                        }
-                    } else {
-                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-                        examName = etExamName.getText().toString();
-                        if (findSameExamName() == 0) {
-                            ygsAddScoreDatabase();
-                        } else {
-                            ygsAlertDialog();
-                        }
-                    }
-                }
-            });
-            dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog b = dialogBuilder.create();
-            b.show();
-        } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
-        }
-        Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
-    }
+            if (dialog.getAllScores() != null) {
 
-    //eğer girilen deneme adı daha önce veritabanına kaydedilmişse 1 değeri, değilse 0 değeri döndürülüyor
-    private int findSameExamName() {
-        int value = 0;
-
-        ArrayList<String> Headers;
-        Headers = myDb.getAllHeadersFromDb2();
-        for (int i = 0; i < Headers.size(); i++) {
-            if (Headers.get(i).equals(examName)) {
-                examNameErrorMessage();
-                value = 1;
+                ygsAddScoreDatabase(dialog.getAllScores());
             }
         }
-        return value;
-    }
 
-    private void examNameErrorMessage() {
-        String errorMessage = "Bu isme ait başka bir sınav adı mevcuttur.";
-        Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
+//        try {
+//
+//            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
+//            LayoutInflater inflater = this.getLayoutInflater();
+//
+//            final View dialogView = inflater.inflate(R.layout.alertdialog_add_score_name, null);
+//            dialogBuilder.setView(dialogView);
+//
+//            final EditText etExamName = (EditText) dialogView.findViewById(R.id.etExamName);
+//
+//            dialogBuilder.setTitle("Ygs puan kaydet");
+//            dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak Ygs denemesi");
+//
+//            dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//                    boolean isNull = etExamName.getText().toString().equals("");
+//                    if (isNull) {
+//                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+//                        examName = "Adsız";
+//                        if (findSameExamName() == 0) {
+//                            ygsAddScoreDatabase();
+//                        } else {
+//                            ygsAlertDialog();
+//                        }
+//                    } else {
+//                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+//                        examName = etExamName.getText().toString();
+//                        if (findSameExamName() == 0) {
+//                            ygsAddScoreDatabase();
+//                        } else {
+//                            ygsAlertDialog();
+//                        }
+//                    }
+//                }
+//            });
+//            dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
+//                public void onClick(DialogInterface dialog, int whichButton) {
+//                    dialog.cancel();
+//                }
+//            });
+//            AlertDialog b = dialogBuilder.create();
+//            b.show();
+//        } catch (Exception e) {
+//            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
+//            Log.e(LOG_TAG, msg);
+//        }
+//        Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
     }
 
     //kaydedilmek istenen net ve puanlar allscores nesnesi oluşturulup içine atılıyor
     //myDb.addAllScore(allScores); metoduyla değerler veritabanı classına nesne içinde gönderiliyor
     //veritabanındaki addAllScore() metodu da bu verilere nesne yardımıyla erişip veritabanı tablosuna ekliyor
-    public void ygsAddScoreDatabase() {
+    public void ygsAddScoreDatabase(AllScores allScores) {
         Log.d(LOG_TAG, "Ygs / Scores are adding into database.");
 
         try {
-            AllScores allScores = new AllScores();
 
-            allScores.setExamName(examName);
-            allScores.setExamDate(date);
             allScores.setTrMark(ygsTrN);
             allScores.setSocialMark(ygsSosN);
             allScores.setMath1Mark(ygsMatN);

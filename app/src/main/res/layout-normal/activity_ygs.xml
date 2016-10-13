@@ -1,229 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-
+    android:orientation="vertical"
     tools:context=".ygs.ActivityYgs">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:id="@+id/rlButonUst"
+        style="@style/layout">
+
+        <TextView
+            android:id="@+id/tMat"
+            style="@style/ygsClasses"
+            android:layout_alignBottom="@id/llMat"
+            android:layout_alignTop="@id/llMat"
+            android:text="@string/math" />
+
+        <LinearLayout
+            android:id="@+id/llTr"
+            style="@style/edittextLayout"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsTrD"
+                style="@style/edittext"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsTrY"
+                style="@style/edittext"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsTrN"
+                style="@style/edittext"
+                android:hint="@string/mark" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tTurkce"
+            style="@style/ygsClasses"
+            android:layout_alignBottom="@id/llTr"
+            android:layout_alignTop="@id/llTr"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/turkish" />
+
+        <LinearLayout
+            android:id="@+id/llSos"
+            style="@style/edittextLayout"
+            android:layout_below="@+id/tTurkce"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsSosD"
+                style="@style/edittext"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsSosY"
+                style="@style/edittext"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsSosN"
+                style="@style/edittext"
+                android:hint="@string/mark" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tSos"
+            style="@style/ygsClasses"
+            android:layout_alignBottom="@id/llSos"
+            android:layout_alignTop="@id/llSos"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/social" />
+
+        <LinearLayout
+            android:id="@+id/llMat"
+            style="@style/edittextLayout"
+            android:layout_below="@+id/llSos"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsMatD"
+                style="@style/edittext"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsMatY"
+                style="@style/edittext"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsMatN"
+                style="@style/edittext"
+                android:hint="@string/mark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFen"
+            style="@style/edittextLayout"
+            android:layout_below="@+id/llMat"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsFenD"
+                style="@style/edittext"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsFenY"
+                style="@style/edittext"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsFenN"
+                style="@style/edittext"
+                android:hint="@string/mark" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tFen"
+            style="@style/ygsClasses"
+            android:layout_alignBottom="@id/llFen"
+            android:layout_alignTop="@id/llFen"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/science" />
+
+        <LinearLayout
+            android:id="@+id/llToplam"
+            style="@style/edittextLayout"
+            android:layout_below="@+id/llFen"
+            android:layout_marginTop="10sp"
+            android:layout_toEndOf="@id/tMat">
+
+            <TextView
+                android:id="@+id/tToplamD"
+                style="@style/ygsSumOthers"
+                android:text="@string/correct" />
+
+            <TextView
+                android:id="@+id/tToplamY"
+                style="@style/ygsSumOthers"
+                android:text="@string/incorrect" />
+
+            <TextView
+                android:id="@+id/tToplamN"
+                style="@style/ygsSumOthers"
+                android:text="@string/mark" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tToplam"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/llToplam"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@id/llToplam"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/total"
+            android:textColor="@color/blueMidnight"
+            android:textSize="12sp"
+            android:typeface="serif" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rlButonAlt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_marginTop="16sp"
+        android:background="@color/white"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
         android:paddingTop="@dimen/activity_vertical_margin">
 
-        <RelativeLayout
-            android:id="@+id/rlButonUst"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llygs12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tYgs1"
+                style="@style/ygsScoreTypes"
+                android:text="@string/ygs1" />
+
+            <TextView
+                android:id="@+id/tYgs2"
+                style="@style/ygsScoreTypes"
+                android:text="@string/ygs2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llygs34"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_bg"
-            android:elevation="2sp"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:layout_marginTop="2sp"
-            android:layout_marginLeft="2sp"
-            android:layout_marginRight="2sp">
+            android:layout_below="@id/llygs12"
+            android:layout_marginTop="10sp">
 
-            <LinearLayout
-                android:id="@+id/llTr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tYgs3"
+                style="@style/ygsScoreTypes"
+                android:text="@string/ygs3" />
 
-                <TextView
-                    android:id="@+id/tTurkce"
-                    style="@style/ygsDersler"
-                    android:text="@string/turkish" />
+            <TextView
+                android:id="@+id/tYgs4"
+                style="@style/ygsScoreTypes"
+                android:text="@string/ygs4" />
+        </LinearLayout>
 
-                <EditText
-                    android:id="@+id/etYgsTrD"
-                    style="@style/etYgsD" />
-
-                <EditText
-                    android:id="@+id/etYgsTrY"
-                    style="@style/etYgsY" />
-
-                <EditText
-                    android:id="@+id/etYgsTrN"
-                    style="@style/etYgsN" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llSos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llTr">
-
-                <TextView
-                    android:id="@+id/tSos"
-                    style="@style/ygsDersler"
-                    android:text="@string/social" />
-
-                <EditText
-                    android:id="@+id/etYgsSosD"
-                    style="@style/etYgsD" />
-
-                <EditText
-                    android:id="@+id/etYgsSosY"
-                    style="@style/etYgsY" />
-
-                <EditText
-                    android:id="@+id/etYgsSosN"
-                    style="@style/etYgsN" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llMat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llSos">
-
-                <TextView
-                    android:id="@+id/tMat"
-                    style="@style/ygsDersler"
-                    android:text="@string/math" />
-
-                <EditText
-                    android:id="@+id/etYgsMatD"
-                    style="@style/etYgsD" />
-
-                <EditText
-                    android:id="@+id/etYgsMatY"
-                    style="@style/etYgsY" />
-
-                <EditText
-                    android:id="@+id/etYgsMatN"
-                    style="@style/etYgsN" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llFen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llMat">
-
-                <TextView
-                    android:id="@+id/tFen"
-                    style="@style/ygsDersler"
-                    android:text="@string/science" />
-
-                <EditText
-                    android:id="@+id/etYgsFenD"
-                    style="@style/etYgsD" />
-
-                <EditText
-                    android:id="@+id/etYgsFenY"
-                    style="@style/etYgsY" />
-
-                <EditText
-                    android:id="@+id/etYgsFenN"
-                    style="@style/etYgsN" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llToplam"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llFen"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:id="@+id/tToplam"
-                    style="@style/ygsToplam"
-                    android:text="@string/total" />
-
-                <TextView
-                    android:id="@+id/tToplamD"
-                    style="@style/ygsToplamD" />
-
-                <TextView
-                    android:id="@+id/tToplamY"
-                    style="@style/ygsToplamY" />
-
-                <TextView
-                    android:id="@+id/tToplamN"
-                    style="@style/ygsToplamN" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlButonAlt"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llygs56"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16sp"
-            android:background="@drawable/layout_bg"
-            android:elevation="2sp"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="2sp"
-            android:layout_marginRight="2sp"
-            android:layout_marginBottom="4sp">
+            android:layout_below="@id/llygs34"
+            android:layout_marginTop="10sp">
 
-            <LinearLayout
-                android:id="@+id/llygs12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tYgs5"
+                style="@style/ygsScoreTypes"
+                android:text="@string/ygs5" />
 
-                <TextView
-                    android:id="@+id/tYgs1"
-                    style="@style/ygsPuanTurleri"
-                    android:text="@string/ygs1"
-                    android:textColor="@color/mf" />
+            <TextView
+                android:id="@+id/tYgs6"
+                style="@style/ygsScoreTypes"
+                android:text="@string/ygs6" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tYgs2"
-                    style="@style/ygsPuanTurleri"
-                    android:text="@string/ygs2"
-                    android:textColor="@color/mf" />
-            </LinearLayout>
+    </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/llygs34"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/llygs12"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:id="@+id/tYgs3"
-                    style="@style/ygsPuanTurleri"
-                    android:text="@string/ygs3"
-                    android:textColor="@color/ts" />
-
-                <TextView
-                    android:id="@+id/tYgs4"
-                    style="@style/ygsPuanTurleri"
-                    android:text="@string/ygs4"
-                    android:textColor="@color/ts" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llygs56"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/llygs34"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:id="@+id/tYgs5"
-                    style="@style/ygsPuanTurleri"
-                    android:text="@string/ygs5"
-                    android:textColor="@color/tm" />
-
-                <TextView
-                    android:id="@+id/tYgs6"
-                    style="@style/ygsPuanTurleri"
-                    android:text="@string/ygs6"
-                    android:textColor="@color/tm" />
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>
