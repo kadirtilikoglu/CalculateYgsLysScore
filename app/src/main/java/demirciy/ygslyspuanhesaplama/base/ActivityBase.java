@@ -1,6 +1,10 @@
 package demirciy.ygslyspuanhesaplama.base;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
+
+import demirciy.ygslyspuanhesaplama.model.AllScores;
+import demirciy.ygslyspuanhesaplama.util.CustomDialog;
 
 /**
  * Created by Yusuf DEMİRCİ
@@ -9,4 +13,10 @@ import android.support.v7.app.AppCompatActivity;
  **/
 public class ActivityBase extends AppCompatActivity {
 
+    public void createDialog(Context context, CustomDialog.From from, AllScores allScores) {
+
+        CustomDialog dialog = new CustomDialog(context, from, allScores);
+
+        dialog.build();
+    }
 }

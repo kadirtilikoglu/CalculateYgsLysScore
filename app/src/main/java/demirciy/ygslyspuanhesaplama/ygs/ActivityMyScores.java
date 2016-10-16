@@ -114,7 +114,7 @@ public class ActivityMyScores extends AppCompatActivity {
     public void alertDialog(final int position) {
         final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
         LayoutInflater inflater = this.getLayoutInflater();
-        final View dialogView = inflater.inflate(R.layout.alertdialog_add_score_name, null);
+        final View dialogView = inflater.inflate(R.layout.dialog_custom, null);
         dialogBuilder.setView(dialogView);
 
         final EditText etExamName = (EditText) dialogView.findViewById(R.id.etExamName);

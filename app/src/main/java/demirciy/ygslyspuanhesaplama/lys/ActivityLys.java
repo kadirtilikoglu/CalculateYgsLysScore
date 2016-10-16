@@ -27,7 +27,6 @@ import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.LysCalculateScoreType;
-import demirciy.ygslyspuanhesaplama.ygs.ActivityYgs;
 
 public class ActivityLys extends AppCompatActivity {
 
@@ -1696,7 +1695,7 @@ public class ActivityLys extends AppCompatActivity {
         try {
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
             LayoutInflater inflater = this.getLayoutInflater();
-            final View dialogView = inflater.inflate(R.layout.alertdialog_add_score_name, null);
+            final View dialogView = inflater.inflate(R.layout.dialog_custom, null);
             dialogBuilder.setView(dialogView);
 
             final EditText etExamName = (EditText) dialogView.findViewById(R.id.etExamName);

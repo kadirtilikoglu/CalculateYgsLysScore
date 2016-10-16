@@ -1,5 +1,7 @@
 package demirciy.ygslyspuanhesaplama.util;
 
+import android.app.AlertDialog.Builder;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.text.Editable;
@@ -22,64 +24,63 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
  * Date     : 13.10.2016
  * Time     : 10:45
  **/
-public class AlertDialog extends android.app.AlertDialog implements TextWatcher {
+public class CustomDialog extends Dialog implements TextWatcher {
 
     Context context;
 
     EditText etExamName;
 
-    String title, message, date, examName;
-    boolean isSuccess = false;
+    String date, examName;
 
-    AlertDialog.From from;
+    CustomDialog.From from;
 
     DatabaseHelper myDb;
     AllScores allScores;
 
     private android.app.AlertDialog b = null;
 
-    public AlertDialog(Context context, String title, String message) {
+    public CustomDialog(Context context, From from, AllScores allScores) {
 
         super(context);
 
         myDb = new DatabaseHelper(context);
 
         this.context = context;
-        this.title = title;
-        this.message = message;
+        this.from = from;
+        this.allScores = allScores;
     }
 
-    public boolean build() {
-
-        allScores = new AllScores();
-
-        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+    public void build() {
 
         Builder dialogBuilder = new Builder(context);
         LayoutInflater inflater = getLayoutInflater();
-        View dialogView = inflater.inflate(R.layout.alertdialog_add_score_name, null);
+        View dialogView = inflater.inflate(R.layout.dialog_custom, null);
         dialogBuilder.setView(dialogView);
 
         etExamName = (EditText) dialogView.findViewById(R.id.etExamName);
 
-        dialogBuilder.setTitle(title);
-        dialogBuilder.setMessage(message);
-
         dialogBuilder.setPositiveButton(R.string.save, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
 
-//                examName = etExamName.getText().toString();
-//
-//                allScores.setExamName(examName);
-//                allScores.setExamDate(date);
-//
-//                setAllScores(allScores);
-//
-//                isSuccess = true;
+                examName = etExamName.getText().toString();
+
+                if (!examName.equals("")) {
+
+                    date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
+
+                    allScores.setExamName(examName);
+                    allScores.setExamDate(date);
+
+                    myDb.addAllScore(allScores);
+
+                    ToastMessage toast = new ToastMessage(context, "Ygs puanı kaydedildi");
+                    toast.show();
+                }
             }
         });
         dialogBuilder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int whichButton) {
+
                 dialog.cancel();
             }
         });
@@ -90,8 +91,6 @@ public class AlertDialog extends android.app.AlertDialog implements TextWatcher 
         etExamName.addTextChangedListener(this);
 
         checkPositiveButton();
-
-        return isSuccess;
     }
 
     private boolean isUniqueExamName() {
@@ -113,22 +112,6 @@ public class AlertDialog extends android.app.AlertDialog implements TextWatcher 
         }
 
         return isUnique;
-    }
-
-    public From getFrom() {
-        return from;
-    }
-
-    public void setFrom(From from) {
-        this.from = from;
-    }
-
-    public AllScores getAllScores() {
-        return allScores;
-    }
-
-    public void setAllScores(AllScores allScores) {
-        this.allScores = allScores;
     }
 
     @Override
