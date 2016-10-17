@@ -10,19 +10,15 @@ import android.widget.Toast;
  **/
 public class ToastMessage extends Toast {
 
-    Context context;
+    private Context context;
 
-    String message;
-
-    public ToastMessage(Context context, String message) {
-
+    public ToastMessage(Context context) {
         super(context);
 
         this.context = context;
-        this.message = message;
     }
 
-    public void show() {
+    public void show(String message) {
 
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
     }

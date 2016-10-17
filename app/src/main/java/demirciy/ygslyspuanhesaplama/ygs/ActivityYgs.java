@@ -10,10 +10,9 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.Locale;
 
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.base.ActivityBase;
@@ -23,6 +22,7 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.YgsCalculateScoreType;
 import demirciy.ygslyspuanhesaplama.util.CustomDialog;
+import demirciy.ygslyspuanhesaplama.util.ToastMessage;
 
 public class ActivityYgs extends ActivityBase {
 
@@ -30,6 +30,7 @@ public class ActivityYgs extends ActivityBase {
 
     DecimalFormat format = new DecimalFormat("#.##");
     DatabaseHelper myDb;
+    ToastMessage toast;
 
     EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
             etYgsSosN, etYgsMatD, etYgsMatY, etYgsMatN, etYgsFenD,
@@ -103,11 +104,10 @@ public class ActivityYgs extends ActivityBase {
         tYgs6 = (TextView) findViewById(R.id.tYgs6);
 
         myDb = new DatabaseHelper(this);
+        toast = new ToastMessage(this);
 
         previousInfo();
 
-        //textwatcher yapısı başlangıç
-        //textwatcher: edittext e girilen değerlere anında tepki verir
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -142,6 +142,7 @@ public class ActivityYgs extends ActivityBase {
                         }
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -188,6 +189,7 @@ public class ActivityYgs extends ActivityBase {
                         }
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -212,6 +214,7 @@ public class ActivityYgs extends ActivityBase {
                         questionErrorMessage();
                     }
                 } catch (Exception e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -259,7 +262,7 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -311,9 +314,8 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -332,7 +334,6 @@ public class ActivityYgs extends ActivityBase {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     ygsSosN = Double.parseDouble(etYgsSosN.getText().toString());
@@ -342,9 +343,8 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -391,7 +391,7 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -443,9 +443,8 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -464,7 +463,6 @@ public class ActivityYgs extends ActivityBase {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     ygsMatN = Double.parseDouble(etYgsMatN.getText().toString());
@@ -474,9 +472,8 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -523,7 +520,7 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -571,13 +568,11 @@ public class ActivityYgs extends ActivityBase {
                             ygsFenN = ygsFen.getMark();
                             etYgsFenN.setText(format.format(ygsFenN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -596,7 +591,6 @@ public class ActivityYgs extends ActivityBase {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     ygsFenN = Double.parseDouble(etYgsFenN.getText().toString());
@@ -606,9 +600,8 @@ public class ActivityYgs extends ActivityBase {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -618,10 +611,8 @@ public class ActivityYgs extends ActivityBase {
                 ygsAddMarkDatabase();
             }
         });
-        //textwatcher yapısı son
     }
 
-    //her dersin doğru, yanlış ve net sayılarını alıp topluyor ve toplamını yazdırıyor
     public void ygsPrintSum() {
 
         try {
@@ -702,22 +693,22 @@ public class ActivityYgs extends ActivityBase {
             YgsCalculateScoreType Ygs = new YgsCalculateScoreType(ygsTrN, ygsSosN, ygsMatN, ygsFenN);
 
             ygs1 = Ygs.getYgs1();
-            tYgs1.setText(String.format("Ygs-1 : %.2f", ygs1));
+            tYgs1.setText(String.format(Locale.getDefault(), "Ygs-1 : %.2f", ygs1));
 
             ygs2 = Ygs.getYgs2();
-            tYgs2.setText(String.format("Ygs-2 : %.2f", ygs2));
+            tYgs2.setText(String.format(Locale.getDefault(), "Ygs-2 : %.2f", ygs2));
 
             ygs3 = Ygs.getYgs3();
-            tYgs3.setText(String.format("Ygs-3 : %.2f", ygs3));
+            tYgs3.setText(String.format(Locale.getDefault(), "Ygs-3 : %.2f", ygs3));
 
             ygs4 = Ygs.getYgs4();
-            tYgs4.setText(String.format("Ygs-4 : %.2f", ygs4));
+            tYgs4.setText(String.format(Locale.getDefault(), "Ygs-4 : %.2f", ygs4));
 
             ygs5 = Ygs.getYgs5();
-            tYgs5.setText(String.format("Ygs-5 : %.2f", ygs5));
+            tYgs5.setText(String.format(Locale.getDefault(), "Ygs-5 : %.2f", ygs5));
 
             ygs6 = Ygs.getYgs6();
-            tYgs6.setText(String.format("Ygs-6 : %.2f", ygs6));
+            tYgs6.setText(String.format(Locale.getDefault(), "Ygs-6 : %.2f", ygs6));
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -746,7 +737,6 @@ public class ActivityYgs extends ActivityBase {
                 myDb.ygsUpdateMark("Fen", String.valueOf(ygsFenD), String.valueOf(ygsFenY), String.valueOf(ygsFenN));
 
                 Log.d(LOG_TAG, "Ygs / Marks updated into database.");
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -769,90 +759,10 @@ public class ActivityYgs extends ActivityBase {
         allScores.setYgs6(ygs6);
 
         createDialog(this, CustomDialog.From.Ygs, allScores);
-
-//        try {
-//
-//            CustomDialog.Builder dialogBuilder = new CustomDialog.Builder(this);
-//            LayoutInflater inflater = this.getLayoutInflater();
-//
-//            final View dialogView = inflater.inflate(R.layout.dialog_custom, null);
-//            dialogBuilder.setView(dialogView);
-//
-//            final EditText etExamName = (EditText) dialogView.findViewById(R.id.etExamName);
-//
-//            dialogBuilder.setTitle("Ygs puan kaydet");
-//            dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak Ygs denemesi");
-//
-//            dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int whichButton) {
-//                    boolean isNull = etExamName.getText().toString().equals("");
-//                    if (isNull) {
-//                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-//                        examName = "Adsız";
-//                        if (findSameExamName() == 0) {
-//                            ygsAddScoreDatabase();
-//                        } else {
-//                            ygsAlertDialog();
-//                        }
-//                    } else {
-//                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-//                        examName = etExamName.getText().toString();
-//                        if (findSameExamName() == 0) {
-//                            ygsAddScoreDatabase();
-//                        } else {
-//                            ygsAlertDialog();
-//                        }
-//                    }
-//                }
-//            });
-//            dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
-//                public void onClick(DialogInterface dialog, int whichButton) {
-//                    dialog.cancel();
-//                }
-//            });
-//            CustomDialog b = dialogBuilder.create();
-//            b.show();
-//        } catch (Exception e) {
-//            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
-//            Log.e(LOG_TAG, msg);
-//        }
-//        Log.d(LOG_TAG, "Ygs / Saving exam alert dialog started.");
     }
 
-    //kaydedilmek istenen net ve puanlar allscores nesnesi oluşturulup içine atılıyor
-    //myDb.addAllScore(allScores); metoduyla değerler veritabanı classına nesne içinde gönderiliyor
-    //veritabanındaki addAllScore() metodu da bu verilere nesne yardımıyla erişip veritabanı tablosuna ekliyor
-//    public void ygsAddScoreDatabase(AllScores allScores) {
-//        Log.d(LOG_TAG, "Ygs / Scores are adding into database.");
-//
-//        try {
-//
-//            allScores.setTrMark(ygsTrN);
-//            allScores.setSocialMark(ygsSosN);
-//            allScores.setMath1Mark(ygsMatN);
-//            allScores.setScienceMark(ygsFenN);
-//            allScores.setYgs1(ygs1);
-//            allScores.setYgs2(ygs2);
-//            allScores.setYgs3(ygs3);
-//            allScores.setYgs4(ygs4);
-//            allScores.setYgs5(ygs5);
-//            allScores.setYgs6(ygs6);
-//
-//            myDb.addAllScore(allScores);
-//
-//            String infoMessage = "Ygs puanı kaydedildi.";
-//            Toast.makeText(ActivityYgs.this, infoMessage, Toast.LENGTH_SHORT).show();
-//        } catch (Exception e) {
-//            String msg = (e.getMessage() == null) ? "Adding score to database failed!" : e.getMessage();
-//            Log.e(LOG_TAG, msg);
-//        }
-//
-//        Log.d(LOG_TAG, "Ygs / Scores added into database.");
-//    }
-
-    //hesaplanan değerler temizlenir
     public void ygsClear() {
-        Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
+
         try {
             ygsTrD = 0;
             ygsTrY = 0;
@@ -887,20 +797,20 @@ public class ActivityYgs extends ActivityBase {
             tYgs4.setText(R.string.ygs4);
             tYgs5.setText(R.string.ygs5);
             tYgs6.setText(R.string.ygs6);
-        } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Cleaning numbers failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
-        }
 
-        Log.d(LOG_TAG, "Ygs / Numbers cleaned.");
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 
-    //acitivityLys ye gider
     public void goLys() {
+
         Intent i = new Intent(ActivityYgs.this, ActivityLys.class);
+
         if (ygs1 < 180 && ygs2 < 180 && ygs3 < 180 && ygs4 < 180 && ygs5 < 180 && ygs6 < 180) {
-            String errorMessage = "180 barajını geçemediniz. Lys'ye giremezsiniz.";
-            Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
+
+            toast.show("180 barajını geçemediniz. Lys'ye giremezsiniz");
         }
 
         //lys puanı hesaplanırken ygs netleri de kullanılıyor
@@ -912,12 +822,12 @@ public class ActivityYgs extends ActivityBase {
     }
 
     public void questionErrorMessage() {
-        String errorMessage = "Soru sayısından fazla doğru ve yanlış sayısı girdiniz.";
-        Toast.makeText(ActivityYgs.this, errorMessage, Toast.LENGTH_SHORT).show();
+
+        toast.show("Soru sayısından fazla doğru ve yanlış sayısı girdiniz.");
     }
 
-    //son girilen ygs netlerini getirir
     public void previousInfo() {
+
         Log.d(LOG_TAG, "Ygs / Previous datas bringing.");
 
         try {
@@ -926,15 +836,16 @@ public class ActivityYgs extends ActivityBase {
             String[] corrects = new String[4];
             String[] incorrects = new String[4];
             String[] marks = new String[4];
-            int c = 0, i = 0, m = 0;
+
+            int i = 0;
 
             while (res.moveToNext()) {
-                corrects[c] = res.getString(1);
+
+                corrects[i] = res.getString(1);
                 incorrects[i] = res.getString(2);
-                marks[m] = res.getString(3);
-                c++;
+                marks[i] = res.getString(3);
+
                 i++;
-                m++;
             }
 
             ygsTrD = Double.parseDouble(corrects[0]);
@@ -967,9 +878,11 @@ public class ActivityYgs extends ActivityBase {
 
             ygsShowScore();
             ygsPrintSum();
+
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Bringing previous info failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
+
+            e.printStackTrace();
+            Log.e(LOG_TAG, "Bringing previous info failed!");
         }
 
         Log.d(LOG_TAG, "Ygs / Previous datas brought.");
@@ -981,15 +894,17 @@ public class ActivityYgs extends ActivityBase {
             edt.setText(format.format(value));
     }
 
-    //lys activity sine geçmeden ygs netlerini veritabanına kaydediyor
     public void ygsDatasForLys() {
+
         Log.d(LOG_TAG, "Ygs datas are adding into database for Lys.");
 
         try {
+
             Cursor res = myDb.getYgsDatasForLys();
 
             //0 dönerse tablo yeni oluşturuluyor
             if (res.getCount() == 0) {
+
                 AllScores allScores = new AllScores();
 
                 allScores.setTrMark(ygsTrN);
@@ -1007,6 +922,7 @@ public class ActivityYgs extends ActivityBase {
 
                 //dönmezse tablo var demektir. tablo güncelleniyor
             } else {
+
                 AllScores allScores = new AllScores();
 
                 allScores.setTrMark(ygsTrN);
@@ -1021,11 +937,11 @@ public class ActivityYgs extends ActivityBase {
                 allScores.setYgs6(ygs6);
 
                 myDb.updateYgsDatasForLys(allScores);
-
             }
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Adding ygs datas into database for lys failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
+
+            e.printStackTrace();
+            Log.e(LOG_TAG, "Adding ygs datas into database for lys failed!");
         }
 
         Log.d(LOG_TAG, "Ygs datas added into database for Lys.");
@@ -1045,5 +961,4 @@ public class ActivityYgs extends ActivityBase {
         Intent i = new Intent(this, ActivityAbout.class);
         startActivity(i);
     }
-
 }

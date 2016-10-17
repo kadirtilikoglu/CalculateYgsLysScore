@@ -37,6 +37,8 @@ public class CustomDialog extends Dialog implements TextWatcher {
     DatabaseHelper myDb;
     AllScores allScores;
 
+    ToastMessage toast;
+
     private android.app.AlertDialog b = null;
 
     public CustomDialog(Context context, From from, AllScores allScores) {
@@ -48,6 +50,8 @@ public class CustomDialog extends Dialog implements TextWatcher {
         this.context = context;
         this.from = from;
         this.allScores = allScores;
+
+        toast = new ToastMessage(context);
     }
 
     public void build() {
@@ -73,8 +77,7 @@ public class CustomDialog extends Dialog implements TextWatcher {
 
                     myDb.addAllScore(allScores);
 
-                    ToastMessage toast = new ToastMessage(context, "Ygs puanı kaydedildi");
-                    toast.show();
+                    toast.show("Ygs puanı kaydedildi");
                 }
             }
         });
@@ -102,10 +105,9 @@ public class CustomDialog extends Dialog implements TextWatcher {
 
         for (int i = 0; i < Headers.size(); i++) {
 
-            if (Headers.get(i).equals(examName)) {
+            if (Headers.get(i).equals(etExamName.getText().toString())) {
 
-                ToastMessage toast = new ToastMessage(context, "Bu ad başka bir sınava ait");
-                toast.show();
+                toast.show("Bu ad başka bir sınava ait");
 
                 isUnique = false;
             }
