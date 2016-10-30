@@ -36,8 +36,7 @@
         </activity>
         <activity
             android:name=".common.ActivityMyScores"
-            android:label="Denemelerim"
-            android:parentActivityName=".ygs.ActivityYgs" />
+            android:label="Denemelerim" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
@@ -45,16 +44,14 @@
 
         <activity
             android:name=".common.ActivityWhatIsYgsLys"
-            android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".ygs.ActivityYgs" >
+            android:label="Ygs-Lys Nedir?">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".common.ActivityWhatIsYgsLys" />
         </activity>
         <activity
             android:name=".common.ActivityAbout"
-            android:label="Hakkında"
-            android:parentActivityName=".ygs.ActivityYgs" >
+            android:label="Hakkında">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".common.ActivityAbout" />
