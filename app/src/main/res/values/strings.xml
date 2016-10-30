@@ -87,51 +87,31 @@
     <string name="lang2_score">Dil2: </string>
     <string name="lang3_score">Dil3: </string>
 
-    <string name="describe_ygs_lys">"Ygs-Lys her yıl ÖSYM tarafından yapılan 2 kademeli üniversiteye"
-" giriş sınavıdır."</string>
-    <string name="describe_ygs">
-"Ygs
+    <string name="describe_ygs_lys">Ygs-Lys her yıl ÖSYM tarafından yapılan 2 kademeli üniversiteye giriş sınavıdır.</string>
+    <string name="describe_ygs">"Ygs, bütün adayların girmesinin zorunlu olduğu sınavdır. Türkçe, Sosyal, Matematik ve Fen'den 40'ar, toplam 160 soru vardır.Ygs'de baraj geçilirse 2 yıllık bir bölüme Lys'ye girmeden başvurulabilir. 2 yıllık eğitimdensonra DGS'ye girilip 2 yıl okunmuş olan bölümün 4 yıllık karşılığına geçiş yapılabilir."</string>
+    <string name="lysGiris">Lys, 6 farklı oturumda gerçekleşir.</string>
+    <string name="lys_1">Lys1 - Matematik(50 soru), Geometri(30)</string>
+    <string name="lys_2">Lys2 - Fizik(30), Kimya(30), Biyoloji(30)</string>
+    <string name="lys_3">Lys3 - Edebiyat(56), Coğrafya1(24)</string>
+    <string name="lys_4">Lys4 - Tarih(44), Coğrafya2(14), Felsefe-Din(32)</string>
+    <string name="lys_5">Lys5 - Yabancı Dil(80)</string>
+    <string name="lysSonuc">"Mf puanı için Lys1 ve Lys2, Tm puanı için Lys1 ve Lys3, Ts puanı için Lys3 ve Lys4'e girmek zorunludur. 2'den fazla lys oturumuna girilebilir. Böylece alan dışından da tercih yapılabilir."</string>
 
-Bütün adayların girmesi zorunludur. Türkçe, Sosyal, Matematik ve Fen'den 40'ar, toplam 160 soru vardır."
-" Ygs'de baraj geçilirse 2 yıllık bir bölüme Lys'ye girmeden başvurulabilir. 2 yıllık eğitimden"
-" sonra DGS'ye girilip 2 yıl okunmuş olan bölümün 4 yıllık karşılığına geçiş yapılabilir."
-    </string>
-    <string name="describe_lys">
-"Lys
-
-        6 farklı oturumda gerçekleşir.
-Lys1 - Matematik(50 soru), Geometri(30)
-Lys2 - Fizik(30), Kimya(30), Biyoloji(30)
-Lys3 - Edebiyat(56), Coğrafya1(24)
-Lys4 - Tarih(44), Coğrafya2(14), Felsefe-Din(32)
-Lys5 - Yabancı Dil(80)
-""Mf puanı için Lys1 ve Lys2, Tm puanı için"
-" Lys1 ve Lys3, Ts puanı için Lys3 ve Lys4'e girmek zorunludur. 2'den fazla lys oturumuna girilebilir."
-" Böylece alan dışından da tercih yapılabilir."
-    </string>
-
-    <string name="about_content1">
+<string name="about_content1">
         Ygs - Lys Puan Hesaplama
-    </string>
-    <string name="about_content2">
+    </string><string name="about_content2">
         Sürüm 1.0
-    </string>
-    <string name="about_content3">
+    </string><string name="about_content3">
         Yusuf Demirci
-    </string>
-    <string name="about_content4">
+    </string><string name="about_content4">
         Uygulama ile ilgili tavsiye ve hata bildirimleriniz için lütfen iletişime geçiniz.
-    </string>
-    <string name="about_content5">
+    </string><string name="about_content5">
         demirciy94@gmail.com
-    </string>
-    <string name="about_content6">
+    </string><string name="about_content6">
         Uygulamanın kod içeriği için
-    </string>
-    <string name="about_content7">
+    </string><string name="about_content7">
         github.com/demirciy
-    </string>
-    <string name="about_content8">
+    </string><string name="about_content8">
         Hiçbir hakkı saklı değildir. Uygulamayı istediğiniz gibi geliştirebilirsiniz."
     </string>
 
@@ -139,5 +119,8 @@ Lys5 - Yabancı Dil(80)
         <item>"Sil"</item>
         <item>"Yeniden Adlandır"</item>
     </string-array>
+
+    <string name="saveScore">Puanı kaydet</string>
+    <string name="examNameHint">sınav adı</string>
 
 </resources>

@@ -1,17 +1,17 @@
-package demirciy.ygslyspuanhesaplama.lys;
+package demirciy.ygslyspuanhesaplama.common;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import demirciy.ygslyspuanhesaplama.R;
 
-//activity lys tarafından gelince bu activity açılır
-public class ActivityAbout2 extends AppCompatActivity {
+//action bar da hakkında kısmına basınca açılır
+public class ActivityAbout extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about2);
+        setContentView(R.layout.activity_about);
 
         //action bar daki geri dön butonunu gösterir
         //bu butonun çalışması için manifest dosyasında parent activity tanımlaması yapılmak zorundadır

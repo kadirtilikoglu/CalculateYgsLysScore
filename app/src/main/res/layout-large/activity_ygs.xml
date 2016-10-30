@@ -1,229 +1,230 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
-
+    android:orientation="vertical"
     tools:context=".ygs.ActivityYgs">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:paddingBottom="@dimen/activity_vertical_margin"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin">
+    <RelativeLayout
+        android:id="@+id/rlButonUst"
+        style="@style/layoutLarge">
 
-        <RelativeLayout
-            android:id="@+id/rlButonUst"
+        <TextView
+            android:id="@+id/tMat"
+            style="@style/ygsClassesLarge"
+            android:layout_alignBottom="@id/llMat"
+            android:layout_alignTop="@id/llMat"
+            android:text="@string/math" />
+
+        <LinearLayout
+            android:id="@+id/llTr"
+            style="@style/edittextLayoutLarge"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsTrD"
+                style="@style/edittextLarge"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsTrY"
+                style="@style/edittextLarge"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsTrN"
+                style="@style/edittextLarge"
+                android:hint="@string/mark" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tTurkce"
+            style="@style/ygsClassesLarge"
+            android:layout_alignBottom="@id/llTr"
+            android:layout_alignTop="@id/llTr"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/turkish" />
+
+        <LinearLayout
+            android:id="@+id/llSos"
+            style="@style/edittextLayoutLarge"
+            android:layout_below="@+id/tTurkce"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsSosD"
+                style="@style/edittextLarge"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsSosY"
+                style="@style/edittextLarge"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsSosN"
+                style="@style/edittextLarge"
+                android:hint="@string/mark" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tSos"
+            style="@style/ygsClassesLarge"
+            android:layout_alignBottom="@id/llSos"
+            android:layout_alignTop="@id/llSos"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/social" />
+
+        <LinearLayout
+            android:id="@+id/llMat"
+            style="@style/edittextLayoutLarge"
+            android:layout_below="@+id/llSos"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsMatD"
+                style="@style/edittextLarge"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsMatY"
+                style="@style/edittextLarge"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsMatN"
+                style="@style/edittextLarge"
+                android:hint="@string/mark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llFen"
+            style="@style/edittextLayoutLarge"
+            android:layout_below="@+id/llMat"
+            android:layout_toEndOf="@id/tMat">
+
+            <EditText
+                android:id="@+id/etYgsFenD"
+                style="@style/edittextLarge"
+                android:hint="@string/correct" />
+
+            <EditText
+                android:id="@+id/etYgsFenY"
+                style="@style/edittextLarge"
+                android:hint="@string/incorrect" />
+
+            <EditText
+                android:id="@+id/etYgsFenN"
+                style="@style/edittextLarge"
+                android:hint="@string/mark" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tFen"
+            style="@style/ygsClassesLarge"
+            android:layout_alignBottom="@id/llFen"
+            android:layout_alignTop="@id/llFen"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/science" />
+
+        <LinearLayout
+            android:id="@+id/llToplam"
+            style="@style/edittextLayoutLarge"
+            android:layout_below="@+id/llFen"
+            android:layout_marginTop="10sp"
+            android:layout_toEndOf="@id/tMat">
+
+            <TextView
+                android:id="@+id/tToplamD"
+                style="@style/ygsSumOthersLarge"
+                android:text="@string/correct" />
+
+            <TextView
+                android:id="@+id/tToplamY"
+                style="@style/ygsSumOthersLarge"
+                android:text="@string/incorrect" />
+
+            <TextView
+                android:id="@+id/tToplamN"
+                style="@style/ygsSumOthersLarge"
+                android:text="@string/mark" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tToplam"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/layout_bg"
-            android:elevation="2sp"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:layout_marginTop="2sp"
-            android:layout_marginLeft="2sp"
-            android:layout_marginRight="2sp">
+            android:layout_alignBottom="@id/llToplam"
+            android:layout_alignParentStart="true"
+            android:layout_alignTop="@id/llToplam"
+            android:layout_toStartOf="@+id/llMat"
+            android:text="@string/total"
+            android:textColor="@color/blueMidnight"
+            android:textSize="18sp"
+            android:typeface="serif" />
 
-            <LinearLayout
-                android:id="@+id/llTr"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+    </RelativeLayout>
 
-                <TextView
-                    android:id="@+id/tTurkce"
-                    style="@style/ygsDerslerLarge"
-                    android:text="@string/turkish" />
+    <RelativeLayout
+        android:id="@+id/rlButonAlt"
+        style="@style/layoutLarge"
+        android:layout_marginTop="16sp">
 
-                <EditText
-                    android:id="@+id/etYgsTrD"
-                    style="@style/etYgsDLarge" />
+        <LinearLayout
+            android:id="@+id/llygs12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <EditText
-                    android:id="@+id/etYgsTrY"
-                    style="@style/etYgsYLarge" />
+            <TextView
+                android:id="@+id/tYgs1"
+                style="@style/ygsScoreTypesLarge"
+                android:text="@string/ygs1" />
 
-                <EditText
-                    android:id="@+id/etYgsTrN"
-                    style="@style/etYgsNLarge" />
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tYgs2"
+                style="@style/ygsScoreTypesLarge"
+                android:text="@string/ygs2" />
+        </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/llSos"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llTr">
-
-                <TextView
-                    android:id="@+id/tSos"
-                    style="@style/ygsDerslerLarge"
-                    android:text="@string/social" />
-
-                <EditText
-                    android:id="@+id/etYgsSosD"
-                    style="@style/etYgsDLarge" />
-
-                <EditText
-                    android:id="@+id/etYgsSosY"
-                    style="@style/etYgsYLarge" />
-
-                <EditText
-                    android:id="@+id/etYgsSosN"
-                    style="@style/etYgsNLarge" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llMat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llSos">
-
-                <TextView
-                    android:id="@+id/tMat"
-                    style="@style/ygsDerslerLarge"
-                    android:text="@string/math" />
-
-                <EditText
-                    android:id="@+id/etYgsMatD"
-                    style="@style/etYgsDLarge" />
-
-                <EditText
-                    android:id="@+id/etYgsMatY"
-                    style="@style/etYgsYLarge" />
-
-                <EditText
-                    android:id="@+id/etYgsMatN"
-                    style="@style/etYgsNLarge" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llFen"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llMat">
-
-                <TextView
-                    android:id="@+id/tFen"
-                    style="@style/ygsDerslerLarge"
-                    android:text="@string/science" />
-
-                <EditText
-                    android:id="@+id/etYgsFenD"
-                    style="@style/etYgsDLarge" />
-
-                <EditText
-                    android:id="@+id/etYgsFenY"
-                    style="@style/etYgsYLarge" />
-
-                <EditText
-                    android:id="@+id/etYgsFenN"
-                    style="@style/etYgsNLarge" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/llToplam"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/llFen"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:id="@+id/tToplam"
-                    style="@style/ygsToplamLarge"
-                    android:text="@string/total" />
-
-                <TextView
-                    android:id="@+id/tToplamD"
-                    style="@style/ygsToplamDLarge" />
-
-                <TextView
-                    android:id="@+id/tToplamY"
-                    style="@style/ygsToplamYLarge" />
-
-                <TextView
-                    android:id="@+id/tToplamN"
-                    style="@style/ygsToplamNLarge" />
-            </LinearLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:id="@+id/rlButonAlt"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/llygs34"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16sp"
-            android:background="@drawable/layout_bg"
-            android:elevation="2sp"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="2sp"
-            android:layout_marginRight="2sp"
-            android:layout_marginBottom="4sp">
+            android:layout_below="@id/llygs12"
+            android:layout_marginTop="10sp">
 
-            <LinearLayout
-                android:id="@+id/llygs12"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+            <TextView
+                android:id="@+id/tYgs3"
+                style="@style/ygsScoreTypesLarge"
+                android:text="@string/ygs3" />
 
-                <TextView
-                    android:id="@+id/tYgs1"
-                    style="@style/ygsPuanTurleriLarge"
-                    android:text="@string/ygs1"
-                    android:textColor="@color/mf" />
+            <TextView
+                android:id="@+id/tYgs4"
+                style="@style/ygsScoreTypesLarge"
+                android:text="@string/ygs4" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tYgs2"
-                    style="@style/ygsPuanTurleriLarge"
-                    android:text="@string/ygs2"
-                    android:textColor="@color/mf" />
-            </LinearLayout>
+        <LinearLayout
+            android:id="@+id/llygs56"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/llygs34"
+            android:layout_marginTop="10sp">
 
-            <LinearLayout
-                android:id="@+id/llygs34"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/llygs12"
-                android:layout_marginTop="10sp">
+            <TextView
+                android:id="@+id/tYgs5"
+                style="@style/ygsScoreTypesLarge"
+                android:text="@string/ygs5" />
 
-                <TextView
-                    android:id="@+id/tYgs3"
-                    style="@style/ygsPuanTurleriLarge"
-                    android:text="@string/ygs3"
-                    android:textColor="@color/ts" />
+            <TextView
+                android:id="@+id/tYgs6"
+                style="@style/ygsScoreTypesLarge"
+                android:text="@string/ygs6" />
+        </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tYgs4"
-                    style="@style/ygsPuanTurleriLarge"
-                    android:text="@string/ygs4"
-                    android:textColor="@color/ts" />
-            </LinearLayout>
+    </RelativeLayout>
 
-            <LinearLayout
-                android:id="@+id/llygs56"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/llygs34"
-                android:layout_marginTop="10sp">
-
-                <TextView
-                    android:id="@+id/tYgs5"
-                    style="@style/ygsPuanTurleriLarge"
-                    android:text="@string/ygs5"
-                    android:textColor="@color/tm" />
-
-                <TextView
-                    android:id="@+id/tYgs6"
-                    style="@style/ygsPuanTurleriLarge"
-                    android:text="@string/ygs6"
-                    android:textColor="@color/tm" />
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

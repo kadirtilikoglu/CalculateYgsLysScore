@@ -16,6 +16,9 @@ import java.util.Locale;
 
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.base.ActivityBase;
+import demirciy.ygslyspuanhesaplama.common.ActivityAbout;
+import demirciy.ygslyspuanhesaplama.common.ActivityMyScores;
+import demirciy.ygslyspuanhesaplama.common.ActivityWhatIsYgsLys;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 import demirciy.ygslyspuanhesaplama.lys.ActivityLys;
 import demirciy.ygslyspuanhesaplama.model.AllScores;
@@ -813,9 +816,6 @@ public class ActivityYgs extends ActivityBase {
             toast.show("180 barajını geçemediniz. Lys'ye giremezsiniz");
         }
 
-        //lys puanı hesaplanırken ygs netleri de kullanılıyor
-        //bu metod lys activity sine gitmeden kaybolmasın diye girilen ygs netlerini veritabanına kaydediyor
-        //daha sonra lys puanı hesaplanırken bu netler veri tabanından çekilip hesaba katılıyor
         ygsDatasForLys();
 
         startActivity(i);

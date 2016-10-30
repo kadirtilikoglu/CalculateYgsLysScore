@@ -35,53 +35,29 @@
                 android:value="lys.ActivityLys" />
         </activity>
         <activity
-            android:name=".ygs.ActivityMyScores"
+            android:name=".common.ActivityMyScores"
             android:label="Denemelerim"
             android:parentActivityName=".ygs.ActivityYgs" />
 
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
-            android:value="ygs.ActivityMyScores" />
+            android:value=".common.ActivityMyScores" />
 
         <activity
-            android:name=".ygs.ActivityWhatIsYgsLys"
+            android:name=".common.ActivityWhatIsYgsLys"
             android:label="Ygs-Lys Nedir?"
             android:parentActivityName=".ygs.ActivityYgs" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ygs.ActivityWhatIsYgsLys" />
+                android:value=".common.ActivityWhatIsYgsLys" />
         </activity>
         <activity
-            android:name=".ygs.ActivityAbout"
+            android:name=".common.ActivityAbout"
             android:label="Hakkında"
             android:parentActivityName=".ygs.ActivityYgs" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ygs.ActivityAbout" />
-        </activity>
-        <activity
-            android:name=".lys.ActivityWhatIsYgsLys2"
-            android:label="Ygs-Lys Nedir?"
-            android:parentActivityName=".lys.ActivityLys" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".lys.ActivityWhatIsYgsLys2" />
-        </activity>
-        <activity
-            android:name=".lys.ActivityAbout2"
-            android:label="Hakkında"
-            android:parentActivityName=".lys.ActivityLys" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".lys.ActivityAbout2" />
-        </activity>
-        <activity
-            android:name=".lys.ActivityMyScores2"
-            android:label="Denemelerim"
-            android:parentActivityName=".lys.ActivityLys" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".lys.ActivityMyScores2" />
+                android:value=".common.ActivityAbout" />
         </activity>
 
         <meta-data

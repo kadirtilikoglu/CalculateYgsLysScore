@@ -23,6 +23,7 @@
         <item name="android:paddingRight">16dp</item>
         <item name="android:paddingTop">16dp</item>
         <item name="android:background">@color/white</item>
+        <item name="android:elevation">2sp</item>
     </style>
 
     <style name="ygsClasses">
@@ -40,6 +41,18 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingLeft">16sp</item>
+    </style>
+
+    <style name="edittextLayoutLys">
+        <item name="android:layout_width">210sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="edittextLayoutVertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="edittext">
@@ -104,7 +117,7 @@
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">15sp</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
@@ -112,35 +125,22 @@
     </style>
 
     <style name="lysDersler">
-        <item name="android:layout_width">80sp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">13sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">16sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="tLys12345">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_alignParentTop">true</item>
-        <item name="android:layout_alignParentBottom">true</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">12sp</item>
-    </style>
-
-    <style name="rlLys12345">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:elevation">2sp</item>
-        <item name="android:background">@drawable/layout_bg</item>
-        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>
-        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
-        <item name="android:paddingRight">@dimen/activity_horizontal_margin</item>
-        <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
     </style>
 
     <style name="etLysD">
@@ -185,43 +185,34 @@
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="tObp">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">5</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/obp</item>
-        <item name="android:text">@string/obp</item>
-        <item name="android:textSize">14sp</item>
-    </style>
-
     <style name="etObp">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:hint">@string/diploma</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/obp</item>
+        <item name="android:backgroundTint">@color/obp</item>
         <item name="android:color">@color/obp</item>
         <item name="android:textColorHint">@color/obp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:maxLength">3</item>
-        <item name="android:textSize">14sp</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:inputType">number</item>
-        <item name="android:hint">@string/diploma</item>
-        <item name="android:backgroundTint">@color/obp</item>
-        <item name="android:textColor">@color/obp</item>
     </style>
 
     <style name="lysPuanTurleri">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:padding">4sp</item>
     </style>
 
     <style name="exp_child_textview">
@@ -274,7 +265,7 @@
 
     <style name="wiylText">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">@color/blueMidnight</item>
@@ -283,24 +274,49 @@
     <!--Normal-->
 
     <!--Large-->
-    <style name="ygsDerslerLarge">
-        <item name="android:layout_width">80sp</item>
-        <item name="android:layout_height">match_parent</item>
+    <style name="layoutLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">2sp</item>
+    </style>
+
+    <style name="ygsClassesLarge">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">24sp</item>
         <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:layout_alignParentStart">true</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_weight">0.8</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="etYgsDLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/correct</item>
-        <item name="android:gravity">center</item>
+    <style name="edittextLayoutLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">24sp</item>
+    </style>
+
+    <style name="edittextLayoutLysLarge">
+        <item name="android:layout_width">350sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="edittextLayoutVerticalLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="edittextLarge">
+        <item name="android:layout_width">50sp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:textColor">@color/blueMidnight</item>
@@ -308,45 +324,13 @@
         <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:backgroundTint">@color/blueMidnight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">21sp</item>
-    </style>
-
-    <style name="etYgsYLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/incorrect</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:maxLength">5</item>
-        <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/blueMidnight</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/blueMidnight</item>
-        <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/blueMidnight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
     </style>
 
-    <style name="etYgsNLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/mark</item>
-        <item name="android:gravity">center</item>
-        <item name="android:maxLength">5</item>
-        <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/blueMidnight</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/blueMidnight</item>
-        <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/blueMidnight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">21sp</item>
-    </style>
-
-    <style name="ygsToplamLarge">
+    <style name="ygsSumLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">18sp</item>
@@ -356,14 +340,13 @@
         <item name="android:typeface">serif</item>
     </style>
 
-    <style name="ygsToplamDLarge">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="ygsSumOthersLarge">
+        <item name="android:layout_width">50sp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/correct</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">17.5sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColorHint">@color/blueMidnight</item>
     </style>
 
@@ -375,7 +358,7 @@
         <item name="android:gravity">center</item>
         <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="ygsToplamNLarge">
@@ -386,38 +369,37 @@
         <item name="android:gravity">center</item>
         <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:typeface">serif</item>
-        <item name="android:textSize">17sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="ygsPuanTurleriLarge">
+    <style name="ygsScoreTypesLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
-        <item name="android:textSize">27sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">23sp</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/redDark</item>
+    </style>
+
+    <style name="lysDerslerLarge">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">16sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="tLys12345Large">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_alignParentTop">true</item>
-        <item name="android:layout_alignParentBottom">true</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">18sp</item>
-    </style>
-
-    <style name="lysDerslerLarge">
-        <item name="android:layout_width">80sp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textSize">19.5sp</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
     <style name="etLysDLarge">
@@ -431,7 +413,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">19.5sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="etLysYLarge">
@@ -445,7 +427,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">19.5sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="etLysNLarge">
@@ -459,55 +441,66 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">19.5sp</item>
-    </style>
-
-    <style name="tObpLarge">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">5</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/obp</item>
-        <item name="android:text">@string/obp</item>
-        <item name="android:textSize">21sp</item>
+        <item name="android:textSize">18sp</item>
     </style>
 
     <style name="etObpLarge">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:hint">@string/diploma</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/obp</item>
+        <item name="android:backgroundTint">@color/obp</item>
         <item name="android:color">@color/obp</item>
         <item name="android:textColorHint">@color/obp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:maxLength">3</item>
-        <item name="android:textSize">21sp</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:inputType">number</item>
-        <item name="android:hint">@string/diploma</item>
-        <item name="android:backgroundTint">@color/obp</item>
-        <item name="android:textColor">@color/obp</item>
     </style>
-
 
     <style name="lysPuanTurleriLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:padding">4sp</item>
     </style>
 
     <style name="exp_child_textview_large">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">19.5sp</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="exprlLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">4sp</item>
+        <item name="android:paddingLeft">4sp</item>
+        <item name="android:paddingRight">4sp</item>
+        <item name="android:layout_marginLeft">2sp</item>
+        <item name="android:layout_marginRight">2sp</item>
+    </style>
+
+    <style name="dialog_textLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">27sp</item>
+        <item name="android:paddingLeft">4sp</item>
+        <item name="android:paddingRight">4sp</item>
+        <item name="android:layout_marginLeft">2sp</item>
+        <item name="android:layout_marginRight">2sp</item>
+        <item name="android:textColor">#000000</item>
     </style>
 
     <style name="aboutTHeaderLarge">
@@ -540,24 +533,49 @@
     <!--Large-->
 
     <!--XLarge-->
-    <style name="ygsDerslerXLarge">
-        <item name="android:layout_width">80sp</item>
-        <item name="android:layout_height">match_parent</item>
+    <style name="layoutXLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">16dp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">16dp</item>
+        <item name="android:paddingTop">16dp</item>
+        <item name="android:background">@color/white</item>
+        <item name="android:elevation">2sp</item>
+    </style>
+
+    <style name="ygsClassesXLarge">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">32sp</item>
         <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:layout_alignParentStart">true</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textStyle">bold</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_weight">0.8</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
     </style>
 
-    <style name="etYgsDXLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/correct</item>
-        <item name="android:gravity">center</item>
+    <style name="edittextLayoutXLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingLeft">16sp</item>
+    </style>
+
+    <style name="edittextLayoutLysXLarge">
+        <item name="android:layout_width">550sp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentEnd">true</item>
+    </style>
+
+    <style name="edittextLayoutVerticalXLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="edittextXLarge">
+        <item name="android:layout_width">50sp</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:maxLength">5</item>
         <item name="android:inputType">numberDecimal</item>
         <item name="android:textColor">@color/blueMidnight</item>
@@ -565,45 +583,13 @@
         <item name="android:textColorHint">@color/blueMidnight</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:backgroundTint">@color/blueMidnight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">28sp</item>
-    </style>
-
-    <style name="etYgsYXLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/incorrect</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:gravity">center</item>
-        <item name="android:maxLength">5</item>
-        <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/blueMidnight</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/blueMidnight</item>
-        <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/blueMidnight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:singleLine">true</item>
     </style>
 
-    <style name="etYgsNXLarge">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/mark</item>
-        <item name="android:gravity">center</item>
-        <item name="android:maxLength">5</item>
-        <item name="android:inputType">numberDecimal</item>
-        <item name="android:textColor">@color/blueMidnight</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textColorHint">@color/blueMidnight</item>
-        <item name="android:textColorHighlight">@color/background</item>
-        <item name="android:backgroundTint">@color/blueMidnight</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">28sp</item>
-    </style>
-
-    <style name="ygsToplamXLarge">
+    <style name="ygsSumXLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:textSize">24sp</item>
@@ -613,11 +599,10 @@
         <item name="android:typeface">serif</item>
     </style>
 
-    <style name="ygsToplamDXLarge">
-        <item name="android:layout_width">wrap_content</item>
+    <style name="ygsSumOthersXLarge">
+        <item name="android:layout_width">50sp</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.2</item>
-        <item name="android:hint">@string/correct</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textSize">22sp</item>
@@ -646,32 +631,31 @@
         <item name="android:textSize">22sp</item>
     </style>
 
-    <style name="ygsPuanTurleriXLarge">
+    <style name="ygsScoreTypesXLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textSize">30sp</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/redDark</item>
     </style>
 
     <style name="lysDerslerXLarge">
-        <item name="android:layout_width">80sp</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
-        <item name="android:gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:textSize">26sp</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">16sp</item>
+        <item name="android:gravity">center</item>
     </style>
 
     <style name="tLys12345XLarge">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
         <item name="android:gravity">center_vertical</item>
-        <item name="android:layout_alignParentTop">true</item>
-        <item name="android:layout_alignParentBottom">true</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">24sp</item>
@@ -688,7 +672,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="etLysYXLarge">
@@ -702,7 +686,7 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="etLysNXLarge">
@@ -716,54 +700,66 @@
         <item name="android:typeface">serif</item>
         <item name="android:textColorHighlight">@color/background</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">26sp</item>
-    </style>
-
-    <style name="tObpXLarge">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">5</item>
-        <item name="android:gravity">center_vertical</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/obp</item>
-        <item name="android:text">@string/obp</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">24sp</item>
     </style>
 
     <style name="etObpXLarge">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">1</item>
+        <item name="android:hint">@string/diploma</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLength">5</item>
+        <item name="android:inputType">numberDecimal</item>
+        <item name="android:typeface">serif</item>
+        <item name="android:textColorHighlight">@color/background</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/obp</item>
+        <item name="android:backgroundTint">@color/obp</item>
         <item name="android:color">@color/obp</item>
         <item name="android:textColorHint">@color/obp</item>
         <item name="android:textAlignment">center</item>
-        <item name="android:maxLength">3</item>
-        <item name="android:textSize">28sp</item>
-        <item name="android:typeface">serif</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:inputType">number</item>
-        <item name="android:hint">@string/diploma</item>
-        <item name="android:backgroundTint">@color/obp</item>
-        <item name="android:textColor">@color/obp</item>
     </style>
 
     <style name="lysPuanTurleriXLarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_weight">0.5</item>
+        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
         <item name="android:typeface">serif</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/green</item>
+        <item name="android:padding">4sp</item>
     </style>
 
     <style name="exp_child_textview_xlarge">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_weight">1</item>
         <item name="android:gravity">center</item>
-        <item name="android:textSize">26sp</item>
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="exprlXLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingBottom">4sp</item>
+        <item name="android:paddingLeft">4sp</item>
+        <item name="android:paddingRight">4sp</item>
+        <item name="android:layout_marginLeft">2sp</item>
+        <item name="android:layout_marginRight">2sp</item>
+    </style>
+
+    <style name="dialog_textXLarge">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">45sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">36sp</item>
+        <item name="android:paddingLeft">4sp</item>
+        <item name="android:paddingRight">4sp</item>
+        <item name="android:layout_marginLeft">2sp</item>
+        <item name="android:layout_marginRight">2sp</item>
+        <item name="android:textColor">#000000</item>
     </style>
 
     <style name="aboutTHeaderXLarge">

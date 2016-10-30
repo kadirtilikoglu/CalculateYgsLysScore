@@ -21,12 +21,17 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Locale;
 
 import demirciy.ygslyspuanhesaplama.R;
+import demirciy.ygslyspuanhesaplama.common.ActivityAbout;
+import demirciy.ygslyspuanhesaplama.common.ActivityMyScores;
+import demirciy.ygslyspuanhesaplama.common.ActivityWhatIsYgsLys;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.LysCalculateScoreType;
+import demirciy.ygslyspuanhesaplama.util.ToastMessage;
 
 public class ActivityLys extends AppCompatActivity {
 
@@ -52,6 +57,7 @@ public class ActivityLys extends AppCompatActivity {
 
     final String LOG_TAG = "LogCat outputs -->";
 
+    ToastMessage toast;
     DatabaseHelper myDb;
 
     @Override
@@ -72,13 +78,13 @@ public class ActivityLys extends AppCompatActivity {
                 lysAlertDialog();
                 break;
             case R.id.abMyScores:
-                goMyScores2();
+                goMyScores();
                 break;
             case R.id.abWhatisYgsLys:
-                goWhatisYgsLys2();
+                goWhatisYgsLys();
                 break;
             case R.id.abAbout:
-                goAbout2();
+                goAbout();
                 break;
         }
 
@@ -142,11 +148,8 @@ public class ActivityLys extends AppCompatActivity {
 
         myDb = new DatabaseHelper(this);
 
-        //ygs de girilen netleri veri tabanından alır. lys puanlarını hesaplar
-        //hesaplanan lys puanlarını gösterir
         lysShowScore();
 
-        //textwatcher başlangıç
         etLysMatD.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -183,7 +186,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -229,13 +232,11 @@ public class ActivityLys extends AppCompatActivity {
                             lysMatN = lysMat.getMark();
                             etLysMatN.setText(format.format(lysMatN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -252,7 +253,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     lysMatN = Double.parseDouble(etLysMatN.getText().toString());
@@ -262,9 +262,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -309,7 +308,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -355,13 +354,11 @@ public class ActivityLys extends AppCompatActivity {
                             lysGeoN = lysGeo.getMark();
                             etLysGeoN.setText(format.format(lysGeoN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -378,7 +375,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     lysGeoN = Double.parseDouble(etLysGeoN.getText().toString());
@@ -388,9 +384,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -435,7 +430,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -481,13 +476,11 @@ public class ActivityLys extends AppCompatActivity {
                             lysFizikN = lysFizik.getMark();
                             etLysFizikN.setText(format.format(lysFizikN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -504,7 +497,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     lysFizikN = Double.parseDouble(etLysFizikN.getText().toString());
@@ -514,9 +506,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -561,7 +552,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -607,13 +598,11 @@ public class ActivityLys extends AppCompatActivity {
                             lysKimyaN = lysKimya.getMark();
                             etLysKimyaN.setText(format.format(lysKimyaN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -630,7 +619,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     lysKimyaN = Double.parseDouble(etLysKimyaN.getText().toString());
@@ -640,9 +628,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -687,7 +674,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -733,13 +720,11 @@ public class ActivityLys extends AppCompatActivity {
                             lysBiyoN = lysBiyo.getMark();
                             etLysBiyoN.setText(format.format(lysBiyoN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -756,7 +741,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     lysBiyoN = Double.parseDouble(etLysBiyoN.getText().toString());
@@ -766,7 +750,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -812,7 +796,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -861,9 +845,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -888,9 +871,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -935,7 +917,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -981,13 +963,11 @@ public class ActivityLys extends AppCompatActivity {
                             lysCog1N = lysCog1.getMark();
                             etLysCog1N.setText(format.format(lysCog1N));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -1004,7 +984,6 @@ public class ActivityLys extends AppCompatActivity {
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
                 try {
 
                     lysCog1N = Double.parseDouble(etLysCog1N.getText().toString());
@@ -1014,7 +993,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1060,7 +1039,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1109,9 +1088,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -1135,9 +1113,8 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
@@ -1182,7 +1159,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1231,7 +1208,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1256,7 +1233,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1302,7 +1279,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1348,20 +1325,17 @@ public class ActivityLys extends AppCompatActivity {
                             lysFelN = lysFel.getMark();
                             etLysFelN.setText(format.format(lysFelN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
-
             }
 
             @Override
             public void afterTextChanged(Editable s) {
 
                 lysShowScore();
-
             }
         });
         etLysFelN.addTextChangedListener(new TextWatcher() {
@@ -1380,7 +1354,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1426,7 +1400,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1472,11 +1446,10 @@ public class ActivityLys extends AppCompatActivity {
                             lysYdilN = lysYdil.getMark();
                             etLysYdilN.setText(format.format(lysYdilN));
                         }
-
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1501,7 +1474,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1529,7 +1502,7 @@ public class ActivityLys extends AppCompatActivity {
                     }
 
                 } catch (Exception e) {
-
+                    e.printStackTrace();
                 }
             }
 
@@ -1538,10 +1511,8 @@ public class ActivityLys extends AppCompatActivity {
                 lysShowScore();
             }
         });
-        //textwatcher son
     }
 
-    //lys puanlarını hesaplayıp ekrana yazdırır
     public void lysShowScore() {
         Log.d(LOG_TAG, "Lys / Scores calculating.");
         try {
@@ -1550,41 +1521,38 @@ public class ActivityLys extends AppCompatActivity {
             String[] marks = new String[4];
             int m = 0;
 
-            //ilk olarak lys ye geçerken ygs de girilen netleri alır. çünkü lys puanı hesaplanırken ygs netleri de kullanılır
             while (res.moveToNext()) {
                 marks[m] = res.getString(3);
                 m++;
             }
 
-            //alınan ygs netleriyle beraber mevcut lys netleri lys puanlarını hesaplamak için
-            //LysCalculateScoreType class ına gönderilir ve puanlar getter metodlarıyla çekilir
             LysCalculateScoreType lys = new LysCalculateScoreType(Double.parseDouble(marks[0]), Double.parseDouble(marks[1]),
                     Double.parseDouble(marks[2]), Double.parseDouble(marks[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
                     lysBiyoN, lysEdeN, lysCog1N, lysTarihN, lysCog2N, lysFelN, lysYdilN);
             mf1 = lys.getMF1();
-            tMf1.setText(String.format("MF-1 : %.2f", mf1 + OBP));
+            tMf1.setText(String.format(Locale.getDefault(), "MF-1 : %.2f", mf1 + OBP));
             mf2 = lys.getMF2();
-            tMf2.setText(String.format("MF-2 : %.2f", mf2 + OBP));
+            tMf2.setText(String.format(Locale.getDefault(), "MF-2 : %.2f", mf2 + OBP));
             mf3 = lys.getMF3();
-            tMf3.setText(String.format("MF-3 : %.2f", mf3 + OBP));
+            tMf3.setText(String.format(Locale.getDefault(), "MF-3 : %.2f", mf3 + OBP));
             mf4 = lys.getMF4();
-            tMf4.setText(String.format("MF-4 : %.2f", mf4 + OBP));
+            tMf4.setText(String.format(Locale.getDefault(), "MF-4 : %.2f", mf4 + OBP));
             tm1 = lys.getTM1();
-            tTm1.setText(String.format("TM-1 : %.2f", tm1 + OBP));
+            tTm1.setText(String.format(Locale.getDefault(), "TM-1 : %.2f", tm1 + OBP));
             tm2 = lys.getTM2();
-            tTm2.setText(String.format("TM-2 : %.2f", tm2 + OBP));
+            tTm2.setText(String.format(Locale.getDefault(), "TM-2 : %.2f", tm2 + OBP));
             tm3 = lys.getTM3();
-            tTm3.setText(String.format("TM-3 : %.2f", tm3 + OBP));
+            tTm3.setText(String.format(Locale.getDefault(), "TM-3 : %.2f", tm3 + OBP));
             ts1 = lys.getTS1();
-            tTs1.setText(String.format("TS-1 : %.2f", ts1 + OBP));
+            tTs1.setText(String.format(Locale.getDefault(), "TS-1 : %.2f", ts1 + OBP));
             ts2 = lys.getTS2();
-            tTs2.setText(String.format("TS-2 : %.2f", ts2 + OBP));
+            tTs2.setText(String.format(Locale.getDefault(), "TS-2 : %.2f", ts2 + OBP));
             dil1 = lys.getDil1();
-            tYdil1.setText(String.format("Dil-1 : %.2f", dil1 + OBP));
+            tYdil1.setText(String.format(Locale.getDefault(), "Dil-1 : %.2f", dil1 + OBP));
             dil2 = lys.getDil2();
-            tYdil2.setText(String.format("Dil-2 : %.2f", dil2 + OBP));
+            tYdil2.setText(String.format(Locale.getDefault(), "Dil-2 : %.2f", dil2 + OBP));
             dil3 = lys.getDil3();
-            tYdil3.setText(String.format("Dil-3 : %.2f", dil3 + OBP));
+            tYdil3.setText(String.format(Locale.getDefault(), "Dil-3 : %.2f", dil3 + OBP));
         } catch (Exception e) {
             String msg = (e.getMessage() == null) ? "Calculating lys score failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
@@ -1592,7 +1560,6 @@ public class ActivityLys extends AppCompatActivity {
         Log.d(LOG_TAG, "Lys / Scores calculating.");
     }
 
-    //ekrandaki lys bilgileri temizlenir
     public void lysClear() {
         Log.d(LOG_TAG, "Ygs / Numbers cleaning.");
         try {
@@ -1674,17 +1641,16 @@ public class ActivityLys extends AppCompatActivity {
     }
 
     public void questionErrorMessage() {
-        String errorMessage = "Soru sayısından fazla doğru ve yanlış sayısı girdiniz.";
-        Toast.makeText(ActivityLys.this, errorMessage, Toast.LENGTH_SHORT).show();
+        toast.show("Soru sayısından fazla doğru ve yanlış sayısı girdiniz.");
     }
 
-    public void goWhatisYgsLys2() {
-        Intent i = new Intent(this, ActivityWhatIsYgsLys2.class);
+    public void goWhatisYgsLys() {
+        Intent i = new Intent(this, ActivityWhatIsYgsLys.class);
         startActivity(i);
     }
 
-    public void goAbout2() {
-        Intent i = new Intent(this, ActivityAbout2.class);
+    public void goAbout() {
+        Intent i = new Intent(this, ActivityAbout.class);
         startActivity(i);
     }
 
@@ -1835,8 +1801,8 @@ public class ActivityLys extends AppCompatActivity {
         Log.d(LOG_TAG, "Lys / Scores added into database.");
     }
 
-    public void goMyScores2() {
-        Intent i = new Intent(this, ActivityMyScores2.class);
+    public void goMyScores() {
+        Intent i = new Intent(this, ActivityMyScores.class);
         startActivity(i);
     }
 }
