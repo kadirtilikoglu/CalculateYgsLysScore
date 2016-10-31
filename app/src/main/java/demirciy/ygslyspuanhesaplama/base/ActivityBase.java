@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.util.CustomDialog;
+import demirciy.ygslyspuanhesaplama.util.ToastMessage;
 
 /**
  * Created by Yusuf DEMİRCİ
@@ -13,9 +14,9 @@ import demirciy.ygslyspuanhesaplama.util.CustomDialog;
  **/
 public class ActivityBase extends AppCompatActivity {
 
-    public void createDialog(Context context, CustomDialog.From from, AllScores allScores) {
+    public void createDialog(Context context, AllScores allScores) {
 
-        CustomDialog dialog = new CustomDialog(context, from, allScores);
+        CustomDialog dialog = new CustomDialog(context, allScores);
 
         dialog.build();
     }

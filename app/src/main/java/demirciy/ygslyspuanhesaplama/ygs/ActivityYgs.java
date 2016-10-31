@@ -24,7 +24,6 @@ import demirciy.ygslyspuanhesaplama.lys.ActivityLys;
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.YgsCalculateScoreType;
-import demirciy.ygslyspuanhesaplama.util.CustomDialog;
 import demirciy.ygslyspuanhesaplama.util.ToastMessage;
 
 public class ActivityYgs extends ActivityBase {
@@ -761,7 +760,7 @@ public class ActivityYgs extends ActivityBase {
         allScores.setYgs5(ygs5);
         allScores.setYgs6(ygs6);
 
-        createDialog(this, CustomDialog.From.Ygs, allScores);
+        createDialog(this, allScores);
     }
 
     public void ygsClear() {

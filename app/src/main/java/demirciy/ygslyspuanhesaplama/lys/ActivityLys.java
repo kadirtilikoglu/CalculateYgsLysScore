@@ -1,29 +1,21 @@
 package demirciy.ygslyspuanhesaplama.lys;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.DecimalFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Locale;
 
 import demirciy.ygslyspuanhesaplama.R;
+import demirciy.ygslyspuanhesaplama.base.ActivityBase;
 import demirciy.ygslyspuanhesaplama.common.ActivityAbout;
 import demirciy.ygslyspuanhesaplama.common.ActivityMyScores;
 import demirciy.ygslyspuanhesaplama.common.ActivityWhatIsYgsLys;
@@ -33,7 +25,7 @@ import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.LysCalculateScoreType;
 import demirciy.ygslyspuanhesaplama.util.ToastMessage;
 
-public class ActivityLys extends AppCompatActivity {
+public class ActivityLys extends ActivityBase {
 
     public EditText etLysMatD, etLysMatY, etLysMatN, etLysGeoD, etLysGeoY,
             etLysGeoN, etLysFizikD, etLysFizikY, etLysFizikN, etLysKimyaD,
@@ -1641,91 +1633,25 @@ public class ActivityLys extends AppCompatActivity {
     }
 
     public void questionErrorMessage() {
+
         toast.show("Soru sayısından fazla doğru ve yanlış sayısı girdiniz.");
     }
 
     public void goWhatisYgsLys() {
+
         Intent i = new Intent(this, ActivityWhatIsYgsLys.class);
         startActivity(i);
     }
 
     public void goAbout() {
+
         Intent i = new Intent(this, ActivityAbout.class);
         startActivity(i);
     }
 
-    //lys puanını kaydetmek için bu alertdialog başlatılır
     public void lysAlertDialog() {
-        Log.d(LOG_TAG, "Lys / Saving exam alert dialog starting.");
 
-        try {
-            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(this);
-            LayoutInflater inflater = this.getLayoutInflater();
-            final View dialogView = inflater.inflate(R.layout.dialog_custom, null);
-            dialogBuilder.setView(dialogView);
-
-            final EditText etExamName = (EditText) dialogView.findViewById(R.id.etExamName);
-            dialogBuilder.setTitle("Ygs-Lys puan kaydet");
-            dialogBuilder.setMessage("Sınav adı giriniz. Örn: Zambak Lys denemesi");
-            dialogBuilder.setPositiveButton("Kaydet", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    boolean isNull = etExamName.getText().toString().equals("");
-                    if (isNull) {
-                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-                        examName = "Adsız";
-                        if (findSameExamName() == 0) {
-                            lysAddScoreDatabase();
-                        } else {
-                            lysAlertDialog();
-                        }
-                    } else {
-                        date = new SimpleDateFormat("d-MMM-yyyy").format(new Date());
-                        examName = etExamName.getText().toString();
-                        if (findSameExamName() == 0) {
-                            lysAddScoreDatabase();
-                        } else {
-                            lysAlertDialog();
-                        }
-                    }
-                }
-            });
-            dialogBuilder.setNegativeButton("İptal", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
-                    dialog.cancel();
-                }
-            });
-            AlertDialog b = dialogBuilder.create();
-            b.show();
-        } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Showing alert dialog failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
-        }
-        Log.d(LOG_TAG, "Lys / Saving exam alert dialog started.");
-    }
-
-    //girilen deneme adının daha önce girilip girilmediğini kontrol eder
-    private int findSameExamName() {
-        int value = 0;
-
-        ArrayList<String> Headers;
-        Headers = myDb.getAllHeadersFromDb2();
-        for (int i = 0; i < Headers.size(); i++) {
-            if (Headers.get(i).equals(examName)) {
-                examNameErrorMessage();
-                value = 1;
-            }
-        }
-        return value;
-    }
-
-    private void examNameErrorMessage() {
-        String errorMessage = "Bu isme ait başka bir sınav adı mevcuttur.";
-        Toast.makeText(ActivityLys.this, errorMessage, Toast.LENGTH_SHORT).show();
-    }
-
-    //ygs net ve puanları, lys net ve puanlarını veritabanına kaydeder
-    public void lysAddScoreDatabase() {
-        Log.d(LOG_TAG, "Lys / Scores are adding into database.");
+        AllScores allScores = new AllScores();
 
         double ygsTrN = 0, ygsSosN = 0, ygsMatN = 0, ygsFenN = 0, ygs1 = 0, ygs2 = 0, ygs3 = 0,
                 ygs4 = 0, ygs5 = 0, ygs6 = 0;
@@ -1733,8 +1659,8 @@ public class ActivityLys extends AppCompatActivity {
         try {
             Cursor res = myDb.getYgsDatasForLys();
 
-            //önce ygs net ve puanları veri tabanından çekilir
             while (res.moveToNext()) {
+
                 ygsTrN = res.getDouble(0);
                 ygsSosN = res.getDouble(1);
                 ygsMatN = res.getDouble(2);
@@ -1747,12 +1673,6 @@ public class ActivityLys extends AppCompatActivity {
                 ygs6 = res.getDouble(9);
             }
 
-            //sonra yeni AllScores nesnesi oluşturulur
-            AllScores allScores = new AllScores();
-
-            //denemeyle ilgili bütün veriler bu nesneye atılır
-            //daha sonra veritabanının içindeki addAllScore() metodu verileri bu nesne yardımıyla çekip
-            //veritabanındaki gerekli tabloya ekler
             allScores.setExamName(examName);
             allScores.setExamDate(date);
             allScores.setTrMark(ygsTrN);
@@ -1789,16 +1709,12 @@ public class ActivityLys extends AppCompatActivity {
             allScores.setLang2(dil2);
             allScores.setLang3(dil3);
 
-            myDb.addAllScore(allScores);
+            createDialog(this, allScores);
 
-            String infoMessage = "Ygs-Lys puanı kaydedildi.";
-            Toast.makeText(ActivityLys.this, infoMessage, Toast.LENGTH_SHORT).show();
         } catch (Exception e) {
-            String msg = (e.getMessage() == null) ? "Adding lys scores into database failed!" : e.getMessage();
-            Log.e(LOG_TAG, msg);
-        }
 
-        Log.d(LOG_TAG, "Lys / Scores added into database.");
+            e.printStackTrace();
+        }
     }
 
     public void goMyScores() {

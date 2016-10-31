@@ -32,8 +32,6 @@ public class CustomDialog extends Dialog implements TextWatcher {
 
     String date, examName;
 
-    CustomDialog.From from;
-
     DatabaseHelper myDb;
     AllScores allScores;
 
@@ -41,14 +39,13 @@ public class CustomDialog extends Dialog implements TextWatcher {
 
     private android.app.AlertDialog b = null;
 
-    public CustomDialog(Context context, From from, AllScores allScores) {
+    public CustomDialog(Context context, AllScores allScores) {
 
         super(context);
 
         myDb = new DatabaseHelper(context);
 
         this.context = context;
-        this.from = from;
         this.allScores = allScores;
 
         toast = new ToastMessage(context);
@@ -138,9 +135,5 @@ public class CustomDialog extends Dialog implements TextWatcher {
             b.getButton(BUTTON_POSITIVE).setEnabled(false);
         else
             b.getButton(BUTTON_POSITIVE).setEnabled(true);
-    }
-
-    public enum From {
-        Ygs, Lys
     }
 }
