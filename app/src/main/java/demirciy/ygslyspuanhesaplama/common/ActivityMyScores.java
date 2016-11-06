@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -51,6 +52,9 @@ public class ActivityMyScores extends AppCompatActivity {
         //parent ve child itemlar veri tabanından çekilip arraylist lere atılır
         Headers = myDb.getAllHeadersFromDb();
         Datas = myDb.getAllDatasFromDb();
+
+        if (Headers.size() == 0)
+            expMyScores.setVisibility(View.GONE);
 
         //veritabanından çekilen parent ve child item ları adapter e gönderir
         AdapterExpListView adapterExpListView = new AdapterExpListView(this, Headers, Datas);

@@ -220,16 +220,14 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">12sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">2dp</item>
     </style>
 
     <style name="exprl">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">4sp</item>
-        <item name="android:paddingLeft">4sp</item>
-        <item name="android:paddingRight">4sp</item>
-        <item name="android:layout_marginLeft">2sp</item>
-        <item name="android:layout_marginRight">2sp</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="dialog_text">
@@ -484,11 +482,7 @@
     <style name="exprlLarge">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">4sp</item>
-        <item name="android:paddingLeft">4sp</item>
-        <item name="android:paddingRight">4sp</item>
-        <item name="android:layout_marginLeft">2sp</item>
-        <item name="android:layout_marginRight">2sp</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="dialog_textLarge">
@@ -743,11 +737,7 @@
     <style name="exprlXLarge">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingBottom">4sp</item>
-        <item name="android:paddingLeft">4sp</item>
-        <item name="android:paddingRight">4sp</item>
-        <item name="android:layout_marginLeft">2sp</item>
-        <item name="android:layout_marginRight">2sp</item>
+        <item name="android:orientation">horizontal</item>
     </style>
 
     <style name="dialog_textXLarge">

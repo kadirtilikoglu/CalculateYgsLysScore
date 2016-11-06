@@ -74,7 +74,7 @@ public class CustomDialog extends Dialog implements TextWatcher {
 
                     myDb.addAllScore(allScores);
 
-                    toast.show("Ygs puanı kaydedildi");
+                    toast.show("Kaydedildi");
                 }
             }
         });

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="demirciy.ygslyspuanhesaplama" >
+    package="demirciy.ygslyspuanhesaplama">
 
     <supports-screens
         android:anyDensity="true"
-        android:normalScreens="true"
         android:largeScreens="true"
+        android:normalScreens="true"
         android:xlargeScreens="true" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -16,43 +16,50 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
+        android:theme="@style/AppTheme">
+
         <activity
             android:name=".ygs.ActivityYgs"
-            android:label="Ygs" >
-            <intent-filter android:label="@string/app_name" >
+            android:label="Ygs">
+            <intent-filter android:label="@string/app_name">
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".lys.ActivityLys"
             android:label="Lys"
-            android:parentActivityName=".ygs.ActivityYgs" >
+            android:parentActivityName=".ygs.ActivityYgs">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="lys.ActivityLys" />
         </activity>
+
         <activity
             android:name=".common.ActivityMyScores"
-            android:label="Denemelerim" />
+            android:label="Denemelerim">
 
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".common.ActivityMyScores" />
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".common.ActivityMyScores" />
+        </activity>
 
         <activity
             android:name=".common.ActivityWhatIsYgsLys"
             android:label="Ygs-Lys Nedir?">
+
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".common.ActivityWhatIsYgsLys" />
         </activity>
+
         <activity
             android:name=".common.ActivityAbout"
             android:label="Hakkında">
             <meta-data
+
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".common.ActivityAbout" />
         </activity>

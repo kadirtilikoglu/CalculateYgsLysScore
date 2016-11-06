@@ -947,7 +947,7 @@ public class ActivityYgs extends ActivityBase {
     }
 
     public void goMyScores() {
-        Intent i = new Intent(ActivityYgs.this, ActivityMyScores.class);
+        Intent i = new Intent(this, ActivityMyScores.class);
         startActivity(i);
     }
 
