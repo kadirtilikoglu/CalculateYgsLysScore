@@ -477,6 +477,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">18sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">2dp</item>
     </style>
 
     <style name="exprlLarge">
@@ -732,6 +734,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
         <item name="android:textSize">24sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:padding">2dp</item>
     </style>
 
     <style name="exprlXLarge">
