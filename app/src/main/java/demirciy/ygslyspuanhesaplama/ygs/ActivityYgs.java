@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import java.util.Locale;
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.base.ActivityBase;
 import demirciy.ygslyspuanhesaplama.common.ActivityAbout;
+import demirciy.ygslyspuanhesaplama.common.ActivityFindUni;
 import demirciy.ygslyspuanhesaplama.common.ActivityMyScores;
 import demirciy.ygslyspuanhesaplama.common.ActivityWhatIsYgsLys;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
@@ -38,7 +40,7 @@ public class ActivityYgs extends ActivityBase {
             etYgsSosN, etYgsMatD, etYgsMatY, etYgsMatN, etYgsFenD,
             etYgsFenY, etYgsFenN;
     TextView tToplamD, tToplamY, tToplamN, tYgs1, tYgs2,
-            tYgs3, tYgs4, tYgs5, tYgs6;
+            tYgs3, tYgs4, tYgs5, tYgs6, tFindUni;
 
     public double ygsTrN, ygsSosN, ygsMatN, ygsFenN;
     double ygsTrD, ygsTrY, ygsSosD, ygsSosY, ygsMatD,
@@ -104,11 +106,21 @@ public class ActivityYgs extends ActivityBase {
         tYgs4 = (TextView) findViewById(R.id.tYgs4);
         tYgs5 = (TextView) findViewById(R.id.tYgs5);
         tYgs6 = (TextView) findViewById(R.id.tYgs6);
+        tFindUni = (TextView) findViewById(R.id.tFindUni);
 
         myDb = new DatabaseHelper(this);
         toast = new ToastMessage(this);
 
         previousInfo();
+
+        tFindUni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(ActivityYgs.this, ActivityFindUni.class);
+                startActivity(i);
+            }
+        });
 
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override

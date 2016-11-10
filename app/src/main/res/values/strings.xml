@@ -46,6 +46,7 @@
     <string name="my_scores">Puanlarım</string>
     <string name="about_ygs_lys">Ygs Lys Nedir?</string>
     <string name="about">Hakkında</string>
+    <string name="findUni"><u>Üniversite Bul</u></string>
 
     <string name="lys_warning">"Dikkat! Lys'ye girebilmeniz için 180 puan ve üstü almanız gerekiyor."</string>
     <string name="toastInvalidName">"Geçerli bir sınav adı giriniz."</string>

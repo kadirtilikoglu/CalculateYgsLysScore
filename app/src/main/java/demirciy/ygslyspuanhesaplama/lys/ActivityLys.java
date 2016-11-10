@@ -8,6 +8,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ import java.util.Locale;
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.base.ActivityBase;
 import demirciy.ygslyspuanhesaplama.common.ActivityAbout;
+import demirciy.ygslyspuanhesaplama.common.ActivityFindUni;
 import demirciy.ygslyspuanhesaplama.common.ActivityMyScores;
 import demirciy.ygslyspuanhesaplama.common.ActivityWhatIsYgsLys;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
@@ -24,6 +26,7 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.LysCalculateScoreType;
 import demirciy.ygslyspuanhesaplama.util.ToastMessage;
+import demirciy.ygslyspuanhesaplama.ygs.ActivityYgs;
 
 public class ActivityLys extends ActivityBase {
 
@@ -34,7 +37,7 @@ public class ActivityLys extends ActivityBase {
             etLysTarihD, etLysTarihY, etLysTarihN, etLysCog2D, etLysCog2Y, etLysCog2N,
             etLysFelD, etLysFelY, etLysFelN, etLysYdilD, etLysYdilY, etLysYdilN, etDiploma;
     private TextView tMf1, tMf2, tMf3, tMf4, tTm1, tTm2,
-            tTm3, tTs1, tTs2, tYdil1, tYdil2, tYdil3;
+            tTm3, tTs1, tTs2, tYdil1, tYdil2, tYdil3, tFindUni;
 
     private double lysMatN, lysGeoN, lysFizikN, lysKimyaN, lysBiyoN, lysEdeN, lysCog1N, lysTarihN,
             lysCog2N, lysFelN, lysYdilN, OBP, lysMatD, lysMatY, lysGeoD, lysGeoY, lysFizikD, lysFizikY,
@@ -137,10 +140,20 @@ public class ActivityLys extends ActivityBase {
         tYdil1 = (TextView) findViewById(R.id.tYdil1);
         tYdil2 = (TextView) findViewById(R.id.tYdil2);
         tYdil3 = (TextView) findViewById(R.id.tYdil3);
+        tFindUni = (TextView) findViewById(R.id.tFindUni);
 
         myDb = new DatabaseHelper(this);
 
         lysShowScore();
+
+        tFindUni.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent i = new Intent(ActivityLys.this, ActivityFindUni.class);
+                startActivity(i);
+            }
+        });
 
         etLysMatD.addTextChangedListener(new TextWatcher() {
             @Override
