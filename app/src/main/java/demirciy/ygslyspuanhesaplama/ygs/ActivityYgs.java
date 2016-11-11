@@ -117,6 +117,8 @@ public class ActivityYgs extends ActivityBase {
             @Override
             public void onClick(View v) {
 
+                ygsDatasForLys();
+
                 Intent i = new Intent(ActivityYgs.this, ActivityFindUni.class);
                 startActivity(i);
             }

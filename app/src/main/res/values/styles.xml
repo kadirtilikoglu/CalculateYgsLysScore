@@ -8,9 +8,25 @@
         <item name="android:textAllCaps">false</item>
     </style>
 
+    <style name="CustomTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="android:textColorPrimary">@color/textColorPrimary</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
     <style name="Divider">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">1dp</item>
+        <item name="android:background">?android:attr/listDivider</item>
+    </style>
+
+    <style name="Divider2">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">25sp</item>
         <item name="android:background">?android:attr/listDivider</item>
     </style>
 
@@ -69,6 +85,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:singleLine">true</item>
+        <item name="android:textCursorDrawable">@null</item>
     </style>
 
     <style name="ygsSum">
@@ -269,6 +286,39 @@
         <item name="android:textColor">@color/blueMidnight</item>
         <item name="android:gravity">center</item>
     </style>
+
+    <style name="layoutFindUni">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@color/white</item>
+    </style>
+
+    <style name="tFindUni">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="edtFindUni">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@null</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textCursorDrawable">@null</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:padding">8sp</item>
+    </style>
+
+    <style name="tParentFindUni">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">25sp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
     <!--Normal-->
 
     <!--Large-->
@@ -326,6 +376,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:singleLine">true</item>
+        <item name="android:textCursorDrawable">@null</item>
     </style>
 
     <style name="ygsSumLarge">
@@ -583,6 +634,7 @@
         <item name="android:gravity">center</item>
         <item name="android:layout_weight">1</item>
         <item name="android:singleLine">true</item>
+        <item name="android:textCursorDrawable">@null</item>
     </style>
 
     <style name="ygsSumXLarge">

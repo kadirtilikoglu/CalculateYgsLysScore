@@ -61,7 +61,6 @@ public class ActivityLys extends ActivityBase {
         return true;
     }
 
-    //action bar daki butonların tıklanma olayları
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 

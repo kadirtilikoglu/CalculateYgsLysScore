@@ -58,7 +58,8 @@
 
         <activity
             android:name=".common.ActivityFindUni"
-            android:label="Üniversite Bul">
+            android:label="Üniversite Bul"
+            android:theme="@style/CustomTheme">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"

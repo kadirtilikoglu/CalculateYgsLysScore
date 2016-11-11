@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="6sp">
+
+    <TextView
+        style="@style/tParentFindUni"
+        android:text="@string/uniName" />
+
+    <View
+        android:id="@+id/view3"
+        style="@style/Divider2"
+        android:layout_marginBottom="2sp"
+        android:layout_marginTop="2sp"
+        android:layout_weight="1"/>
+
+    <TextView
+        style="@style/tParentFindUni"
+        android:text="@string/departName" />
+
+    <TextView
+        style="@style/tParentFindUni"
+        android:text="@string/scoreType" />
+
+    <TextView
+        style="@style/tParentFindUni"
+        android:text="@string/scoreLow" />
+
+</LinearLayout>

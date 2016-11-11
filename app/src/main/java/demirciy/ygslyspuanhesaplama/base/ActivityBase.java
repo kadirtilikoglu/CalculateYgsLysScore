@@ -1,7 +1,9 @@
 package demirciy.ygslyspuanhesaplama.base;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.util.CustomDialog;
