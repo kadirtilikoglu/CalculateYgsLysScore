@@ -102,12 +102,13 @@
 
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/lw"
+    <ExpandableListView
+        android:id="@+id/expLw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="8sp"
         android:background="@color/white"
-        android:elevation="2sp" />
+        android:elevation="2sp"
+        android:groupIndicator="@null"/>
 
 </LinearLayout>

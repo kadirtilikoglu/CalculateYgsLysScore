@@ -21,12 +21,12 @@ import demirciy.ygslyspuanhesaplama.R;
  **/
 
 //expandable listview in adaptörü
-public class AdapterExpListView extends BaseExpandableListAdapter {
+public class AdapterMyScores extends BaseExpandableListAdapter {
     private Context _context;
     private List<String> _listDataHeader;
     private HashMap<String, List<String>> _listDataChild;
 
-    public AdapterExpListView(Context _context, List<String> _listDataHeader, HashMap<String, List<String>> _listDataChild) {
+    public AdapterMyScores(Context _context, List<String> _listDataHeader, HashMap<String, List<String>> _listDataChild) {
         this._context = _context;
         this._listDataChild = _listDataChild;
         this._listDataHeader = _listDataHeader;
@@ -77,6 +77,7 @@ public class AdapterExpListView extends BaseExpandableListAdapter {
     //başlıkları yazdırır
     @Override
     public View getGroupView(int groupPosition, boolean isExpanded, View convertView, ViewGroup parent) {
+
         String headerTitle = (String) getGroup(groupPosition);
         if (convertView == null) {
             LayoutInflater infalInflater = (LayoutInflater) this._context

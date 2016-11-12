@@ -6,25 +6,58 @@
     android:padding="6sp">
 
     <TextView
+        android:id="@+id/tUniName"
         style="@style/tParentFindUni"
         android:text="@string/uniName" />
 
-    <View
-        android:id="@+id/view3"
-        style="@style/Divider2"
-        android:layout_marginBottom="2sp"
-        android:layout_marginTop="2sp"
-        android:layout_weight="1"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:layout_weight="1">
+
+        <View
+            style="@style/Divider2"
+            android:layout_marginBottom="2sp"
+            android:layout_marginTop="2sp" />
+
+    </RelativeLayout>
 
     <TextView
+        android:id="@+id/tDepartName"
         style="@style/tParentFindUni"
         android:text="@string/departName" />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:layout_weight="1">
+
+        <View
+            style="@style/Divider2"
+            android:layout_marginBottom="2sp"
+            android:layout_marginTop="2sp" />
+
+    </RelativeLayout>
+
     <TextView
+        android:id="@+id/tScoreType"
         style="@style/tParentFindUni"
         android:text="@string/scoreType" />
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:layout_weight="1">
+
+        <View
+            style="@style/Divider2"
+            android:layout_marginBottom="2sp"
+            android:layout_marginTop="2sp" />
+
+    </RelativeLayout>
+
     <TextView
+        android:id="@+id/tScoreLow"
         style="@style/tParentFindUni"
         android:text="@string/scoreLow" />
 

@@ -4,12 +4,16 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.widget.ListView;
+import android.widget.ExpandableListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
 import demirciy.ygslyspuanhesaplama.R;
+import demirciy.ygslyspuanhesaplama.adapter.AdapterFindUni;
 import demirciy.ygslyspuanhesaplama.base.ActivityBase;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 
@@ -17,7 +21,9 @@ public class ActivityFindUni extends ActivityBase {
 
     Toolbar toolbar;
 
-    ListView lw;
+    ExpandableListView expLw;
+
+    ArrayList<String> alParent, alChild;
 
     TextView tYgs1, tYgs2, tYgs3, tYgs4, tYgs5, tYgs6;
 
@@ -43,9 +49,37 @@ public class ActivityFindUni extends ActivityBase {
         tYgs5 = (TextView) findViewById(R.id.tYgs5);
         tYgs6 = (TextView) findViewById(R.id.tYgs6);
 
-        lw = (ListView) findViewById(R.id.lw);
+        expLw = (ExpandableListView) findViewById(R.id.expLw);
 
         showScores();
+
+        HashMap<Integer, List<String>> parent = new HashMap<>();
+        HashMap<List<String>, ArrayList<String>> child = new HashMap<>();
+
+        for (int i = 0; i < 3; i++) {
+
+            alParent = new ArrayList<>();
+
+            alParent.add("üni" + i);
+            alParent.add("bölüm" + i);
+            alParent.add("puan türü" + i);
+            alParent.add("taban puanı" + i);
+
+            parent.put(i, alParent);
+        }
+
+        for (int i = 0; i < 3; i++) {
+
+            alChild = new ArrayList<>();
+
+            alChild.add("kontenjan" + i);
+            alChild.add("gecen sene taban puan" + i);
+
+            child.put(parent.get(i), alChild);
+        }
+
+        AdapterFindUni adapterFindUni = new AdapterFindUni(this, parent, child);
+        expLw.setAdapter(adapterFindUni);
     }
 
     @Override

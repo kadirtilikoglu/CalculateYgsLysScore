@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
@@ -18,7 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import demirciy.ygslyspuanhesaplama.R;
-import demirciy.ygslyspuanhesaplama.adapter.AdapterExpListView;
+import demirciy.ygslyspuanhesaplama.adapter.AdapterMyScores;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 
 //action bar da denemelerim butonuna basınca açılır
@@ -57,8 +56,8 @@ public class ActivityMyScores extends AppCompatActivity {
             expMyScores.setVisibility(View.GONE);
 
         //veritabanından çekilen parent ve child item ları adapter e gönderir
-        AdapterExpListView adapterExpListView = new AdapterExpListView(this, Headers, Datas);
-        expMyScores.setAdapter(adapterExpListView);
+        AdapterMyScores adapterMyScores = new AdapterMyScores(this, Headers, Datas);
+        expMyScores.setAdapter(adapterMyScores);
 
         //bir expandable listview başlığına(deneme adı ve tarihi) uzun tıklanınca çalışır
         expMyScores.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
