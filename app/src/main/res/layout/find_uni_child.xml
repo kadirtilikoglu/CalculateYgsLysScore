@@ -6,9 +6,9 @@
     android:padding="6sp">
 
     <TextView
-        android:id="@+id/tQuota"
+        android:id="@+id/tScoreType"
         style="@style/tParentFindUni"
-        android:text="@string/quota" />
+        android:text="@string/scoreType" />
 
     <RelativeLayout
         android:layout_width="wrap_content"
@@ -23,8 +23,25 @@
     </RelativeLayout>
 
     <TextView
-        android:id="@+id/tLastScore"
+        android:id="@+id/tYerlestirilen"
         style="@style/tParentFindUni"
-        android:text="Gecen sene taban puan" />
+        android:text="@string/yerlestirilen" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="25sp"
+        android:layout_weight="1">
+
+        <View
+            style="@style/Divider2"
+            android:layout_marginBottom="2sp"
+            android:layout_marginTop="2sp" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tQuota"
+        style="@style/tParentFindUni"
+        android:text="@string/quota" />
 
 </LinearLayout>

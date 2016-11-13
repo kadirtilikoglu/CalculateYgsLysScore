@@ -81,12 +81,12 @@ public class AdapterFindUni extends BaseExpandableListAdapter {
 
         TextView tUni = (TextView) convertView.findViewById(R.id.tUniName);
         tUni.setText(String.valueOf(uni.get(0)));
+
         TextView tDepart = (TextView) convertView.findViewById(R.id.tDepartName);
         tDepart.setText(String.valueOf(uni.get(1)));
-        TextView tScoreType = (TextView) convertView.findViewById(R.id.tScoreType);
-        tScoreType.setText(String.valueOf(uni.get(2)));
+
         TextView tScoreLow = (TextView) convertView.findViewById(R.id.tScoreLow);
-        tScoreLow.setText(String.valueOf(uni.get(3)));
+        tScoreLow.setText(String.valueOf(uni.get(2)));
 
         return convertView;
     }
@@ -102,10 +102,14 @@ public class AdapterFindUni extends BaseExpandableListAdapter {
             convertView = inflater.inflate(R.layout.find_uni_child, null);
         }
 
+        TextView tScoreType = (TextView) convertView.findViewById(R.id.tScoreType);
+        tScoreType.setText(String.valueOf(getChild(groupPosition, childPosition)));
+
+        TextView tYerlestirilen = (TextView) convertView.findViewById(R.id.tYerlestirilen);
+        tYerlestirilen.setText(String.valueOf(getChild(groupPosition, childPosition + 1)));
+
         TextView tQuota = (TextView) convertView.findViewById(R.id.tQuota);
-        tQuota.setText(String.valueOf(getChild(groupPosition, childPosition)));
-        TextView tLastScore = (TextView) convertView.findViewById(R.id.tLastScore);
-        tLastScore.setText(String.valueOf(getChild(groupPosition, childPosition + 1)));
+        tQuota.setText(String.valueOf(getChild(groupPosition, childPosition + 2)));
 
         return convertView;
     }

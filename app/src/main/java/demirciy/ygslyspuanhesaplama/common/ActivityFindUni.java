@@ -62,7 +62,6 @@ public class ActivityFindUni extends ActivityBase {
 
             alParent.add("üni" + i);
             alParent.add("bölüm" + i);
-            alParent.add("puan türü" + i);
             alParent.add("taban puanı" + i);
 
             parent.put(i, alParent);
@@ -72,8 +71,9 @@ public class ActivityFindUni extends ActivityBase {
 
             alChild = new ArrayList<>();
 
+            alChild.add("puan türü" + i);
+            alChild.add("yerlestirilen" + i);
             alChild.add("kontenjan" + i);
-            alChild.add("gecen sene taban puan" + i);
 
             child.put(parent.get(i), alChild);
         }

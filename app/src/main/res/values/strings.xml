@@ -55,7 +55,8 @@
     <string name="departName">bölüm adı</string>
     <string name="scoreType">puan türü</string>
     <string name="scoreLow">taban puan</string>
-    <string name="quota">kontenjan sayısı</string>
+    <string name="quota">kontenjan</string>
+    <string name="yerlestirilen">yerleştirilen</string>
 
     <string name="lys_warning">"Dikkat! Lys'ye girebilmeniz için 180 puan ve üstü almanız gerekiyor."</string>
     <string name="toastInvalidName">"Geçerli bir sınav adı giriniz."</string>
