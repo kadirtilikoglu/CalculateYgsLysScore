@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.widget.ExpandableListView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,12 +21,11 @@ import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
 public class ActivityFindUni extends ActivityBase {
 
     Toolbar toolbar;
-
+    LinearLayout layoutYgs, layoutLys;
     ExpandableListView expLw;
+    TextView tYgs1, tYgs2, tYgs3, tYgs4, tYgs5, tYgs6;
 
     ArrayList<String> alParent, alChild;
-
-    TextView tYgs1, tYgs2, tYgs3, tYgs4, tYgs5, tYgs6;
 
     Double ygs1, ygs2, ygs3, ygs4, ygs5, ygs6;
 
@@ -42,13 +42,14 @@ public class ActivityFindUni extends ActivityBase {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        layoutYgs = (LinearLayout) findViewById(R.id.layoutYgs);
+        layoutLys = (LinearLayout) findViewById(R.id.layoutLys);
         tYgs1 = (TextView) findViewById(R.id.tYgs1);
         tYgs2 = (TextView) findViewById(R.id.tYgs2);
         tYgs3 = (TextView) findViewById(R.id.tYgs3);
         tYgs4 = (TextView) findViewById(R.id.tYgs4);
         tYgs5 = (TextView) findViewById(R.id.tYgs5);
         tYgs6 = (TextView) findViewById(R.id.tYgs6);
-
         expLw = (ExpandableListView) findViewById(R.id.expLw);
 
         showScores();

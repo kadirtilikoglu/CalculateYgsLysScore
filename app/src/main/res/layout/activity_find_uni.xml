@@ -13,6 +13,7 @@
         layout="@layout/tool_bar" />
 
     <LinearLayout
+        android:id="@+id/layoutYgs"
         style="@style/layoutFindUni"
         android:elevation="2sp"
         android:orientation="vertical"
@@ -54,6 +55,92 @@
                 android:id="@+id/tYgs6"
                 style="@style/tFindUni"
                 android:text="@string/ygs6" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/layoutLys"
+        style="@style/layoutFindUni"
+        android:elevation="2sp"
+        android:orientation="vertical"
+        android:paddingBottom="8sp"
+        android:paddingTop="8sp">
+
+        <LinearLayout style="@style/layoutFindUni">
+
+            <TextView
+                android:id="@+id/tMf1"
+                style="@style/tFindUni"
+                android:text="@string/mf1_score" />
+
+            <TextView
+                android:id="@+id/tMf2"
+                style="@style/tFindUni"
+                android:text="@string/mf2_score" />
+
+            <TextView
+                android:id="@+id/tMf3"
+                style="@style/tFindUni"
+                android:text="@string/mf3_score" />
+
+            <TextView
+                android:id="@+id/tMf4"
+                style="@style/tFindUni"
+                android:text="@string/mf4_score" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutFindUni">
+
+            <TextView
+                android:id="@+id/tTm1"
+                style="@style/tFindUni"
+                android:text="@string/tm1_score" />
+
+            <TextView
+                android:id="@+id/tTm2"
+                style="@style/tFindUni"
+                android:text="@string/tm2_score" />
+
+            <TextView
+                android:id="@+id/tTm3"
+                style="@style/tFindUni"
+                android:text="@string/tm3_score" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutFindUni">
+
+            <TextView
+                android:id="@+id/tTs1"
+                style="@style/tFindUni"
+                android:text="@string/ts1_score" />
+
+            <TextView
+                android:id="@+id/tTs2"
+                style="@style/tFindUni"
+                android:text="@string/ts2_score" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/layoutFindUni">
+
+            <TextView
+                android:id="@+id/tLang1"
+                style="@style/tFindUni"
+                android:text="@string/lang1_score" />
+
+            <TextView
+                android:id="@+id/tLang2"
+                style="@style/tFindUni"
+                android:text="@string/lang2_score" />
+
+            <TextView
+                android:id="@+id/tLang3"
+                style="@style/tFindUni"
+                android:text="@string/lang3_score" />
 
         </LinearLayout>
 
@@ -109,6 +196,6 @@
         android:layout_marginTop="8sp"
         android:background="@color/white"
         android:elevation="2sp"
-        android:groupIndicator="@null"/>
+        android:groupIndicator="@null" />
 
 </LinearLayout>
