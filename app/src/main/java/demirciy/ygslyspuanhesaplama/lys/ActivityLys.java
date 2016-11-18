@@ -26,7 +26,6 @@ import demirciy.ygslyspuanhesaplama.model.AllScores;
 import demirciy.ygslyspuanhesaplama.model.CalculateMark;
 import demirciy.ygslyspuanhesaplama.model.LysCalculateScoreType;
 import demirciy.ygslyspuanhesaplama.util.ToastMessage;
-import demirciy.ygslyspuanhesaplama.ygs.ActivityYgs;
 
 public class ActivityLys extends ActivityBase {
 
@@ -44,7 +43,10 @@ public class ActivityLys extends ActivityBase {
             lysKimyaD, lysKimyaY, lysBiyoD, lysBiyoY, lysEdeD, lysEdeY, lysCog1D, lysCog1Y, lysTarihD,
             lysTarihY, lysCog2D, lysCog2Y, lysFelD, lysFelY, lysYdilD, lysYdilY;
 
-    private double mf1, mf2, mf3, mf4, tm1, tm2, tm3, ts1, ts2, dil1, dil2, dil3;
+    double ygsTrN = 0, ygsSosN = 0, ygsMatN = 0, ygsFenN = 0, ygs1 = 0, ygs2 = 0, ygs3 = 0,
+            ygs4 = 0, ygs5 = 0, ygs6 = 0;
+
+    public double mf1, mf2, mf3, mf4, tm1, tm2, tm3, ts1, ts2, dil1, dil2, dil3;
 
     private String examName, date;
 
@@ -149,7 +151,10 @@ public class ActivityLys extends ActivityBase {
             @Override
             public void onClick(View v) {
 
+                addLysScores();
+
                 Intent i = new Intent(ActivityLys.this, ActivityFindUni.class);
+                i.putExtra("from", "ActivityLys");
                 startActivity(i);
             }
         });
@@ -1533,31 +1538,33 @@ public class ActivityLys extends ActivityBase {
             LysCalculateScoreType lys = new LysCalculateScoreType(Double.parseDouble(marks[0]), Double.parseDouble(marks[1]),
                     Double.parseDouble(marks[2]), Double.parseDouble(marks[3]), lysMatN, lysGeoN, lysFizikN, lysKimyaN,
                     lysBiyoN, lysEdeN, lysCog1N, lysTarihN, lysCog2N, lysFelN, lysYdilN);
-            mf1 = lys.getMF1();
-            tMf1.setText(String.format(Locale.getDefault(), "MF-1 : %.2f", mf1 + OBP));
-            mf2 = lys.getMF2();
-            tMf2.setText(String.format(Locale.getDefault(), "MF-2 : %.2f", mf2 + OBP));
-            mf3 = lys.getMF3();
-            tMf3.setText(String.format(Locale.getDefault(), "MF-3 : %.2f", mf3 + OBP));
-            mf4 = lys.getMF4();
-            tMf4.setText(String.format(Locale.getDefault(), "MF-4 : %.2f", mf4 + OBP));
-            tm1 = lys.getTM1();
-            tTm1.setText(String.format(Locale.getDefault(), "TM-1 : %.2f", tm1 + OBP));
-            tm2 = lys.getTM2();
-            tTm2.setText(String.format(Locale.getDefault(), "TM-2 : %.2f", tm2 + OBP));
-            tm3 = lys.getTM3();
-            tTm3.setText(String.format(Locale.getDefault(), "TM-3 : %.2f", tm3 + OBP));
-            ts1 = lys.getTS1();
-            tTs1.setText(String.format(Locale.getDefault(), "TS-1 : %.2f", ts1 + OBP));
-            ts2 = lys.getTS2();
-            tTs2.setText(String.format(Locale.getDefault(), "TS-2 : %.2f", ts2 + OBP));
-            dil1 = lys.getDil1();
-            tYdil1.setText(String.format(Locale.getDefault(), "Dil-1 : %.2f", dil1 + OBP));
-            dil2 = lys.getDil2();
-            tYdil2.setText(String.format(Locale.getDefault(), "Dil-2 : %.2f", dil2 + OBP));
-            dil3 = lys.getDil3();
-            tYdil3.setText(String.format(Locale.getDefault(), "Dil-3 : %.2f", dil3 + OBP));
+            mf1 = lys.getMF1() + OBP;
+            tMf1.setText(String.format(Locale.getDefault(), "MF-1 : %.2f", mf1));
+            mf2 = lys.getMF2() + OBP;
+            tMf2.setText(String.format(Locale.getDefault(), "MF-2 : %.2f", mf2));
+            mf3 = lys.getMF3() + OBP;
+            tMf3.setText(String.format(Locale.getDefault(), "MF-3 : %.2f", mf3));
+            mf4 = lys.getMF4() + OBP;
+            tMf4.setText(String.format(Locale.getDefault(), "MF-4 : %.2f", mf4));
+            tm1 = lys.getTM1() + OBP;
+            tTm1.setText(String.format(Locale.getDefault(), "TM-1 : %.2f", tm1));
+            tm2 = lys.getTM2() + OBP;
+            tTm2.setText(String.format(Locale.getDefault(), "TM-2 : %.2f", tm2));
+            tm3 = lys.getTM3() + OBP;
+            tTm3.setText(String.format(Locale.getDefault(), "TM-3 : %.2f", tm3));
+            ts1 = lys.getTS1() + OBP;
+            tTs1.setText(String.format(Locale.getDefault(), "TS-1 : %.2f", ts1));
+            ts2 = lys.getTS2() + OBP;
+            tTs2.setText(String.format(Locale.getDefault(), "TS-2 : %.2f", ts2));
+            dil1 = lys.getDil1() + OBP;
+            tYdil1.setText(String.format(Locale.getDefault(), "Dil-1 : %.2f", dil1));
+            dil2 = lys.getDil2() + OBP;
+            tYdil2.setText(String.format(Locale.getDefault(), "Dil-2 : %.2f", dil2));
+            dil3 = lys.getDil3() + OBP;
+            tYdil3.setText(String.format(Locale.getDefault(), "Dil-3 : %.2f", dil3));
+
         } catch (Exception e) {
+
             String msg = (e.getMessage() == null) ? "Calculating lys score failed!" : e.getMessage();
             Log.e(LOG_TAG, msg);
         }
@@ -1665,9 +1672,6 @@ public class ActivityLys extends ActivityBase {
 
         AllScores allScores = new AllScores();
 
-        double ygsTrN = 0, ygsSosN = 0, ygsMatN = 0, ygsFenN = 0, ygs1 = 0, ygs2 = 0, ygs3 = 0,
-                ygs4 = 0, ygs5 = 0, ygs6 = 0;
-
         try {
             Cursor res = myDb.getYgsDatasForLys();
 
@@ -1732,5 +1736,92 @@ public class ActivityLys extends ActivityBase {
     public void goMyScores() {
         Intent i = new Intent(this, ActivityMyScores.class);
         startActivity(i);
+    }
+
+    private void addLysScores() {
+
+        try {
+
+            Cursor res = myDb.getYgsDatasForLys();
+
+            while (res.moveToNext()) {
+
+                ygsTrN = res.getDouble(0);
+                ygsSosN = res.getDouble(1);
+                ygsMatN = res.getDouble(2);
+                ygsFenN = res.getDouble(3);
+                ygs1 = res.getDouble(4);
+                ygs2 = res.getDouble(5);
+                ygs3 = res.getDouble(6);
+                ygs4 = res.getDouble(7);
+                ygs5 = res.getDouble(8);
+                ygs6 = res.getDouble(9);
+            }
+
+            //0 dönerse tablo yeni oluşturuluyor
+            if (res.getCount() == 0) {
+
+                AllScores allScores = new AllScores();
+
+                allScores.setTrMark(ygsTrN);
+                allScores.setSocialMark(ygsSosN);
+                allScores.setMath1Mark(ygsMatN);
+                allScores.setScienceMark(ygsFenN);
+                allScores.setYgs1(ygs1);
+                allScores.setYgs2(ygs2);
+                allScores.setYgs3(ygs3);
+                allScores.setYgs4(ygs4);
+                allScores.setYgs5(ygs5);
+                allScores.setYgs6(ygs6);
+                allScores.setMf1(mf1);
+                allScores.setMf2(mf2);
+                allScores.setMf3(mf3);
+                allScores.setMf4(mf4);
+                allScores.setTm1(tm1);
+                allScores.setTm2(tm2);
+                allScores.setTm3(tm3);
+                allScores.setTs1(ts1);
+                allScores.setTs2(ts2);
+                allScores.setLang1(dil1);
+                allScores.setLang2(dil2);
+                allScores.setLang3(dil3);
+
+                myDb.addYgsDatasForLys(allScores);
+
+                //dönmezse tablo var demektir. tablo güncelleniyor
+            } else {
+
+                AllScores allScores = new AllScores();
+
+                allScores.setTrMark(ygsTrN);
+                allScores.setSocialMark(ygsSosN);
+                allScores.setMath1Mark(ygsMatN);
+                allScores.setScienceMark(ygsFenN);
+                allScores.setYgs1(ygs1);
+                allScores.setYgs2(ygs2);
+                allScores.setYgs3(ygs3);
+                allScores.setYgs4(ygs4);
+                allScores.setYgs5(ygs5);
+                allScores.setYgs6(ygs6);
+                allScores.setMf1(mf1);
+                allScores.setMf2(mf2);
+                allScores.setMf3(mf3);
+                allScores.setMf4(mf4);
+                allScores.setTm1(tm1);
+                allScores.setTm2(tm2);
+                allScores.setTm3(tm3);
+                allScores.setTs1(ts1);
+                allScores.setTs2(ts2);
+                allScores.setLang1(dil1);
+                allScores.setLang2(dil2);
+                allScores.setLang3(dil3);
+
+                myDb.updateYgsDatasForLys(allScores);
+            }
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+        }
     }
 }

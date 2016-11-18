@@ -120,6 +120,7 @@ public class ActivityYgs extends ActivityBase {
                 ygsDatasForLys();
 
                 Intent i = new Intent(ActivityYgs.this, ActivityFindUni.class);
+                i.putExtra("from", "ActivityYgs");
                 startActivity(i);
             }
         });

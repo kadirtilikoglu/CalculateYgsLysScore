@@ -75,6 +75,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_63 = "YGS4";
     public static final String COL_64 = "YGS5";
     public static final String COL_65 = "YGS6";
+    public static final String COL_66 = "MF1";
+    public static final String COL_67 = "MF2";
+    public static final String COL_68 = "MF3";
+    public static final String COL_69 = "MF4";
+    public static final String COL_70 = "TM1";
+    public static final String COL_71 = "TM2";
+    public static final String COL_72 = "TM3";
+    public static final String COL_73 = "TS1";
+    public static final String COL_74 = "TS2";
+    public static final String COL_75 = "LANG1";
+    public static final String COL_76 = "LANG2";
+    public static final String COL_77 = "LANG3";
 
     private ArrayList<String> Headers;
     private HashMap<String, List<String>> Datas;
@@ -102,7 +114,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 "TM2 INTEGER, TM3 INTEGER, TS1 INTEGER, TS2 INTEGER, LANG1 INTEGER, LANG2 INTEGER, LANG3 INTEGER)");
         db.execSQL("create table " + TABLE_NAME3
                 + "(TR_MARK INTEGER, SOCIAL_MARK INTEGER, MATH1_MARK INTEGER, SCIENCE_MARK INTEGER," +
-                "YGS1 INTEGER, YGS2 INTEGER, YGS3 INTEGER, YGS4 INTEGER, YGS5 INTEGER, YGS6 INTEGER)");
+                "YGS1 INTEGER, YGS2 INTEGER, YGS3 INTEGER, YGS4 INTEGER, YGS5 INTEGER, YGS6 INTEGER," +
+                "MF1 INTEGER, MF2 INTEGER, MF3 INTEGER, MF4 INTEGER, TM1 INTEGER, TM2 INTEGER" +
+                "TM3 INTEGER, TS1 INTEGER, TS2 INTEGER, LANG1 INTEGER, LANG2 INTEGER, LANG3 INTEGER)");
     }
 
     //bir tabloda herhangi bir veriyi güncellerken eğer tablo mevcutsa tabloyu siler ve güncellenmiş halini tekrar oluşturur
@@ -362,6 +376,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_63, allScores.getYgs4());
         contentValues.put(COL_64, allScores.getYgs5());
         contentValues.put(COL_65, allScores.getYgs6());
+        contentValues.put(COL_66, allScores.getMf1());
+        contentValues.put(COL_67, allScores.getMf2());
+        contentValues.put(COL_68, allScores.getMf3());
+        contentValues.put(COL_69, allScores.getMf4());
+        contentValues.put(COL_70, allScores.getTm1());
+        contentValues.put(COL_71, allScores.getTm2());
+        contentValues.put(COL_72, allScores.getTm3());
+        contentValues.put(COL_73, allScores.getTs1());
+        contentValues.put(COL_74, allScores.getTs2());
+        contentValues.put(COL_75, allScores.getLang1());
+        contentValues.put(COL_76, allScores.getLang2());
+        contentValues.put(COL_77, allScores.getLang3());
 
         long result = db.insert(TABLE_NAME3, null, contentValues);
 
@@ -386,6 +412,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_63, allScores.getYgs4());
         contentValues.put(COL_64, allScores.getYgs5());
         contentValues.put(COL_65, allScores.getYgs6());
+        contentValues.put(COL_66, allScores.getMf1());
+        contentValues.put(COL_67, allScores.getMf2());
+        contentValues.put(COL_68, allScores.getMf3());
+        contentValues.put(COL_69, allScores.getMf4());
+        contentValues.put(COL_70, allScores.getTm1());
+        contentValues.put(COL_71, allScores.getTm2());
+        contentValues.put(COL_72, allScores.getTm3());
+        contentValues.put(COL_73, allScores.getTs1());
+        contentValues.put(COL_74, allScores.getTs2());
+        contentValues.put(COL_75, allScores.getLang1());
+        contentValues.put(COL_76, allScores.getLang2());
+        contentValues.put(COL_77, allScores.getLang3());
 
         db.update(TABLE_NAME3, contentValues, null, null);
 
