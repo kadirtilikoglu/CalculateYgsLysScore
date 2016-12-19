@@ -34,6 +34,7 @@
             android:id="@+id/rl3"
             style="@style/layout"
             android:layout_marginTop="8sp"
+            android:layout_marginBottom="8sp"
             android:orientation="vertical">
 
             <TextView

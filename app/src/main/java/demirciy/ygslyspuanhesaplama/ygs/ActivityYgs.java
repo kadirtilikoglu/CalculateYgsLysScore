@@ -113,17 +113,17 @@ public class ActivityYgs extends ActivityBase {
 
         previousInfo();
 
-        tFindUni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                ygsDatasForLys();
-
-                Intent i = new Intent(ActivityYgs.this, ActivityFindUni.class);
-                i.putExtra("from", "ActivityYgs");
-                startActivity(i);
-            }
-        });
+//        tFindUni.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                ygsDatasForLys();
+//
+//                Intent i = new Intent(ActivityYgs.this, ActivityFindUni.class);
+//                i.putExtra("from", "ActivityYgs");
+//                startActivity(i);
+//            }
+//        });
 
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override

@@ -147,17 +147,17 @@ public class ActivityLys extends ActivityBase {
 
         lysShowScore();
 
-        tFindUni.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                addLysScores();
-
-                Intent i = new Intent(ActivityLys.this, ActivityFindUni.class);
-                i.putExtra("from", "ActivityLys");
-                startActivity(i);
-            }
-        });
+//        tFindUni.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                addLysScores();
+//
+//                Intent i = new Intent(ActivityLys.this, ActivityFindUni.class);
+//                i.putExtra("from", "ActivityLys");
+//                startActivity(i);
+//            }
+//        });
 
         etLysMatD.addTextChangedListener(new TextWatcher() {
             @Override
