@@ -99,7 +99,7 @@
     <string name="lang3_score">Dil3: </string>
 
     <string name="describe_ygs_lys">Ygs-Lys her yıl ÖSYM tarafından yapılan 2 kademeli üniversiteye giriş sınavıdır.</string>
-    <string name="describe_ygs">"Ygs, bütün adayların girmesinin zorunlu olduğu sınavdır. Türkçe, Sosyal, Matematik ve Fen'den 40'ar, toplam 160 soru vardır.Ygs'de baraj geçilirse 2 yıllık bir bölüme Lys'ye girmeden başvurulabilir. 2 yıllık eğitimdensonra DGS'ye girilip 2 yıl okunmuş olan bölümün 4 yıllık karşılığına geçiş yapılabilir."</string>
+    <string name="describe_ygs">"Ygs, bütün adayların girmesinin zorunlu olduğu sınavdır. Türkçe, Sosyal, Matematik ve Fen'den 40'ar, toplam 160 soru vardır.Ygs'de baraj geçilirse 2 yıllık bir bölüme Lys'ye girmeden başvurulabilir. 2 yıllık eğitimden sonra DGS'ye girilip 2 yıl okunmuş olan bölümün 4 yıllık karşılığına geçiş yapılabilir."</string>
     <string name="lysGiris">Lys, 6 farklı oturumda gerçekleşir.</string>
     <string name="lys_1">Lys1 - Matematik(50 soru), Geometri(30)</string>
     <string name="lys_2">Lys2 - Fizik(30), Kimya(30), Biyoloji(30)</string>
