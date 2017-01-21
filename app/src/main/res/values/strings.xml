@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Ygs Lys Puan Hesaplama</string>
 
+    <string name="banner_bottom">ca-app-pub-9463885042100606/1577189571</string>
+
     <string name="ygs1">Ygs-1 : 100.16</string>
     <string name="ygs2">Ygs-2 : 100.16</string>
     <string name="ygs3">Ygs-3 : 100.16</string>

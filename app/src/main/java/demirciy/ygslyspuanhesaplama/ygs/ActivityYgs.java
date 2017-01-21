@@ -8,9 +8,11 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
 
 import java.text.DecimalFormat;
 import java.util.Locale;
@@ -18,7 +20,6 @@ import java.util.Locale;
 import demirciy.ygslyspuanhesaplama.R;
 import demirciy.ygslyspuanhesaplama.base.ActivityBase;
 import demirciy.ygslyspuanhesaplama.common.ActivityAbout;
-import demirciy.ygslyspuanhesaplama.common.ActivityFindUni;
 import demirciy.ygslyspuanhesaplama.common.ActivityMyScores;
 import demirciy.ygslyspuanhesaplama.common.ActivityWhatIsYgsLys;
 import demirciy.ygslyspuanhesaplama.database.DatabaseHelper;
@@ -35,6 +36,8 @@ public class ActivityYgs extends ActivityBase {
     DecimalFormat format = new DecimalFormat("#.##");
     DatabaseHelper myDb;
     ToastMessage toast;
+
+    AdView adView;
 
     EditText etYgsTrD, etYgsTrY, etYgsTrN, etYgsSosD, etYgsSosY,
             etYgsSosN, etYgsMatD, etYgsMatY, etYgsMatN, etYgsFenD,
@@ -107,23 +110,16 @@ public class ActivityYgs extends ActivityBase {
         tYgs5 = (TextView) findViewById(R.id.tYgs5);
         tYgs6 = (TextView) findViewById(R.id.tYgs6);
         tFindUni = (TextView) findViewById(R.id.tFindUni);
+        adView = (AdView) findViewById(R.id.adView);
+
+        AdRequest adRequest = new AdRequest.Builder()
+                .build();
+        adView.loadAd(adRequest);
 
         myDb = new DatabaseHelper(this);
         toast = new ToastMessage(this);
 
         previousInfo();
-
-//        tFindUni.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                ygsDatasForLys();
-//
-//                Intent i = new Intent(ActivityYgs.this, ActivityFindUni.class);
-//                i.putExtra("from", "ActivityYgs");
-//                startActivity(i);
-//            }
-//        });
 
         etYgsTrD.addTextChangedListener(new TextWatcher() {
             @Override
@@ -628,6 +624,30 @@ public class ActivityYgs extends ActivityBase {
                 ygsAddMarkDatabase();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (adView != null)
+            adView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+
+        if (adView != null)
+            adView.pause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (adView != null)
+            adView.destroy();
     }
 
     public void ygsPrintSum() {
