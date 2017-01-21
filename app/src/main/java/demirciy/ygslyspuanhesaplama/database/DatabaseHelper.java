@@ -96,7 +96,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         //uygulamanız ilk yayınlandığı zaman 1 dir
         //uygulamanızı her güncellemek istediğinizde 1 arttırmak zorundasınız
         //arttırmazsanız veri tabanı işlemlerinde hata verir
-        super(context, DATABASE_NAME, null, 6);
+        super(context, DATABASE_NAME, null, 7);
     }
 
     //tabloları oluşturur
